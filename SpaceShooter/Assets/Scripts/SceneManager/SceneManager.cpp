@@ -1,44 +1,63 @@
 #include "SceneManager.h"
+#include <assert.h>
+#include <iostream>
 
-SceneManager::SceneManager()
+SceneManager* SceneManager::instance = nullptr;
+
+SceneManager::SceneManager() : mainMenuScene(this), gameScene(this)
 {
+	assert(instance == nullptr);
+	instance = this;
 }
 
 bool SceneManager::initialize()
 {
-	scenes["Game"] = Scene();
+	mainMenuScene = MainMenuScene(this);
+	gameScene = GameScene(this);
+
+	currentScene = "Main Menu";
+
+	if (!mainMenuScene.initialize())
+	{
+		return false;
+	}
+
 	return true;
 }
 
 void SceneManager::update(float deltaTime)
 {
-	for (auto keyValuePair = scenes.begin(); keyValuePair != scenes.end(); keyValuePair++)
+	if (currentScene == "Main Menu")
 	{
-		keyValuePair->second.update(deltaTime);
+		mainMenuScene.update(deltaTime);
+	}
+	else if (currentScene == "Game")
+	{
+		gameScene.update(deltaTime);
 	}
 }
 
 void SceneManager::draw(sf::RenderWindow* window)
 {
-	for (auto keyValuePair = scenes.begin(); keyValuePair != scenes.end(); keyValuePair++)
+	if (currentScene == "Main Menu")
 	{
-		keyValuePair->second.draw(window);
+		mainMenuScene.draw(window);
+	}
+	else if (currentScene == "Game")
+	{
+		gameScene.draw(window);
 	}
 }
 
-void SceneManager::loadScene(std::string sceneName)
+void SceneManager::handleInput(sf::RenderWindow* window, sf::Event* event)
 {
-	currentScene = sceneName;
-	scenes[currentScene].initialize();
-}
-
-Scene* SceneManager::getScene(std::string sceneName)
-{
-	if (scenes.find(sceneName) != scenes.end())
+	if (currentScene == "Main Menu")
 	{
-		return &scenes[sceneName];
+		mainMenuScene.handleInput(window, event);
 	}
-	
-	return nullptr;
+	else if (currentScene == "Game")
+	{
+		gameScene.handleInput(window, event);
+	}
 }
 

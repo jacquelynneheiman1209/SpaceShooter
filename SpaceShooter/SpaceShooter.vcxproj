@@ -134,15 +134,24 @@
   <ItemGroup>
     <ClCompile Include="Assets\Scripts\Game\Game.cpp" />
     <ClCompile Include="Assets\Scripts\Background\Background.cpp" />
+    <ClCompile Include="Assets\Scripts\UI Elements\Button.cpp" />
+    <ClCompile Include="Assets\Scripts\SceneManager\Scenes\GameScene\GameScene.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Assets\Scripts\SceneManager\SceneManager.cpp" />
     <ClCompile Include="Assets\Scripts\SceneManager\Scenes\Scene.cpp" />
+    <ClCompile Include="Assets\Scripts\SceneManager\Scenes\MainMenuScene.cpp" />
+    <ClCompile Include="Assets\Scripts\SceneManager\Scenes\GameScene\GameObjects\Player.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Assets\Scripts\Game\Game.h" />
     <ClInclude Include="Assets\Scripts\Background\Background.h" />
     <ClInclude Include="Assets\Scripts\SceneManager\SceneManager.h" />
     <ClInclude Include="Assets\Scripts\SceneManager\Scenes\Scene.h" />
+    <ClInclude Include="Assets\Scripts\SceneManager\Scenes\MainMenuScene.h" />
+    <ClInclude Include="Assets\Scripts\UI Elements\Button.h" />
+    <ClInclude Include="Assets\Scripts\SceneManager\SceneLoader.h" />
+    <ClInclude Include="Assets\Scripts\SceneManager\Scenes\GameScene\GameScene.h" />
+    <ClInclude Include="Assets\Scripts\SceneManager\Scenes\GameScene\GameObjects\Player.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

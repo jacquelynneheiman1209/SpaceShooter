@@ -14,6 +14,11 @@ bool Game::initialize()
 		return false;
 	}
 
+	if (!sceneManager.initialize())
+	{
+		return false;
+	}
+
 	return true;
 }
 
@@ -44,6 +49,8 @@ void Game::run()
 					window.close();
 				}
 			}
+
+			sceneManager.handleInput(&window, &event);
 		}
 
 		update(deltaTime);
@@ -53,7 +60,7 @@ void Game::run()
 
 void Game::update(float deltaTime)
 {
-
+	sceneManager.update(deltaTime);
 }
 
 void Game::draw(sf::RenderWindow* window)
@@ -62,13 +69,12 @@ void Game::draw(sf::RenderWindow* window)
 
 	// draw things here
 	background.draw(window);
+	sceneManager.draw(window);
 
 	window->display();
 }
 
 bool Game::loadBackground()
 {
-	
-
 	return background.initialize();
 }

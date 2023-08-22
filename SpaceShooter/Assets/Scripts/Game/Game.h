@@ -1,6 +1,7 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include "../Background/Background.h"
+#include "../SceneManager/SceneManager.h"
 
 #ifndef GAME_H
 #define GAME_H
@@ -21,6 +22,7 @@ private:
 	float deltaTime = 0;
 
 	Background background;
+	SceneManager sceneManager;
 
 	void update(float deltaTime);
 	void draw(sf::RenderWindow* window);

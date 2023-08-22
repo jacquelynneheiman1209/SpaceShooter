@@ -9,10 +9,10 @@ class Scene
 public:
 	Scene();
 
-	bool initialize();
+	virtual bool initialize();
 
-	void update(float deltaTime);
-	void draw(sf::RenderWindow* window);
+	virtual void update(float deltaTime);
+	virtual void draw(sf::RenderWindow* window);
 
 private:
 

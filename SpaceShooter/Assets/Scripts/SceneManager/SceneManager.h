@@ -1,11 +1,13 @@
 #pragma once
 #include <SFML/Graphics.hpp>
-#include "Scenes/Scene.h"
+#include "SceneLoader.h"
+#include "Scenes/MainMenuScene.h"
+#include "Scenes/GameScene/GameScene.h"
 
 #ifndef SCENE_MANAGER_H
 #define SCENE_MANAGER_H
 
-class SceneManager
+class SceneManager : public SceneLoader
 {
 public:
 	SceneManager();
@@ -14,14 +16,28 @@ public:
 	void update(float delatTime);
 	void draw(sf::RenderWindow* window);
 
-	void loadScene(std::string sceneName);
-	Scene* getScene(std::string sceneName);
+	void handleInput(sf::RenderWindow* window, sf::Event* event);
+
+	void SceneLoader::loadScene(std::string sceneName)
+	{
+		currentScene = sceneName;
+
+		if (currentScene == "Main Menu")
+		{
+			mainMenuScene.initialize();
+		}
+		else if (currentScene == "Game")
+		{
+			gameScene.initialize();
+		}
+	}
 
 private:
+	static SceneManager* instance;
 	std::string currentScene;
-	std::map<std::string, Scene> scenes;
 
-	void addScene(std::string sceneName);
+	MainMenuScene mainMenuScene;
+	GameScene gameScene;
 
 };
 

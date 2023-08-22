@@ -6,7 +6,7 @@ Scene::Scene()
 
 bool Scene::initialize()
 {
-	return false;
+	return true;
 }
 
 void Scene::update(float deltaTime)
@@ -15,4 +15,5 @@ void Scene::update(float deltaTime)
 
 void Scene::draw(sf::RenderWindow* window)
 {
+
 }
