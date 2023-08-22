@@ -30,16 +30,19 @@
     <ClCompile Include="Assets\Scripts\SceneManager\Scenes\Scene.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Assets\Scripts\SceneManager\Scenes\MainMenuScene.cpp">
+    <ClCompile Include="Assets\Scripts\SceneManager\Scenes\MainMenuScene\MainMenuScene.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Assets\Scripts\UI Elements\Button.cpp">
+    <ClCompile Include="Assets\Scripts\UI Elements\Button\Button.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Assets\Scripts\SceneManager\Scenes\GameScene\GameScene.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Assets\Scripts\SceneManager\Scenes\GameScene\GameObjects\Player.cpp">
+    <ClCompile Include="Assets\Scripts\SceneManager\Scenes\GameScene\GameObjects\Player\Player.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Assets\Scripts\SceneManager\Scenes\GameScene\GameObjects\PauseMenu\PauseMenu.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -56,10 +59,10 @@
     <ClInclude Include="Assets\Scripts\SceneManager\Scenes\Scene.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Assets\Scripts\SceneManager\Scenes\MainMenuScene.h">
+    <ClInclude Include="Assets\Scripts\SceneManager\Scenes\MainMenuScene\MainMenuScene.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Assets\Scripts\UI Elements\Button.h">
+    <ClInclude Include="Assets\Scripts\UI Elements\Button\Button.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Assets\Scripts\SceneManager\SceneLoader.h">
@@ -68,7 +71,10 @@
     <ClInclude Include="Assets\Scripts\SceneManager\Scenes\GameScene\GameScene.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Assets\Scripts\SceneManager\Scenes\GameScene\GameObjects\Player.h">
+    <ClInclude Include="Assets\Scripts\SceneManager\Scenes\GameScene\GameObjects\Player\Player.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Assets\Scripts\SceneManager\Scenes\GameScene\GameObjects\PauseMenu\PauseMenu.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -26,12 +26,6 @@ bool Background::resize(int width, int height)
 	int numTilesWide = (width / backgroundTileWidth) + 1;
 	int numTilesHigh = (height / backgroundTileHeight) + 1;
 
-	//std::cout << "Num Tiles Wide: " << numTilesWide << std::endl;
-	//std::cout << "Num Tiles High: " << numTilesHigh << std::endl;
-
-	//std::cout << "Total Num Tiles: " << numTilesWide * numTilesHigh << std::endl;
-	//std::cout << "------------------------------------------ " << std::endl;
-
 	for (int i = 0; i < numTilesWide * numTilesHigh; i++)
 	{
 		backgroundTiles.push_back(sf::Sprite(backgroundTexture));
@@ -42,16 +36,11 @@ bool Background::resize(int width, int height)
 		for (int x = 0; x < numTilesWide; x++)
 		{
 			sf::Vector2f tilePosition;
-			tilePosition.x = x * backgroundTileWidth;
-			tilePosition.y = y * backgroundTileHeight;
+			tilePosition.x = static_cast<float>(x * backgroundTileWidth);
+			tilePosition.y = static_cast<float>(y * backgroundTileHeight);
 
 			int backgroundIndex = y * numTilesWide + x;
 			backgroundTiles[backgroundIndex].setPosition(tilePosition);
-
-			//std::cout << "------------------------------------------ " << std::endl;
-			//std::cout << "Background Index: " << backgroundIndex << std::endl;
-			//std::cout << "Tile Position: " << tilePosition.x << ", " << tilePosition.y << std::endl;
-			//std::cout << "------------------------------------------ " << std::endl;
 		}
 	}
 

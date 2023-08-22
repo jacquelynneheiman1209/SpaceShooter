@@ -52,8 +52,8 @@ bool Button::isClicked(sf::Vector2i mousePosition)
 	float buttonMaxX = buttonSprite.getGlobalBounds().width + buttonMinX;
 	float buttonMaxY = buttonSprite.getGlobalBounds().height + buttonMinY;
 
-	float mouseX = mousePosition.x;
-	float mouseY = mousePosition.y;
+	float mouseX = static_cast<float>(mousePosition.x);
+	float mouseY = static_cast<float>(mousePosition.y);
 
 	return mouseX >= buttonMinX && mouseX <= buttonMaxX && mouseY >= buttonMinY && mouseY <= buttonMaxY;
 }

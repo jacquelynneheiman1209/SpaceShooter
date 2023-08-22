@@ -1,9 +1,9 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include "../Scene.h"
-#include "../../../UI Elements/Button.h"
+#include "../../../UI Elements/Button/Button.h"
 #include "../../SceneLoader.h"
-#include "GameObjects/Player.h"
+#include "GameObjects/Player/Player.h"
 
 
 #ifndef GAME_SCENE_H

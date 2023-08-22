@@ -4,7 +4,6 @@
 Player::Player(sf::Vector2f startPos)
 {
 	startPosition = startPos;
-	std::cout << "Start Position: " << startPos.x << ", " << startPos.y << std::endl;
 }
 
 bool Player::initialize()
@@ -88,13 +87,13 @@ void Player::move(float deltaTime)
 	
 	if (moveForwards)
 	{
-		currentPosition.x += cos(rotation * (3.14159265 / 180)) * moveSpeed * deltaTime;
-		currentPosition.y += sin(rotation * (3.14159265 / 180)) * moveSpeed * deltaTime;
+		currentPosition.x += static_cast<float>(cos(rotation * (3.14159265 / 180)) * moveSpeed * deltaTime);
+		currentPosition.y += static_cast<float>(sin(rotation * (3.14159265 / 180)) * moveSpeed * deltaTime);
 	}
 	else if (moveBackwards)
 	{
-		currentPosition.x -= cos(rotation * (3.14159265 / 180)) * moveSpeed * deltaTime;
-		currentPosition.y -= sin(rotation * (3.14159265 / 180)) * moveSpeed * deltaTime;
+		currentPosition.x -= static_cast<float>(cos(rotation * (3.14159265 / 180)) * moveSpeed * deltaTime);
+		currentPosition.y -= static_cast<float>(sin(rotation * (3.14159265 / 180)) * moveSpeed * deltaTime);
 	}
 
 	playerSprite.setPosition(currentPosition);
