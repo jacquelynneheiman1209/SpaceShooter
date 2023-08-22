@@ -1,7 +1,7 @@
 #include "GameScene.h"
 #include <iostream>
 
-GameScene::GameScene(SceneLoader* sceneLoader) : player(sf::Vector2f(640, 360))
+GameScene::GameScene(SceneLoader* sceneLoader) : player(sf::Vector2f(640, 360)), pauseMenu()
 {
 	this->sceneLoader = sceneLoader;
 	isPaused = false;
@@ -11,8 +11,14 @@ bool GameScene::initialize()
 {
 	isPaused = false;
 	player = Player(sf::Vector2f(640, 360));
+	pauseMenu = PauseMenu();
 
 	if (!player.initialize())
+	{
+		return false;
+	}
+
+	if (!pauseMenu.initialize())
 	{
 		return false;
 	}
@@ -26,12 +32,18 @@ void GameScene::handleInput(sf::RenderWindow* window, sf::Event* event)
 	{
 		if (event->key.code == sf::Keyboard::Escape)
 		{
-			isPaused = true;
-			// open pause menu
+			isPaused = !isPaused;
 		}
 	}
 
-	player.handleInput(window, event);
+	if (isPaused)
+	{
+		pauseMenu.handleInput(window, event);
+	}
+	else
+	{
+		player.handleInput(window, event);
+	}
 }
 
 void GameScene::update(float deltaTime)
@@ -45,4 +57,9 @@ void GameScene::update(float deltaTime)
 void GameScene::draw(sf::RenderWindow* window)
 {
 	player.draw(window);
+
+	if (isPaused)
+	{
+		pauseMenu.draw(window);
+	}
 }

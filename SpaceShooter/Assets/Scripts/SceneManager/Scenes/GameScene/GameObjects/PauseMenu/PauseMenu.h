@@ -15,8 +15,19 @@ public:
 	void draw(sf::RenderWindow* window);
 
 private:
-	sf::Texture menuTexture;
+	sf::Texture menuBackgroundTexture;
 	sf::Texture buttonTexture;
+
+	sf::Sprite menuBackgroundSprite;
+
+	sf::Vector2f menuBackgroundScale = sf::Vector2f(3, 3);
+
+	sf::Font font;
+
+	sf::Text menuTitleText;
+
+	void setupSprite(sf::Sprite* sprite, sf::Vector2f position);
+	void setupText(sf::Text* text, sf::Vector2f position, std::string textString);
 };
 
 #endif // !PAUSE_MENU_H

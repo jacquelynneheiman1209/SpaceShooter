@@ -42,14 +42,6 @@ void Game::run()
 				window.close();
 			}
 
-			if (event.type == sf::Event::KeyPressed)
-			{
-				if (event.key.code == sf::Keyboard::Escape)
-				{
-					window.close();
-				}
-			}
-
 			sceneManager.handleInput(&window, &event);
 		}
 

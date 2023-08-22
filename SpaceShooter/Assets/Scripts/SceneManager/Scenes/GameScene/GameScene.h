@@ -4,7 +4,7 @@
 #include "../../../UI Elements/Button/Button.h"
 #include "../../SceneLoader.h"
 #include "GameObjects/Player/Player.h"
-
+#include "GameObjects/PauseMenu/PauseMenu.h"
 
 #ifndef GAME_SCENE_H
 #define GAME_SCENE_H
@@ -24,6 +24,7 @@ private:
 	SceneLoader* sceneLoader;
 
 	Player player;
+	PauseMenu pauseMenu;
 
 	bool isPaused;
 };
