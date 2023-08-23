@@ -38,6 +38,29 @@ void GameScene::handleInput(sf::RenderWindow* window, sf::Event* event)
 
 	if (isPaused)
 	{
+		if (event->type == event->MouseButtonPressed)
+		{
+			if (pauseMenu.continueGameButton.isClicked(sf::Mouse::getPosition(*window)))
+			{
+				isPaused = false;
+			}
+
+			if (pauseMenu.restartLevelButton.isClicked(sf::Mouse::getPosition(*window)))
+			{
+				initialize();
+			}
+
+			if (pauseMenu.optionsButton.isClicked(sf::Mouse::getPosition(*window)))
+			{
+
+			}
+
+			if (pauseMenu.quitButton.isClicked(sf::Mouse::getPosition(*window)))
+			{
+				window->close();
+			}
+		}
+
 		pauseMenu.handleInput(window, event);
 	}
 	else

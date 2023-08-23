@@ -16,6 +16,11 @@ public:
 	void update(float deltaTime);
 	void draw(sf::RenderWindow* window);
 
+	PauseMenuButton continueGameButton;
+	PauseMenuButton restartLevelButton;
+	PauseMenuButton optionsButton;
+	PauseMenuQuitButton quitButton;
+
 private:
 	sf::Texture menuBackgroundTexture;
 	sf::Texture buttonTexture;
@@ -25,11 +30,6 @@ private:
 	sf::Font font;
 
 	sf::Text menuTitleText;
-
-	PauseMenuButton continueGameButton;
-	PauseMenuButton restartLevelButton;
-	PauseMenuButton optionsButton;
-	PauseMenuQuitButton quitButton;
 
 	void setupSprite(sf::Sprite* sprite, sf::Vector2f position);
 	void setupText(sf::Text* text, sf::Vector2f position, std::string textString);

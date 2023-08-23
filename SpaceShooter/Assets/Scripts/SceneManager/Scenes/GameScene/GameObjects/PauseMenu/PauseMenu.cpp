@@ -59,29 +59,6 @@ bool PauseMenu::initialize()
 
 void PauseMenu::handleInput(sf::RenderWindow* window, sf::Event* event)
 {
-	if (event->type == event->MouseButtonPressed)
-	{
-		if (continueGameButton.isClicked(sf::Mouse::getPosition(*window)))
-		{
-			// unpause the game
-		}
-
-		if (restartLevelButton.isClicked(sf::Mouse::getPosition(*window)))
-		{
-			// restart the level
-		}
-
-		if (optionsButton.isClicked(sf::Mouse::getPosition(*window)))
-		{
-			// open options menu
-		}
-
-		if (quitButton.isClicked(sf::Mouse::getPosition(*window)))
-		{
-			window->close();
-		}
-	}
-
 	continueGameButton.handleInput(window, event);
 	restartLevelButton.handleInput(window, event);
 	optionsButton.handleInput(window, event);
