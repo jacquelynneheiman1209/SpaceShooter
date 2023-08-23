@@ -142,6 +142,8 @@
     <ClCompile Include="Assets\Scripts\SceneManager\Scenes\MainMenuScene\MainMenuScene.cpp" />
     <ClCompile Include="Assets\Scripts\SceneManager\Scenes\GameScene\GameObjects\Player\Player.cpp" />
     <ClCompile Include="Assets\Scripts\SceneManager\Scenes\GameScene\GameObjects\PauseMenu\PauseMenu.cpp" />
+    <ClCompile Include="Assets\Scripts\SceneManager\Scenes\GameScene\GameObjects\PauseMenu\PauseMenuButton.cpp" />
+    <ClCompile Include="Assets\Scripts\SceneManager\Scenes\GameScene\GameObjects\PauseMenu\PauseMenuQuitButton.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Assets\Scripts\Game\Game.h" />
@@ -154,6 +156,8 @@
     <ClInclude Include="Assets\Scripts\SceneManager\Scenes\GameScene\GameScene.h" />
     <ClInclude Include="Assets\Scripts\SceneManager\Scenes\GameScene\GameObjects\Player\Player.h" />
     <ClInclude Include="Assets\Scripts\SceneManager\Scenes\GameScene\GameObjects\PauseMenu\PauseMenu.h" />
+    <ClInclude Include="Assets\Scripts\SceneManager\Scenes\GameScene\GameObjects\PauseMenu\PauseMenuButton.h" />
+    <ClInclude Include="Assets\Scripts\SceneManager\Scenes\GameScene\GameObjects\PauseMenu\PauseMenuQuitButton.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -1,5 +1,7 @@
 #pragma once
 #include <SFML/Graphics.hpp>
+#include "PauseMenuQuitButton.h"
+#include "PauseMenuButton.h"
 
 #ifndef PAUSE_MENU_H
 #define PAUSE_MENU_H
@@ -20,11 +22,14 @@ private:
 
 	sf::Sprite menuBackgroundSprite;
 
-	sf::Vector2f menuBackgroundScale = sf::Vector2f(3, 3);
-
 	sf::Font font;
 
 	sf::Text menuTitleText;
+
+	PauseMenuButton continueGameButton;
+	PauseMenuButton restartLevelButton;
+	PauseMenuButton optionsButton;
+	PauseMenuQuitButton quitButton;
 
 	void setupSprite(sf::Sprite* sprite, sf::Vector2f position);
 	void setupText(sf::Text* text, sf::Vector2f position, std::string textString);

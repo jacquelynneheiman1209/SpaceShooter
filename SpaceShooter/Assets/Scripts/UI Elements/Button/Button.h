@@ -9,14 +9,14 @@ class Button
 public:
 	Button(sf::Vector2f position, std::string text);
 
-	bool initialize();
+	virtual bool initialize();
 
 	void update(float deltaTime);
 	void draw(sf::RenderWindow* window);
 
 	bool isClicked(sf::Vector2i mousePosition);
 
-private:
+protected:
 	sf::Texture buttonTexture;
 	sf::Sprite buttonSprite;
 
