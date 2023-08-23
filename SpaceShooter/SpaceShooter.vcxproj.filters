@@ -51,6 +51,12 @@
     <ClCompile Include="Assets\Scripts\SceneManager\Scenes\GameScene\GameObjects\PauseMenu\PauseMenuQuitButton.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Assets\Scripts\SceneManager\Scenes\GameScene\GameObjects\OptionsMenu\OptionsMenu.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Assets\Scripts\SceneManager\Scenes\GameScene\GameObjects\GameOverMenu\GameOverMenu.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Assets\Scripts\Game\Game.h">
@@ -87,6 +93,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Assets\Scripts\SceneManager\Scenes\GameScene\GameObjects\PauseMenu\PauseMenuQuitButton.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Assets\Scripts\SceneManager\Scenes\GameScene\GameObjects\OptionsMenu\OptionsMenu.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Assets\Scripts\SceneManager\Scenes\GameScene\GameObjects\GameOverMenu\GameOverMenu.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

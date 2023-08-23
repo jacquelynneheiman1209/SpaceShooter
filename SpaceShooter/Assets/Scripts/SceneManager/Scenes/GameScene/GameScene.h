@@ -5,6 +5,7 @@
 #include "../../SceneLoader.h"
 #include "GameObjects/Player/Player.h"
 #include "GameObjects/PauseMenu/PauseMenu.h"
+#include "GameObjects/GameOverMenu/GameOverMenu.h"
 
 #ifndef GAME_SCENE_H
 #define GAME_SCENE_H
@@ -25,8 +26,13 @@ private:
 
 	Player player;
 	PauseMenu pauseMenu;
+	GameOverMenu gameOverMenu;
 
-	bool isPaused;
+	bool isPaused = false;
+	bool isGameOver = false;
+
+	int enemiesKilled = 0;
+	int numberEmeniesToKill = 3;
 };
 
 #endif // !GAME_SCENE_H

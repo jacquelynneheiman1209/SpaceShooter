@@ -1,17 +1,22 @@
 #include "GameScene.h"
 #include <iostream>
 
-GameScene::GameScene(SceneLoader* sceneLoader) : player(sf::Vector2f(640, 360)), pauseMenu()
+GameScene::GameScene(SceneLoader* sceneLoader) : player(sf::Vector2f(640, 360)), pauseMenu(), gameOverMenu()
 {
 	this->sceneLoader = sceneLoader;
-	isPaused = false;
 }
 
 bool GameScene::initialize()
 {
+	isGameOver = false;
 	isPaused = false;
+
+	enemiesKilled = 0;
+
 	player = Player(sf::Vector2f(640, 360));
+
 	pauseMenu = PauseMenu();
+	gameOverMenu = GameOverMenu();
 
 	if (!player.initialize())
 	{
@@ -23,66 +28,111 @@ bool GameScene::initialize()
 		return false;
 	}
 
+	if (!gameOverMenu.initialize())
+	{
+		return false;
+	}
+
 	return true;
 }
 
 void GameScene::handleInput(sf::RenderWindow* window, sf::Event* event)
 {
-	if (event->type == event->KeyPressed)
+	if (!isGameOver)
 	{
-		if (event->key.code == sf::Keyboard::Escape)
+		if (event->type == event->KeyPressed)
 		{
-			isPaused = !isPaused;
-		}
-	}
-
-	if (isPaused)
-	{
-		if (event->type == event->MouseButtonPressed)
-		{
-			if (pauseMenu.continueGameButton.isClicked(sf::Mouse::getPosition(*window)))
+			if (event->key.code == sf::Keyboard::Escape)
 			{
-				isPaused = false;
+				isPaused = !isPaused;
 			}
 
-			if (pauseMenu.restartLevelButton.isClicked(sf::Mouse::getPosition(*window)))
+			if (event->key.code == sf::Keyboard::Tab)
+			{
+				enemiesKilled++;
+
+				if (enemiesKilled >= numberEmeniesToKill)
+				{
+					isGameOver = true;
+				}
+			}
+		}
+
+		if (isPaused)
+		{
+			if (event->type == event->MouseButtonPressed)
+			{
+				if (pauseMenu.continueGameButton.isClicked(sf::Mouse::getPosition(*window)))
+				{
+					isPaused = false;
+				}
+
+				if (pauseMenu.restartLevelButton.isClicked(sf::Mouse::getPosition(*window)))
+				{
+					initialize();
+				}
+
+				if (pauseMenu.optionsButton.isClicked(sf::Mouse::getPosition(*window)))
+				{
+
+				}
+
+				if (pauseMenu.quitButton.isClicked(sf::Mouse::getPosition(*window)))
+				{
+					window->close();
+				}
+			}
+
+			pauseMenu.handleInput(window, event);
+		}
+		else
+		{
+			player.handleInput(window, event);
+		}
+	}
+	else
+	{
+		gameOverMenu.handleInput(window, event);
+
+		if (event->type == event->MouseButtonPressed)
+		{
+			if (gameOverMenu.playAgainButton.isClicked(sf::Mouse::getPosition(*window)))
 			{
 				initialize();
 			}
 
-			if (pauseMenu.optionsButton.isClicked(sf::Mouse::getPosition(*window)))
+			if (gameOverMenu.mainMenuButton.isClicked(sf::Mouse::getPosition(*window)))
 			{
-
-			}
-
-			if (pauseMenu.quitButton.isClicked(sf::Mouse::getPosition(*window)))
-			{
-				window->close();
+				sceneLoader->loadScene("Main Menu");
 			}
 		}
-
-		pauseMenu.handleInput(window, event);
-	}
-	else
-	{
-		player.handleInput(window, event);
 	}
 }
 
 void GameScene::update(float deltaTime)
 {
-	if (!isPaused)
+	if (!isGameOver)
 	{
-		player.update(deltaTime);
+		if (!isPaused)
+		{
+			player.update(deltaTime);
+		}
 	}
 }
 
 void GameScene::draw(sf::RenderWindow* window)
 {
-	player.draw(window);
-
-	if (isPaused)
+	if (!isGameOver)
 	{
-		pauseMenu.draw(window);
+		player.draw(window);
+
+		if (isPaused)
+		{
+			pauseMenu.draw(window);
+		}
+	}
+	else
+	{
+		gameOverMenu.draw(window);
 	}
 }

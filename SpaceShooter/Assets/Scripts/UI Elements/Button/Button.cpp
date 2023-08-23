@@ -7,16 +7,23 @@ Button::Button(sf::Vector2f position, std::string text)
 	buttonText = text;
 }
 
+Button::Button(sf::Vector2f position, std::string text, sf::Color color, sf::Color hoverColor)
+{
+	buttonPosition = position;
+	buttonText = text;
+	buttonColor = color;
+	buttonHoverColor = hoverColor;
+}
+
 bool Button::initialize()
 {
-	if (!buttonTexture.loadFromFile("Assets/Graphics/UI/buttonGreen.png"))
-	{
-		return false;
-	}
+	buttonBackground.setSize(sf::Vector2f(200, 40));
+	buttonBackground.setFillColor(buttonColor);
 
-	buttonSprite.setTexture(buttonTexture);
-	buttonSprite.setOrigin(buttonSprite.getLocalBounds().left + (buttonSprite.getLocalBounds().width / 2), buttonSprite.getLocalBounds().top + (buttonSprite.getLocalBounds().height / 2));
-	buttonSprite.setPosition(buttonPosition);
+	sf::FloatRect buttonBounds = buttonBackground.getLocalBounds();
+
+	buttonBackground.setOrigin(buttonBounds.left + (buttonBounds.width / 2), buttonBounds.top + (buttonBounds.height / 2));
+	buttonBackground.setPosition(buttonPosition);
 
 	if (!font.loadFromFile("Assets/Fonts/kenvector_future.ttf"))
 	{
@@ -28,7 +35,7 @@ bool Button::initialize()
 	text.setCharacterSize(18);
 	text.setFillColor(sf::Color::Black);
 	text.setOrigin(text.getLocalBounds().left + (text.getLocalBounds().width / 2), text.getLocalBounds().top + (text.getLocalBounds().height / 2));
-	text.setPosition((buttonSprite.getGlobalBounds().left + (buttonSprite.getGlobalBounds().width / 2)), (buttonSprite.getGlobalBounds().top + (buttonSprite.getGlobalBounds().height / 2)));
+	text.setPosition((buttonBackground.getGlobalBounds().left + (buttonBackground.getGlobalBounds().width / 2)), (buttonBackground.getGlobalBounds().top + (buttonBackground.getGlobalBounds().height / 2)));
 
 	return true;
 }
@@ -40,17 +47,29 @@ void Button::update(float deltaTime)
 
 void Button::draw(sf::RenderWindow* window)
 {
-	window->draw(buttonSprite);
+	window->draw(buttonBackground);
 	window->draw(text);
+}
+
+void Button::handleInput(sf::RenderWindow* window, sf::Event* event)
+{
+	if (isClicked(sf::Mouse::getPosition(*window)))
+	{
+		buttonBackground.setFillColor(buttonHoverColor);
+	}
+	else
+	{
+		buttonBackground.setFillColor(buttonColor);
+	}
 }
 
 bool Button::isClicked(sf::Vector2i mousePosition)
 {
-	float buttonMinX = buttonSprite.getGlobalBounds().left;
-	float buttonMinY = buttonSprite.getGlobalBounds().top;
+	float buttonMinX = buttonBackground.getGlobalBounds().left;
+	float buttonMinY = buttonBackground.getGlobalBounds().top;
 
-	float buttonMaxX = buttonSprite.getGlobalBounds().width + buttonMinX;
-	float buttonMaxY = buttonSprite.getGlobalBounds().height + buttonMinY;
+	float buttonMaxX = buttonBackground.getGlobalBounds().width + buttonMinX;
+	float buttonMaxY = buttonBackground.getGlobalBounds().height + buttonMinY;
 
 	float mouseX = static_cast<float>(mousePosition.x);
 	float mouseY = static_cast<float>(mousePosition.y);
