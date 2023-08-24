@@ -1,6 +1,6 @@
 #pragma once
 #include <SFML/Graphics.hpp>
-#include "../../../../../UI Elements/Button/Button.h"
+#include "Button.h"
 
 #ifndef GAME_OVER_MENU_H
 #define GAME_OVER_MENU_H

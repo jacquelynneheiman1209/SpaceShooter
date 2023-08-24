@@ -1,4 +1,4 @@
-#include "Assets/Scripts/Game/Game.h"
+#include "Game.h"
 
 int main()
 {

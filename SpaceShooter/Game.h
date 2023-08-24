@@ -1,7 +1,7 @@
 #pragma once
 #include <SFML/Graphics.hpp>
-#include "../Background/Background.h"
-#include "../SceneManager/SceneManager.h"
+#include "Background.h"
+#include "SceneManager.h"
 
 #ifndef GAME_H
 #define GAME_H
