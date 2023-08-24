@@ -1,7 +1,7 @@
 #pragma once
 #include <SFML/Graphics.hpp>
-#include "PauseMenuQuitButton.h"
-#include "PauseMenuButton.h"
+#include "RedButton.h"
+#include "YellowButton.h"
 
 #ifndef PAUSE_MENU_H
 #define PAUSE_MENU_H
@@ -16,10 +16,10 @@ public:
 	void update(float deltaTime);
 	void draw(sf::RenderWindow* window);
 
-	PauseMenuButton continueGameButton;
-	PauseMenuButton restartLevelButton;
-	PauseMenuButton optionsButton;
-	PauseMenuQuitButton quitButton;
+	YellowButton continueGameButton;
+	YellowButton restartLevelButton;
+	YellowButton optionsButton;
+	RedButton quitButton;
 
 private:
 	sf::Texture menuBackgroundTexture;

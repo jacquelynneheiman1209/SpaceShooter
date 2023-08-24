@@ -18,10 +18,10 @@ bool PauseMenu::initialize()
 	menuBackgroundSprite.setScale(1.5, 1.5);
 	setupSprite(&menuBackgroundSprite, sf::Vector2f(640, 360));
 
-	continueGameButton = PauseMenuButton(sf::Vector2f(menuBackgroundSprite.getGlobalBounds().left + (menuBackgroundSprite.getGlobalBounds().width / 2), menuBackgroundSprite.getGlobalBounds().top + 100), "Continue");
-	restartLevelButton = PauseMenuButton(sf::Vector2f(menuBackgroundSprite.getGlobalBounds().left + (menuBackgroundSprite.getGlobalBounds().width / 2), menuBackgroundSprite.getGlobalBounds().top + 180), "Restart");
-	optionsButton = PauseMenuButton(sf::Vector2f(menuBackgroundSprite.getGlobalBounds().left + (menuBackgroundSprite.getGlobalBounds().width / 2), menuBackgroundSprite.getGlobalBounds().top + 260), "Options");
-	quitButton = PauseMenuQuitButton(sf::Vector2f(menuBackgroundSprite.getGlobalBounds().left + (menuBackgroundSprite.getGlobalBounds().width / 2), menuBackgroundSprite.getGlobalBounds().top + 340), "Quit");
+	continueGameButton = YellowButton(sf::Vector2f(menuBackgroundSprite.getGlobalBounds().left + (menuBackgroundSprite.getGlobalBounds().width / 2), menuBackgroundSprite.getGlobalBounds().top + 100), "Continue");
+	restartLevelButton = YellowButton(sf::Vector2f(menuBackgroundSprite.getGlobalBounds().left + (menuBackgroundSprite.getGlobalBounds().width / 2), menuBackgroundSprite.getGlobalBounds().top + 180), "Restart");
+	optionsButton = YellowButton(sf::Vector2f(menuBackgroundSprite.getGlobalBounds().left + (menuBackgroundSprite.getGlobalBounds().width / 2), menuBackgroundSprite.getGlobalBounds().top + 260), "Options");
+	quitButton = RedButton(sf::Vector2f(menuBackgroundSprite.getGlobalBounds().left + (menuBackgroundSprite.getGlobalBounds().width / 2), menuBackgroundSprite.getGlobalBounds().top + 340), "Quit");
 
 	if (!font.loadFromFile("Assets/Fonts/kenvector_future.ttf"))
 	{

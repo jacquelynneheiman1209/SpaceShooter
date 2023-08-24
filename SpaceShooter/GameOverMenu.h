@@ -1,6 +1,7 @@
 #pragma once
 #include <SFML/Graphics.hpp>
-#include "Button.h"
+#include "GreenButton.h"
+#include "RedButton.h"
 
 #ifndef GAME_OVER_MENU_H
 #define GAME_OVER_MENU_H
@@ -15,8 +16,8 @@ public:
 	void update(float deltaTime);
 	void draw(sf::RenderWindow* window);
 
-	Button playAgainButton;
-	Button mainMenuButton;
+	GreenButton playAgainButton;
+	RedButton mainMenuButton;
 
 private:
 	sf::Texture backgroundTexture;	// for use later when I have the art pieces

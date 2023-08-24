@@ -1,12 +1,12 @@
-#include "PauseMenuQuitButton.h"
+#include "RedButton.h"
 
-PauseMenuQuitButton::PauseMenuQuitButton(sf::Vector2f position, std::string text) : Button(position, text)
+RedButton::RedButton(sf::Vector2f position, std::string text) : Button(position, text)
 {
 }
 
-bool PauseMenuQuitButton::initialize()
+bool RedButton::initialize()
 {
-	if (!buttonTexture.loadFromFile("Assets/Graphics/UI/PauseMenu_Button_Red.png"))
+	if (!buttonTexture.loadFromFile("Assets/Graphics/UI/buttonRed_Regular.png"))
 	{
 		return false;
 	}
@@ -28,7 +28,7 @@ bool PauseMenuQuitButton::initialize()
 	text.setOrigin(text.getLocalBounds().left + (text.getLocalBounds().width / 2), text.getLocalBounds().top + (text.getLocalBounds().height / 2));
 	text.setPosition(buttonPosition);
 
-	if (!buttonHoverTexture.loadFromFile("Assets/Graphics/UI/PauseMenu_Button_Red_Pressed.png"))
+	if (!buttonHoverTexture.loadFromFile("Assets/Graphics/UI/buttonRed_Pressed.png"))
 	{
 		return false;
 	}
@@ -36,7 +36,7 @@ bool PauseMenuQuitButton::initialize()
 	return true;
 }
 
-void PauseMenuQuitButton::handleInput(sf::RenderWindow* window, sf::Event* event)
+void RedButton::handleInput(sf::RenderWindow* window, sf::Event* event)
 {
 	if (isClicked(sf::Mouse::getPosition(*window)))
 	{
@@ -48,13 +48,13 @@ void PauseMenuQuitButton::handleInput(sf::RenderWindow* window, sf::Event* event
 	}
 }
 
-void PauseMenuQuitButton::draw(sf::RenderWindow* window)
+void RedButton::draw(sf::RenderWindow* window)
 {
 	window->draw(buttonSprite);
 	window->draw(text);
 }
 
-bool PauseMenuQuitButton::isClicked(sf::Vector2i mousePosition)
+bool RedButton::isClicked(sf::Vector2i mousePosition)
 {
 	float buttonMinX = buttonSprite.getGlobalBounds().left;
 	float buttonMinY = buttonSprite.getGlobalBounds().top;
@@ -66,4 +66,19 @@ bool PauseMenuQuitButton::isClicked(sf::Vector2i mousePosition)
 	float mouseY = static_cast<float>(mousePosition.y);
 
 	return mouseX >= buttonMinX && mouseX <= buttonMaxX && mouseY >= buttonMinY && mouseY <= buttonMaxY;
+}
+
+void RedButton::setScale(float scaleX, float scaleY)
+{
+	buttonSprite.setScale(scaleX, scaleY);
+}
+
+void RedButton::setScale(sf::Vector2f scale)
+{
+	setScale(scale.x, scale.y);
+}
+
+sf::Vector2f RedButton::getScale()
+{
+	return buttonSprite.getScale();
 }

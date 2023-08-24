@@ -4,16 +4,21 @@
 #ifndef PAUSE_MENU_QUIT_BUTTON_H
 #define PAUSE_MENU_QUIT_BUTTON_H
 
-class PauseMenuQuitButton : public Button
+class RedButton : public Button
 {
 public:
-	PauseMenuQuitButton(sf::Vector2f position, std::string text);
+	RedButton(sf::Vector2f position, std::string text);
 
 	bool initialize() override;
 	void handleInput(sf::RenderWindow* window, sf::Event* event);
 	void draw(sf::RenderWindow* window);
 
 	bool isClicked(sf::Vector2i mousePosition);
+
+	void setScale(float scaleX, float scaleY) override;
+	void setScale(sf::Vector2f scale) override;
+
+	sf::Vector2f getScale();
 
 private:
 	sf::Texture buttonHoverTexture;

@@ -28,12 +28,6 @@
     <Filter Include="Source Files\UI Elements\Buttons\Button">
       <UniqueIdentifier>{f0bbe753-fc7e-4a34-89bb-5e32fcabce17}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\UI Elements\Buttons\PauseMenuButton">
-      <UniqueIdentifier>{74ed297b-d06c-444c-9daa-fbe279f17093}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\UI Elements\Buttons\PauseMenuQuitButton">
-      <UniqueIdentifier>{fc05761f-d3d2-4720-be11-336906172d65}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\UI Elements\Menus">
       <UniqueIdentifier>{176df6fa-a72f-449f-a104-18f0485491b3}</UniqueIdentifier>
     </Filter>
@@ -70,99 +64,114 @@
     <Filter Include="Source Files\SceneManager">
       <UniqueIdentifier>{13307989-cd05-42d6-9781-360cfa3ad9b3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\UI Elements\Buttons\Green Button">
+      <UniqueIdentifier>{5b8fd459-02ac-48fd-b4c4-dff5eb798828}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\UI Elements\Buttons\Yellow Button">
+      <UniqueIdentifier>{74ed297b-d06c-444c-9daa-fbe279f17093}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\UI Elements\Buttons\Red Button">
+      <UniqueIdentifier>{fc05761f-d3d2-4720-be11-336906172d65}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Assets\Scripts\Background\Background.cpp">
+    <ClCompile Include="Background.cpp">
       <Filter>Source Files\Background</Filter>
     </ClCompile>
-    <ClCompile Include="Assets\Scripts\UI Elements\Button\Button.cpp">
+    <ClCompile Include="Button.cpp">
       <Filter>Source Files\UI Elements\Buttons\Button</Filter>
     </ClCompile>
-    <ClCompile Include="Assets\Scripts\SceneManager\Scenes\GameScene\GameObjects\HUD\GameHUD.cpp">
+    <ClCompile Include="GameHUD.cpp">
       <Filter>Source Files\UI Elements\HUDs\GameHUD</Filter>
     </ClCompile>
-    <ClCompile Include="Assets\Scripts\SceneManager\Scenes\GameScene\GameObjects\GameOverMenu\GameOverMenu.cpp">
+    <ClCompile Include="GameOverMenu.cpp">
       <Filter>Source Files\UI Elements\Menus\Game Over Menu</Filter>
     </ClCompile>
-    <ClCompile Include="Assets\Scripts\SceneManager\Scenes\MainMenuScene\MainMenuScene.cpp">
+    <ClCompile Include="MainMenuScene.cpp">
       <Filter>Source Files\Scenes\Main Menu Scene</Filter>
     </ClCompile>
-    <ClCompile Include="Assets\Scripts\SceneManager\Scenes\GameScene\GameScene.cpp">
+    <ClCompile Include="GameScene.cpp">
       <Filter>Source Files\Scenes\Game Scene</Filter>
     </ClCompile>
-    <ClCompile Include="Assets\Scripts\SceneManager\Scenes\GameScene\GameObjects\OptionsMenu\OptionsMenu.cpp">
+    <ClCompile Include="OptionsMenu.cpp">
       <Filter>Source Files\UI Elements\Menus\Options Menu</Filter>
     </ClCompile>
-    <ClCompile Include="Assets\Scripts\SceneManager\Scenes\GameScene\GameObjects\PauseMenu\PauseMenu.cpp">
+    <ClCompile Include="PauseMenu.cpp">
       <Filter>Source Files\UI Elements\Menus\Pause Menu</Filter>
     </ClCompile>
-    <ClCompile Include="Assets\Scripts\SceneManager\Scenes\GameScene\GameObjects\PauseMenu\PauseMenuButton.cpp">
-      <Filter>Source Files\UI Elements\Buttons\PauseMenuButton</Filter>
+    <ClCompile Include="YellowButton.cpp">
+      <Filter>Source Files\UI Elements\Buttons\Yellow Button</Filter>
     </ClCompile>
-    <ClCompile Include="Assets\Scripts\SceneManager\Scenes\GameScene\GameObjects\PauseMenu\PauseMenuQuitButton.cpp">
-      <Filter>Source Files\UI Elements\Buttons\PauseMenuQuitButton</Filter>
+    <ClCompile Include="RedButton.cpp">
+      <Filter>Source Files\UI Elements\Buttons\Red Button</Filter>
     </ClCompile>
-    <ClCompile Include="Assets\Scripts\SceneManager\Scenes\GameScene\GameObjects\Player\Player.cpp">
+    <ClCompile Include="Player.cpp">
       <Filter>Source Files\Player</Filter>
     </ClCompile>
-    <ClCompile Include="Assets\Scripts\SceneManager\Scenes\Scene.cpp">
+    <ClCompile Include="Scene.cpp">
       <Filter>Source Files\Scenes\Scene</Filter>
     </ClCompile>
-    <ClCompile Include="Assets\Scripts\SceneManager\SceneManager.cpp">
+    <ClCompile Include="SceneManager.cpp">
       <Filter>Source Files\SceneManager</Filter>
     </ClCompile>
-    <ClCompile Include="Assets\Scripts\Game\Game.cpp">
+    <ClCompile Include="Game.cpp">
       <Filter>Source Files\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="GreenButton.cpp">
+      <Filter>Source Files\UI Elements\Buttons\Green Button</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Assets\Scripts\Background\Background.h">
+    <ClInclude Include="Background.h">
       <Filter>Source Files\Background</Filter>
     </ClInclude>
-    <ClInclude Include="Assets\Scripts\UI Elements\Button\Button.h">
+    <ClInclude Include="Button.h">
       <Filter>Source Files\UI Elements\Buttons\Button</Filter>
     </ClInclude>
-    <ClInclude Include="Assets\Scripts\Game\Game.h">
+    <ClInclude Include="Game.h">
       <Filter>Source Files\Game</Filter>
     </ClInclude>
-    <ClInclude Include="Assets\Scripts\SceneManager\Scenes\GameScene\GameObjects\HUD\GameHUD.h">
+    <ClInclude Include="GameHUD.h">
       <Filter>Source Files\UI Elements\HUDs\GameHUD</Filter>
     </ClInclude>
-    <ClInclude Include="Assets\Scripts\SceneManager\Scenes\GameScene\GameScene.h">
+    <ClInclude Include="GameScene.h">
       <Filter>Source Files\Scenes\Game Scene</Filter>
     </ClInclude>
-    <ClInclude Include="Assets\Scripts\SceneManager\Scenes\MainMenuScene\MainMenuScene.h">
+    <ClInclude Include="MainMenuScene.h">
       <Filter>Source Files\Scenes\Main Menu Scene</Filter>
     </ClInclude>
-    <ClInclude Include="Assets\Scripts\SceneManager\Scenes\GameScene\GameObjects\OptionsMenu\OptionsMenu.h">
+    <ClInclude Include="OptionsMenu.h">
       <Filter>Source Files\UI Elements\Menus\Options Menu</Filter>
     </ClInclude>
-    <ClInclude Include="Assets\Scripts\SceneManager\Scenes\GameScene\GameObjects\PauseMenu\PauseMenu.h">
+    <ClInclude Include="PauseMenu.h">
       <Filter>Source Files\UI Elements\Menus\Pause Menu</Filter>
     </ClInclude>
-    <ClInclude Include="Assets\Scripts\SceneManager\Scenes\GameScene\GameObjects\PauseMenu\PauseMenuQuitButton.h">
-      <Filter>Source Files\UI Elements\Buttons\PauseMenuQuitButton</Filter>
+    <ClInclude Include="RedButton.h">
+      <Filter>Source Files\UI Elements\Buttons\Red Button</Filter>
     </ClInclude>
-    <ClInclude Include="Assets\Scripts\SceneManager\Scenes\GameScene\GameObjects\Player\Player.h">
+    <ClInclude Include="Player.h">
       <Filter>Source Files\Player</Filter>
     </ClInclude>
-    <ClInclude Include="Assets\Scripts\SceneManager\Scenes\GameScene\GameObjects\PauseMenu\PauseMenuButton.h">
-      <Filter>Source Files\UI Elements\Buttons\PauseMenuButton</Filter>
+    <ClInclude Include="YellowButton.h">
+      <Filter>Source Files\UI Elements\Buttons\Yellow Button</Filter>
     </ClInclude>
-    <ClInclude Include="Assets\Scripts\SceneManager\SceneManager.h">
+    <ClInclude Include="SceneManager.h">
       <Filter>Source Files\SceneManager</Filter>
     </ClInclude>
-    <ClInclude Include="Assets\Scripts\SceneManager\Scenes\Scene.h">
+    <ClInclude Include="Scene.h">
       <Filter>Source Files\Scenes\Scene</Filter>
     </ClInclude>
-    <ClInclude Include="Assets\Scripts\SceneManager\Scenes\GameScene\GameObjects\GameOverMenu\GameOverMenu.h">
+    <ClInclude Include="GameOverMenu.h">
       <Filter>Source Files\UI Elements\Menus\Game Over Menu</Filter>
     </ClInclude>
-    <ClInclude Include="Assets\Scripts\SceneManager\SceneLoader.h">
+    <ClInclude Include="SceneLoader.h">
       <Filter>Source Files\SceneManager</Filter>
+    </ClInclude>
+    <ClInclude Include="GreenButton.h">
+      <Filter>Source Files\UI Elements\Buttons\Green Button</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

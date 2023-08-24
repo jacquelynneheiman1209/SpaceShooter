@@ -76,3 +76,11 @@ bool Button::isClicked(sf::Vector2i mousePosition)
 
 	return mouseX >= buttonMinX && mouseX <= buttonMaxX && mouseY >= buttonMinY && mouseY <= buttonMaxY;
 }
+
+void Button::setScale(float scaleX, float scaleY)
+{
+}
+
+void Button::setScale(sf::Vector2f scale)
+{
+}

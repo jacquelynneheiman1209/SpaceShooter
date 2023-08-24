@@ -19,6 +19,9 @@ public:
 
 	bool isClicked(sf::Vector2i mousePosition);
 
+	virtual void setScale(float scaleX, float scaleY);
+	virtual void setScale(sf::Vector2f scale);
+
 protected:
 	sf::Texture buttonTexture;		// for children that want to use sprites
 	sf::Sprite buttonSprite;		// for children that want to use sprites

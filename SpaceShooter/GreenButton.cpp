@@ -1,16 +1,16 @@
-#include "PauseMenuButton.h"
+#include "GreenButton.h"
 #include <iostream>
 
-PauseMenuButton::PauseMenuButton(sf::Vector2f position, std::string text) : Button(position, text)
+GreenButton::GreenButton(sf::Vector2f position, std::string text) : Button(position, text)
 {
 }
 
-bool PauseMenuButton::initialize()
+bool GreenButton::initialize()
 {
-    if (!buttonTexture.loadFromFile("Assets/Graphics/UI/PauseMenu_Button_Yellow.png"))
-    {
-        return false;
-    }
+	if (!buttonTexture.loadFromFile("Assets/Graphics/UI/buttonGreen_Regular.png"))
+	{
+		return false;
+	}
 
 	buttonSprite.setTexture(buttonTexture);
 	buttonSprite.setScale(1.5, 1.5);
@@ -29,16 +29,16 @@ bool PauseMenuButton::initialize()
 	text.setOrigin(text.getLocalBounds().left + (text.getLocalBounds().width / 2), text.getLocalBounds().top + (text.getLocalBounds().height / 2));
 	text.setPosition(buttonPosition);
 
-	if (!buttonHoverTexture.loadFromFile("Assets/Graphics/UI/PauseMenu_Button_Yellow_Pressed.png"))
+	if (!buttonHoverTexture.loadFromFile("Assets/Graphics/UI/buttonGreen_Pressed.png"))
 	{
-		std::cout << "PauseMenuButton.cpp : Could not load 'buttonHoverTexture'" << std::endl;
+		std::cout << "GreenButton.cpp : Could not load 'buttonHoverTexture'" << std::endl;
 		return false;
 	}
 
-    return true;
+	return true;
 }
 
-void PauseMenuButton::handleInput(sf::RenderWindow* window, sf::Event* event)
+void GreenButton::handleInput(sf::RenderWindow* window, sf::Event* event)
 {
 	if (isClicked(sf::Mouse::getPosition(*window)))
 	{
@@ -50,13 +50,13 @@ void PauseMenuButton::handleInput(sf::RenderWindow* window, sf::Event* event)
 	}
 }
 
-void PauseMenuButton::draw(sf::RenderWindow* window)
+void GreenButton::draw(sf::RenderWindow* window)
 {
 	window->draw(buttonSprite);
 	window->draw(text);
 }
 
-bool PauseMenuButton::isClicked(sf::Vector2i mousePosition)
+bool GreenButton::isClicked(sf::Vector2i mousePosition)
 {
 	float buttonMinX = buttonSprite.getGlobalBounds().left;
 	float buttonMinY = buttonSprite.getGlobalBounds().top;
@@ -68,4 +68,19 @@ bool PauseMenuButton::isClicked(sf::Vector2i mousePosition)
 	float mouseY = static_cast<float>(mousePosition.y);
 
 	return mouseX >= buttonMinX && mouseX <= buttonMaxX && mouseY >= buttonMinY && mouseY <= buttonMaxY;
+}
+
+void GreenButton::setScale(float scaleX, float scaleY)
+{
+	buttonSprite.setScale(scaleX, scaleY);
+}
+
+void GreenButton::setScale(sf::Vector2f scale)
+{
+	setScale(scale.x, scale.y);
+}
+
+sf::Vector2f GreenButton::getScale()
+{
+	return buttonSprite.getScale();
 }
