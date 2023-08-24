@@ -1,7 +1,7 @@
 #include "MainMenuScene.h"
 #include <iostream>
 
-MainMenuScene::MainMenuScene(SceneLoader* sceneLoader) : startGameButton(sf::Vector2f(640, 360), "Start Game"), quitGameButton(sf::Vector2f(640, 410), "Quit Game")
+MainMenuScene::MainMenuScene(SceneLoader* sceneLoader) : startGameButton(sf::Vector2f(640, 325), "Start Game"), quitGameButton(sf::Vector2f(640, 425), "Quit Game")
 {
 	this->sceneLoader = sceneLoader;
 }
@@ -30,6 +30,11 @@ bool MainMenuScene::initialize()
 
 void MainMenuScene::handleInput(sf::RenderWindow* window, sf::Event* event)
 {
+	// Handles hover effect
+	startGameButton.handleInput(window, event);
+	quitGameButton.handleInput(window, event);
+
+	// Handle mouse clicks on the buttons
 	if (event->type == sf::Event::MouseButtonPressed)
 	{
 		if (startGameButton.isClicked(sf::Mouse::getPosition(*window)))

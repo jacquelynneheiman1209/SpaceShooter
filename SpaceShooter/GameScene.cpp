@@ -42,6 +42,11 @@ bool GameScene::initialize()
 		return false;
 	}
 
+	// TEST OBJECTS
+	sf::Vector2f buttonPosition;
+	buttonPosition.x = 10;
+	buttonPosition.y = (gameBounds.top + gameBounds.height);
+
 	return true;
 }
 

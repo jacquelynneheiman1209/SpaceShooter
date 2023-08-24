@@ -1,7 +1,8 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include "Scene.h"
-#include "Button.h"
+#include "GreenButton.h"
+#include "RedButton.h"
 #include "SceneLoader.h"
 
 
@@ -25,8 +26,8 @@ private:
 
 	SceneLoader* sceneLoader;
 
-	Button startGameButton;
-	Button quitGameButton;
+	GreenButton startGameButton;
+	RedButton quitGameButton;
 
 	void setupText(sf::Text* text, sf::Vector2f position, std::string textValue, int characterSize, sf::Color textFillColor, sf::Color textOutlineColor);
 };

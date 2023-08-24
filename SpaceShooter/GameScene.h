@@ -37,6 +37,10 @@ private:
 
 	int enemiesKilled = 0;
 	int numberEmeniesToKill = 3;
+
+	// TEST OBJECTS
+	RedButton killPlayerButton;
+	YellowButton killEnemyButton;
 };
 
 #endif // !GAME_SCENE_H
