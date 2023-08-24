@@ -6,7 +6,7 @@
 #include "Player.h"
 #include "PauseMenu.h"
 #include "GameOverMenu.h"
-#include "GameHUD.h"
+#include "PlayerHUD.h"
 
 #ifndef GAME_SCENE_H
 #define GAME_SCENE_H
@@ -30,7 +30,7 @@ private:
 	Player player;
 	PauseMenu pauseMenu;
 	GameOverMenu gameOverMenu;
-	GameHUD hud;
+	PlayerHUD playerHUD;
 
 	bool isPaused = false;
 	bool isGameOver = false;
@@ -38,9 +38,6 @@ private:
 	int enemiesKilled = 0;
 	int numberEmeniesToKill = 3;
 
-	// TEST OBJECTS
-	RedButton killPlayerButton;
-	YellowButton killEnemyButton;
 };
 
 #endif // !GAME_SCENE_H

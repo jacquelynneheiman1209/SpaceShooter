@@ -1,7 +1,7 @@
 #include "GameScene.h"
 #include <iostream>
 
-GameScene::GameScene(SceneLoader* sceneLoader, sf::FloatRect gameBounds) : player(sf::Vector2f(640, 360), gameBounds), pauseMenu(), gameOverMenu(), hud()
+GameScene::GameScene(SceneLoader* sceneLoader, sf::FloatRect gameBounds) : player(sf::Vector2f(640, 360), gameBounds), pauseMenu(), gameOverMenu(), playerHUD()
 {
 	this->sceneLoader = sceneLoader;
 	this->gameBounds = gameBounds;
@@ -9,6 +9,8 @@ GameScene::GameScene(SceneLoader* sceneLoader, sf::FloatRect gameBounds) : playe
 
 bool GameScene::initialize()
 {
+	std::cout << "Initializing GameScene..." << std::endl;
+
 	isGameOver = false;
 	isPaused = false;
 
@@ -18,7 +20,12 @@ bool GameScene::initialize()
 
 	pauseMenu = PauseMenu();
 	gameOverMenu = GameOverMenu();
-	hud = GameHUD();
+	playerHUD = PlayerHUD();
+
+	if (!playerHUD.initialize())
+	{
+		return false;
+	}
 
 	if (!player.initialize())
 	{
@@ -36,16 +43,6 @@ bool GameScene::initialize()
 	}
 
 	std::cout << "Player Lives: " << player.getLives() << std::endl;
-
-	if (!hud.initialize(player.getLives()))
-	{
-		return false;
-	}
-
-	// TEST OBJECTS
-	sf::Vector2f buttonPosition;
-	buttonPosition.x = 10;
-	buttonPosition.y = (gameBounds.top + gameBounds.height);
 
 	return true;
 }
@@ -102,6 +99,7 @@ void GameScene::handleInput(sf::RenderWindow* window, sf::Event* event)
 		else
 		{
 			player.handleInput(window, event);
+			playerHUD.handleInput(window, event);
 		}
 	}
 	else
@@ -130,6 +128,7 @@ void GameScene::update(float deltaTime)
 		if (!isPaused)
 		{
 			player.update(deltaTime);
+			playerHUD.update(deltaTime);
 		}
 	}
 }
@@ -139,7 +138,7 @@ void GameScene::draw(sf::RenderWindow* window)
 	if (!isGameOver)
 	{
 		player.draw(window);
-		hud.draw(window, player.getLives());
+		playerHUD.draw(window);
 
 		if (isPaused)
 		{

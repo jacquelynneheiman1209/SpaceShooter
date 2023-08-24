@@ -8,6 +8,8 @@ PauseMenu::PauseMenu() : continueGameButton(sf::Vector2f(0, 0), "Continue"), res
 
 bool PauseMenu::initialize()
 {
+	std::cout << "Initializing PauseMenu..." << std::endl;
+
 	if (!menuBackgroundTexture.loadFromFile("Assets/Graphics/UI/PauseMenu.png"))
 	{
 		std::cout << "Could not load the pause menu texture..." << std::endl;

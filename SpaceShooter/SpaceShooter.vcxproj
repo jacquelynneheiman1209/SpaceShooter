@@ -137,9 +137,9 @@
     <ClCompile Include="Button.cpp" />
     <ClCompile Include="GameScene.cpp" />
     <ClCompile Include="GameOverMenu.cpp" />
-    <ClCompile Include="GameHUD.cpp" />
     <ClCompile Include="GreenButton.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="PlayerHUD.cpp" />
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="MainMenuScene.cpp" />
@@ -153,6 +153,7 @@
     <ClInclude Include="Game.h" />
     <ClInclude Include="Background.h" />
     <ClInclude Include="GreenButton.h" />
+    <ClInclude Include="PlayerHUD.h" />
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="MainMenuScene.h" />
@@ -165,7 +166,6 @@
     <ClInclude Include="RedButton.h" />
     <ClInclude Include="OptionsMenu.h" />
     <ClInclude Include="GameOverMenu.h" />
-    <ClInclude Include="GameHUD.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

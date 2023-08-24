@@ -8,6 +8,8 @@ GameOverMenu::GameOverMenu() : playAgainButton(sf::Vector2f(0, 0), "Play Again")
 
 bool GameOverMenu::initialize()
 {
+	std::cout << "Initializing GameOverMenu..." << std::endl;
+
 	if (!initializeBackground())
 	{
 		return false;

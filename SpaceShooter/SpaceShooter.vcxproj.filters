@@ -43,9 +43,6 @@
     <Filter Include="Source Files\UI Elements\HUDs">
       <UniqueIdentifier>{050899db-9772-4331-8b3e-e1ea01991ffe}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\UI Elements\HUDs\GameHUD">
-      <UniqueIdentifier>{28f59de3-3e99-4041-ad65-66f05d141074}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\Scenes">
       <UniqueIdentifier>{31d70930-1b5b-48e6-a7c8-4e07ba1e36ec}</UniqueIdentifier>
     </Filter>
@@ -73,6 +70,9 @@
     <Filter Include="Source Files\UI Elements\Buttons\Red Button">
       <UniqueIdentifier>{fc05761f-d3d2-4720-be11-336906172d65}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\UI Elements\HUDs\Player HUD">
+      <UniqueIdentifier>{2707bf0d-7927-4c3d-adfd-fac43c371e46}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -83,9 +83,6 @@
     </ClCompile>
     <ClCompile Include="Button.cpp">
       <Filter>Source Files\UI Elements\Buttons\Button</Filter>
-    </ClCompile>
-    <ClCompile Include="GameHUD.cpp">
-      <Filter>Source Files\UI Elements\HUDs\GameHUD</Filter>
     </ClCompile>
     <ClCompile Include="GameOverMenu.cpp">
       <Filter>Source Files\UI Elements\Menus\Game Over Menu</Filter>
@@ -123,6 +120,9 @@
     <ClCompile Include="GreenButton.cpp">
       <Filter>Source Files\UI Elements\Buttons\Green Button</Filter>
     </ClCompile>
+    <ClCompile Include="PlayerHUD.cpp">
+      <Filter>Source Files\UI Elements\HUDs\Player HUD</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Background.h">
@@ -133,9 +133,6 @@
     </ClInclude>
     <ClInclude Include="Game.h">
       <Filter>Source Files\Game</Filter>
-    </ClInclude>
-    <ClInclude Include="GameHUD.h">
-      <Filter>Source Files\UI Elements\HUDs\GameHUD</Filter>
     </ClInclude>
     <ClInclude Include="GameScene.h">
       <Filter>Source Files\Scenes\Game Scene</Filter>
@@ -172,6 +169,9 @@
     </ClInclude>
     <ClInclude Include="GreenButton.h">
       <Filter>Source Files\UI Elements\Buttons\Green Button</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerHUD.h">
+      <Filter>Source Files\UI Elements\HUDs\Player HUD</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

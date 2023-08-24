@@ -9,6 +9,8 @@ Player::Player(sf::Vector2f startPos, sf::FloatRect levelBounds)
 
 bool Player::initialize()
 {
+	std::cout << "Initializing Player..." << std::endl;
+
 	if (!playerTexture.loadFromFile("Assets/Graphics/playerShip1_blue.png"))
 	{
 		std::cout << "Could not load player texture from file..." << std::endl;
