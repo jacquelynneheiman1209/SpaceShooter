@@ -1,12 +1,12 @@
 #pragma once
 #include <SFML/Graphics.hpp>
-#include "../Scene.h"
-#include "../../../UI Elements/Button/Button.h"
-#include "../../SceneLoader.h"
-#include "GameObjects/Player/Player.h"
-#include "GameObjects/PauseMenu/PauseMenu.h"
-#include "GameObjects/GameOverMenu/GameOverMenu.h"
-#include "GameObjects/HUD/GameHUD.h"
+#include "Scene.h"
+#include "Button.h"
+#include "SceneLoader.h"
+#include "Player.h"
+#include "PauseMenu.h"
+#include "GameOverMenu.h"
+#include "GameHUD.h"
 
 #ifndef GAME_SCENE_H
 #define GAME_SCENE_H

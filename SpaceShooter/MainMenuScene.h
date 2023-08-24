@@ -1,8 +1,8 @@
 #pragma once
 #include <SFML/Graphics.hpp>
-#include "../Scene.h"
-#include "../../../UI Elements/Button/Button.h"
-#include "../../SceneLoader.h"
+#include "Scene.h"
+#include "Button.h"
+#include "SceneLoader.h"
 
 
 #ifndef MAIN_MENU_SCENE_H

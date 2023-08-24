@@ -1,5 +1,5 @@
 #pragma once
-#include "../../../../../UI Elements/Button/Button.h"
+#include "Button.h"
 
 #ifndef PAUSE_MENU_QUIT_BUTTON_H
 #define PAUSE_MENU_QUIT_BUTTON_H

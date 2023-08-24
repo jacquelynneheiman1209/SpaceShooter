@@ -1,8 +1,8 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include "SceneLoader.h"
-#include "Scenes/MainMenuScene/MainMenuScene.h"
-#include "Scenes/GameScene/GameScene.h"
+#include "MainMenuScene.h"
+#include "GameScene.h"
 
 #ifndef SCENE_MANAGER_H
 #define SCENE_MANAGER_H
