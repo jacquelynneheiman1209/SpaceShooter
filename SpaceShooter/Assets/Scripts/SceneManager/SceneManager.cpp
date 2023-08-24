@@ -4,16 +4,17 @@
 
 SceneManager* SceneManager::instance = nullptr;
 
-SceneManager::SceneManager() : mainMenuScene(this), gameScene(this)
+SceneManager::SceneManager() : mainMenuScene(this), gameScene(this, gameBounds)
 {
 	assert(instance == nullptr);
 	instance = this;
 }
 
-bool SceneManager::initialize()
+bool SceneManager::initialize(sf::FloatRect gameBounds)
 {
+	this->gameBounds = gameBounds;
 	mainMenuScene = MainMenuScene(this);
-	gameScene = GameScene(this);
+	gameScene = GameScene(this, gameBounds);
 
 	currentScene = "Main Menu";
 

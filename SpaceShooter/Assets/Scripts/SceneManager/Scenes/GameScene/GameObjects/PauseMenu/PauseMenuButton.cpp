@@ -1,4 +1,5 @@
 #include "PauseMenuButton.h"
+#include <iostream>
 
 PauseMenuButton::PauseMenuButton(sf::Vector2f position, std::string text) : Button(position, text)
 {
@@ -30,6 +31,7 @@ bool PauseMenuButton::initialize()
 
 	if (!buttonHoverTexture.loadFromFile("Assets/Graphics/UI/PauseMenu_Button_Yellow_Pressed.png"))
 	{
+		std::cout << "PauseMenuButton.cpp : Could not load 'buttonHoverTexture'" << std::endl;
 		return false;
 	}
 
@@ -46,4 +48,24 @@ void PauseMenuButton::handleInput(sf::RenderWindow* window, sf::Event* event)
 	{
 		buttonSprite.setTexture(buttonTexture);
 	}
+}
+
+void PauseMenuButton::draw(sf::RenderWindow* window)
+{
+	window->draw(buttonSprite);
+	window->draw(text);
+}
+
+bool PauseMenuButton::isClicked(sf::Vector2i mousePosition)
+{
+	float buttonMinX = buttonSprite.getGlobalBounds().left;
+	float buttonMinY = buttonSprite.getGlobalBounds().top;
+
+	float buttonMaxX = buttonSprite.getGlobalBounds().width + buttonMinX;
+	float buttonMaxY = buttonSprite.getGlobalBounds().height + buttonMinY;
+
+	float mouseX = static_cast<float>(mousePosition.x);
+	float mouseY = static_cast<float>(mousePosition.y);
+
+	return mouseX >= buttonMinX && mouseX <= buttonMaxX && mouseY >= buttonMinY && mouseY <= buttonMaxY;
 }

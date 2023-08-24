@@ -6,6 +6,7 @@
 #include "GameObjects/Player/Player.h"
 #include "GameObjects/PauseMenu/PauseMenu.h"
 #include "GameObjects/GameOverMenu/GameOverMenu.h"
+#include "GameObjects/HUD/GameHUD.h"
 
 #ifndef GAME_SCENE_H
 #define GAME_SCENE_H
@@ -13,7 +14,7 @@
 class GameScene : public Scene
 {
 public:
-	GameScene(SceneLoader* sceneLoader);
+	GameScene(SceneLoader* sceneLoader, sf::FloatRect gameBounds);
 
 	bool initialize() override;
 
@@ -24,9 +25,12 @@ public:
 private:
 	SceneLoader* sceneLoader;
 
+	sf::FloatRect gameBounds;
+
 	Player player;
 	PauseMenu pauseMenu;
 	GameOverMenu gameOverMenu;
+	GameHUD hud;
 
 	bool isPaused = false;
 	bool isGameOver = false;

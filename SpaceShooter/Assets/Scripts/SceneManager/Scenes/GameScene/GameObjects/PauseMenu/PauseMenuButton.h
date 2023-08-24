@@ -12,6 +12,9 @@ public:
 	bool initialize() override;
 
 	void handleInput(sf::RenderWindow* window, sf::Event* event);
+	void draw(sf::RenderWindow* window);
+
+	bool isClicked(sf::Vector2i mousePosition);
 
 private:
 	sf::Texture buttonHoverTexture;

@@ -1,9 +1,10 @@
 #include "GameScene.h"
 #include <iostream>
 
-GameScene::GameScene(SceneLoader* sceneLoader) : player(sf::Vector2f(640, 360)), pauseMenu(), gameOverMenu()
+GameScene::GameScene(SceneLoader* sceneLoader, sf::FloatRect gameBounds) : player(sf::Vector2f(640, 360), gameBounds), pauseMenu(), gameOverMenu(), hud()
 {
 	this->sceneLoader = sceneLoader;
+	this->gameBounds = gameBounds;
 }
 
 bool GameScene::initialize()
@@ -13,10 +14,11 @@ bool GameScene::initialize()
 
 	enemiesKilled = 0;
 
-	player = Player(sf::Vector2f(640, 360));
+	player = Player(sf::Vector2f(640, 360), gameBounds);
 
 	pauseMenu = PauseMenu();
 	gameOverMenu = GameOverMenu();
+	hud = GameHUD();
 
 	if (!player.initialize())
 	{
@@ -29,6 +31,13 @@ bool GameScene::initialize()
 	}
 
 	if (!gameOverMenu.initialize())
+	{
+		return false;
+	}
+
+	std::cout << "Player Lives: " << player.getLives() << std::endl;
+
+	if (!hud.initialize(player.getLives()))
 	{
 		return false;
 	}
@@ -125,6 +134,7 @@ void GameScene::draw(sf::RenderWindow* window)
 	if (!isGameOver)
 	{
 		player.draw(window);
+		hud.draw(window, player.getLives());
 
 		if (isPaused)
 		{

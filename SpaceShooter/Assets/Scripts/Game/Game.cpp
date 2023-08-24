@@ -1,7 +1,7 @@
 #include "Game.h"
 #include <iostream>
 
-Game::Game() : background(windowWidth, windowHeight)
+Game::Game() : background(windowWidth, windowHeight), sceneManager()
 {
 	windowWidth = (sf::VideoMode::getDesktopMode().width / 3) * 2;
 	windowHeight = (sf::VideoMode::getDesktopMode().height / 3) * 2;
@@ -14,7 +14,7 @@ bool Game::initialize()
 		return false;
 	}
 
-	if (!sceneManager.initialize())
+	if (!sceneManager.initialize(sf::FloatRect(0, 0, static_cast<float>(windowWidth), static_cast<float>(windowHeight))))
 	{
 		return false;
 	}

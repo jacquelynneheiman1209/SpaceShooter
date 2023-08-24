@@ -1,9 +1,10 @@
 #include "Player.h"
 #include <iostream>
 
-Player::Player(sf::Vector2f startPos)
+Player::Player(sf::Vector2f startPos, sf::FloatRect levelBounds)
 {
 	startPosition = startPos;
+	this->levelBounds = levelBounds;
 }
 
 bool Player::initialize()
@@ -73,11 +74,26 @@ void Player::update(float deltaTime)
 {
 	move(deltaTime);
 	rotate(deltaTime);
+
+	sf::Vector2f playerPosition = playerSprite.getPosition();
+	bool isOutOfBoundsX = (playerPosition.x <= levelBounds.left || playerPosition.x >= levelBounds.left + levelBounds.width);
+	bool isOutOfBoundsY = (playerPosition.y <= levelBounds.top || playerPosition.y >= levelBounds.top + levelBounds.height);
+
+	if (isOutOfBoundsX || isOutOfBoundsY)
+	{
+		loseLife();
+		resetPosition();
+	}
 }
 
 void Player::draw(sf::RenderWindow* window)
 {
 	window->draw(playerSprite);
+}
+
+int Player::getLives()
+{
+	return lives;
 }
 
 void Player::move(float deltaTime)
@@ -114,4 +130,21 @@ void Player::rotate(float deltaTime)
 	}
 
 	playerSprite.setRotation(rotation);
+}
+
+void Player::loseLife()
+{
+	lives--;
+
+	if (lives <= 0)
+	{
+		isDead = true;
+	}
+
+	resetPosition();
+}
+
+void Player::resetPosition()
+{
+	playerSprite.setPosition(sf::Vector2f(levelBounds.left + (levelBounds.width / 2), levelBounds.top + (levelBounds.height / 2)));
 }

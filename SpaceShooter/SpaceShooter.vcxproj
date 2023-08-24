@@ -137,6 +137,7 @@
     <ClCompile Include="Assets\Scripts\UI Elements\Button\Button.cpp" />
     <ClCompile Include="Assets\Scripts\SceneManager\Scenes\GameScene\GameScene.cpp" />
     <ClCompile Include="Assets\Scripts\SceneManager\Scenes\GameScene\GameObjects\GameOverMenu\GameOverMenu.cpp" />
+    <ClCompile Include="Assets\Scripts\SceneManager\Scenes\GameScene\GameObjects\HUD\GameHUD.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Assets\Scripts\SceneManager\SceneManager.cpp" />
     <ClCompile Include="Assets\Scripts\SceneManager\Scenes\Scene.cpp" />
@@ -162,6 +163,7 @@
     <ClInclude Include="Assets\Scripts\SceneManager\Scenes\GameScene\GameObjects\PauseMenu\PauseMenuQuitButton.h" />
     <ClInclude Include="Assets\Scripts\SceneManager\Scenes\GameScene\GameObjects\OptionsMenu\OptionsMenu.h" />
     <ClInclude Include="Assets\Scripts\SceneManager\Scenes\GameScene\GameObjects\GameOverMenu\GameOverMenu.h" />
+    <ClInclude Include="Assets\Scripts\SceneManager\Scenes\GameScene\GameObjects\HUD\GameHUD.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

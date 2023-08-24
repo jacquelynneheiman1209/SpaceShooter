@@ -57,6 +57,9 @@
     <ClCompile Include="Assets\Scripts\SceneManager\Scenes\GameScene\GameObjects\GameOverMenu\GameOverMenu.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Assets\Scripts\SceneManager\Scenes\GameScene\GameObjects\HUD\GameHUD.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Assets\Scripts\Game\Game.h">
@@ -99,6 +102,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Assets\Scripts\SceneManager\Scenes\GameScene\GameObjects\GameOverMenu\GameOverMenu.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Assets\Scripts\SceneManager\Scenes\GameScene\GameObjects\HUD\GameHUD.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

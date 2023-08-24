@@ -12,7 +12,7 @@ class SceneManager : public SceneLoader
 public:
 	SceneManager();
 
-	bool initialize();
+	bool initialize(sf::FloatRect gameBounds);
 	void update(float delatTime);
 	void draw(sf::RenderWindow* window);
 
@@ -39,6 +39,7 @@ private:
 	MainMenuScene mainMenuScene;
 	GameScene gameScene;
 
+	sf::FloatRect gameBounds;
 };
 
 #endif // !SCENE_MANAGER_H
