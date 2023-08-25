@@ -9,8 +9,6 @@ GameScene::GameScene(SceneLoader* sceneLoader, sf::FloatRect gameBounds) : playe
 
 bool GameScene::initialize()
 {
-	std::cout << "Initializing GameScene..." << std::endl;
-
 	isGameOver = false;
 	isPaused = false;
 
@@ -42,8 +40,6 @@ bool GameScene::initialize()
 		return false;
 	}
 
-	std::cout << "Player Lives: " << player.getLives() << std::endl;
-
 	return true;
 }
 
@@ -56,16 +52,6 @@ void GameScene::handleInput(sf::RenderWindow* window, sf::Event* event)
 			if (event->key.code == sf::Keyboard::Escape)
 			{
 				isPaused = !isPaused;
-			}
-
-			if (event->key.code == sf::Keyboard::Tab)
-			{
-				enemiesKilled++;
-
-				if (enemiesKilled >= numberEmeniesToKill)
-				{
-					isGameOver = true;
-				}
 			}
 		}
 
@@ -100,6 +86,30 @@ void GameScene::handleInput(sf::RenderWindow* window, sf::Event* event)
 		{
 			player.handleInput(window, event);
 			playerHUD.handleInput(window, event);
+
+			if (event->type == sf::Event::MouseButtonPressed)
+			{
+				if (playerHUD.killPlayerButton.isClicked(sf::Mouse::getPosition(*window)))
+				{
+					player.loseLife();
+
+					if (player.getLives() <= 0)
+					{
+						isGameOver = true;
+					}
+				}
+
+				if (playerHUD.killEnemyButton.isClicked(sf::Mouse::getPosition(*window)))
+				{
+					enemiesKilled++;
+
+					if (enemiesKilled >= numberEmeniesToKill)
+					{
+						isGameOver = true;
+						playerWon = true;
+					}
+				}
+			}
 		}
 	}
 	else
@@ -128,7 +138,7 @@ void GameScene::update(float deltaTime)
 		if (!isPaused)
 		{
 			player.update(deltaTime);
-			playerHUD.update(deltaTime);
+			playerHUD.update(deltaTime, player.getLives(), (numberEmeniesToKill - enemiesKilled));
 		}
 	}
 }
@@ -147,6 +157,6 @@ void GameScene::draw(sf::RenderWindow* window)
 	}
 	else
 	{
-		gameOverMenu.draw(window);
+		gameOverMenu.draw(window, playerWon);
 	}
 }

@@ -34,6 +34,7 @@ private:
 
 	bool isPaused = false;
 	bool isGameOver = false;
+	bool playerWon = false;
 
 	int enemiesKilled = 0;
 	int numberEmeniesToKill = 3;

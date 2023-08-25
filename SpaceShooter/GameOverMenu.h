@@ -14,7 +14,7 @@ public:
 	bool initialize();
 	void handleInput(sf::RenderWindow* window, sf::Event* event);
 	void update(float deltaTime);
-	void draw(sf::RenderWindow* window);
+	void draw(sf::RenderWindow* window, bool playerWon);
 
 	GreenButton playAgainButton;
 	RedButton mainMenuButton;
@@ -33,7 +33,7 @@ private:
 	bool initializeBackground();
 
 	bool initializeText();
-	bool initializeGameOverText();
+	bool initializeGameOverText(std::string textString);
 	bool initializePlayAgainText();
 
 	bool initializeButtons();

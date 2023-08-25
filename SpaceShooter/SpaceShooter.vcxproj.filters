@@ -73,6 +73,12 @@
     <Filter Include="Source Files\UI Elements\HUDs\Player HUD">
       <UniqueIdentifier>{2707bf0d-7927-4c3d-adfd-fac43c371e46}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Bullets">
+      <UniqueIdentifier>{9983a02e-6679-4ca1-a774-4fe0b3a6cf8d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Bullets\Bullet">
+      <UniqueIdentifier>{1fd00222-6f6c-407f-b33f-d24e690cccee}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -123,6 +129,9 @@
     <ClCompile Include="PlayerHUD.cpp">
       <Filter>Source Files\UI Elements\HUDs\Player HUD</Filter>
     </ClCompile>
+    <ClCompile Include="Bullet.cpp">
+      <Filter>Source Files\Bullets\Bullet</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Background.h">
@@ -172,6 +181,9 @@
     </ClInclude>
     <ClInclude Include="PlayerHUD.h">
       <Filter>Source Files\UI Elements\HUDs\Player HUD</Filter>
+    </ClInclude>
+    <ClInclude Include="Bullet.h">
+      <Filter>Source Files\Bullets\Bullet</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

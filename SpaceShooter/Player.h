@@ -1,5 +1,7 @@
 #pragma once
 #include <SFML/Graphics.hpp>
+#include <vector>
+#include "Bullet.h"
 
 #ifndef PLAYER_H
 #define PLAYER_H
@@ -14,6 +16,7 @@ public:
 	void update(float deltaTime);
 	void draw(sf::RenderWindow* window);
 
+	void loseLife();
 	int getLives();
 
 private:
@@ -25,23 +28,33 @@ private:
 
 	sf::FloatRect levelBounds;
 
-	float moveSpeed = 300;
+	int lives = 3;
+	int totalNumberOfBullets = 20;
+
+	std::vector<std::unique_ptr<Bullet>> bullets;
+
+	float moveSpeed = 200;
 	float rotateSpeed = 100;
+
+	float shootTimer = 0;				
+	float shootDelaySeconds = 0.5;		// shoot twice per second
 
 	bool moveForwards = false;
 	bool moveBackwards = false;
 	bool rotateLeft = false;
 	bool rotateRight = false;
-	bool shoot = false;
+	bool shootBullet = false;
 
 	bool isDead = false;
-
-	int lives = 3;
+	bool canShoot = true;
 
 	void move(float deltaTime);
 	void rotate(float deltaTime);
-	void loseLife();
+	void shoot();
 	void resetPosition();
+
+	int getNextBulletIndex();
+
 };
 
 #endif // !PLAYER_H

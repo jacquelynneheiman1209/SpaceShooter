@@ -8,8 +8,6 @@ GameOverMenu::GameOverMenu() : playAgainButton(sf::Vector2f(0, 0), "Play Again")
 
 bool GameOverMenu::initialize()
 {
-	std::cout << "Initializing GameOverMenu..." << std::endl;
-
 	if (!initializeBackground())
 	{
 		return false;
@@ -38,8 +36,17 @@ void GameOverMenu::update(float deltaTime)
 {
 }
 
-void GameOverMenu::draw(sf::RenderWindow* window)
+void GameOverMenu::draw(sf::RenderWindow* window, bool playerWon)
 {
+	if (playerWon)
+	{
+		initializeGameOverText("You Win!");
+	}
+	else
+	{
+		initializeGameOverText("Game Over!");
+	}
+
 	window->draw(backgroundSprite);
 	window->draw(gameOverText);
 	window->draw(playAgainText);
@@ -51,7 +58,7 @@ bool GameOverMenu::initializeBackground()
 {
 	if (!backgroundTexture.loadFromFile("Assets/Graphics/UI/GameOverMenu_Background.png"))
 	{
-	  std::cout << "GameOverMenu.cpp : Could not load texture for 'backgroundTexture'" << std::endl;
+		std::cout << "GameOverMenu.cpp : Could not load texture for 'backgroundTexture'" << std::endl;
 		return false;
 	}
 
@@ -73,7 +80,7 @@ bool GameOverMenu::initializeText()
 		return false;
 	}
 
-	if (!initializeGameOverText())
+	if (!initializeGameOverText("Game Over!"))
 	{
 		std::cout << "GameOverMenu.cpp : Could not initialize 'gameOverText'" << std::endl;
 		return false;
@@ -88,13 +95,13 @@ bool GameOverMenu::initializeText()
 	return true;
 }
 
-bool GameOverMenu::initializeGameOverText()
+bool GameOverMenu::initializeGameOverText(std::string textString)
 {
 	sf::FloatRect backgroundBounds = backgroundSprite.getGlobalBounds();
 	sf::FloatRect textBounds;
 
 	gameOverText.setFont(font);
-	gameOverText.setString("Game Over!");
+	gameOverText.setString(textString);
 	gameOverText.setCharacterSize(40);
 	gameOverText.setFillColor(sf::Color::White);
 
@@ -119,7 +126,7 @@ bool GameOverMenu::initializePlayAgainText()
 	textBounds = playAgainText.getLocalBounds();
 
 	playAgainText.setOrigin(textBounds.left + (textBounds.width / 2), textBounds.top + (textBounds.height / 2));
-	playAgainText.setPosition(gameOverText.getPosition().x, backgroundBounds.top + 90);
+	playAgainText.setPosition(gameOverText.getPosition().x, backgroundBounds.top + 80);
 
 	return true;
 }

@@ -13,14 +13,20 @@ public:
 
 	bool initialize();
 	void handleInput(sf::RenderWindow* window, sf::Event* event);
-	void update(float deltaTime);
+	void update(float deltaTime, int playerLives, int enemiesRemaining);
 	void draw(sf::RenderWindow* window);
-
-private:
 
 	// DEVELOPMENT-TESTING BUTTONS
 	RedButton killPlayerButton;
-	YellowButton killEnemyButton;
+	RedButton killEnemyButton;
+
+private:
+
+	sf::Font font;
+
+	sf::Text livesText;
+	sf::Text enemiesRemainingText;
+	
 };
 
 #endif // !PLAYER_HUD

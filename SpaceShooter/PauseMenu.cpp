@@ -8,11 +8,9 @@ PauseMenu::PauseMenu() : continueGameButton(sf::Vector2f(0, 0), "Continue"), res
 
 bool PauseMenu::initialize()
 {
-	std::cout << "Initializing PauseMenu..." << std::endl;
-
 	if (!menuBackgroundTexture.loadFromFile("Assets/Graphics/UI/PauseMenu.png"))
 	{
-		std::cout << "Could not load the pause menu texture..." << std::endl;
+		std::cout << "PauseMenu.cpp : Could not load 'menuBackgroundTexture'" << std::endl;
 		return false;
 	}
 
@@ -27,6 +25,7 @@ bool PauseMenu::initialize()
 
 	if (!font.loadFromFile("Assets/Fonts/kenvector_future.ttf"))
 	{
+		std::cout << "PauseMenu.cpp : Could not load 'font'" << std::endl;
 		return false;
 	}
 

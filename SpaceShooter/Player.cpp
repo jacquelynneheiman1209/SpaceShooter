@@ -9,11 +9,9 @@ Player::Player(sf::Vector2f startPos, sf::FloatRect levelBounds)
 
 bool Player::initialize()
 {
-	std::cout << "Initializing Player..." << std::endl;
-
 	if (!playerTexture.loadFromFile("Assets/Graphics/playerShip1_blue.png"))
 	{
-		std::cout << "Could not load player texture from file..." << std::endl;
+		std::cout << "Player.cpp : Could not load 'playerTexture' from 'Assets/Graphics/playerShip1_blue.png'" << std::endl;
 		return false;
 	}
 
@@ -21,6 +19,20 @@ bool Player::initialize()
 	playerSprite.setScale(playerScale);
 	playerSprite.setOrigin(playerSprite.getLocalBounds().left + (playerSprite.getLocalBounds().width / 2), playerSprite.getLocalBounds().top + (playerSprite.getLocalBounds().height / 2));
 	playerSprite.setPosition(startPosition);
+
+	for (int i = 0; i < totalNumberOfBullets; i++)
+	{
+		std::unique_ptr<Bullet> bullet = std::unique_ptr<Bullet>(new Bullet(levelBounds));
+		bullets.push_back(std::move(bullet));
+
+		int bulletIndex = static_cast<int>(bullets.size() - 1);
+
+		if (!bullets[bulletIndex].get()->initialize())
+		{
+			std::cout << "Player.cpp : Could not load bullet " + bulletIndex << std::endl;
+			return false;
+		}
+	}
 
 	return true;
 }
@@ -67,7 +79,7 @@ void Player::handleInput(sf::RenderWindow* window, sf::Event* event)
 	{
 		if (event->key.code == sf::Keyboard::Space)
 		{
-			shoot = true;
+			shootBullet = true;
 		}
 	}
 }
@@ -76,6 +88,7 @@ void Player::update(float deltaTime)
 {
 	move(deltaTime);
 	rotate(deltaTime);
+	shoot();
 
 	sf::Vector2f playerPosition = playerSprite.getPosition();
 	bool isOutOfBoundsX = (playerPosition.x <= levelBounds.left || playerPosition.x >= levelBounds.left + levelBounds.width);
@@ -86,11 +99,34 @@ void Player::update(float deltaTime)
 		loseLife();
 		resetPosition();
 	}
+
+	if (!canShoot)
+	{
+		shootTimer += deltaTime;
+
+		if (shootTimer >= shootDelaySeconds)
+		{
+			canShoot = true;
+			shootTimer = 0;
+		}
+	}
+
+	// Update the bullets
+	for (int i = 0; i < bullets.size(); i++)
+	{
+		bullets[i].get()->update(deltaTime);
+	}
 }
 
 void Player::draw(sf::RenderWindow* window)
 {
 	window->draw(playerSprite);
+
+	// Only draw the bullets that have been shot && are on screen
+	for (int i = 0; i < bullets.size(); i++)
+	{
+		bullets[i].get()->draw(window);
+	}
 }
 
 int Player::getLives()
@@ -134,6 +170,25 @@ void Player::rotate(float deltaTime)
 	playerSprite.setRotation(rotation);
 }
 
+void Player::shoot()
+{
+	if (shootBullet)
+	{
+		if (canShoot)
+		{
+			int nextBullet = getNextBulletIndex();
+
+			if (nextBullet >= 0)
+			{
+				bullets[nextBullet].get()->spawn(playerSprite.getPosition(), playerSprite.getRotation());
+				canShoot = false;
+			}
+		}
+
+		shootBullet = false;
+	}
+}
+
 void Player::loseLife()
 {
 	lives--;
@@ -149,4 +204,20 @@ void Player::loseLife()
 void Player::resetPosition()
 {
 	playerSprite.setPosition(sf::Vector2f(levelBounds.left + (levelBounds.width / 2), levelBounds.top + (levelBounds.height / 2)));
+}
+
+int Player::getNextBulletIndex()
+{
+	int nextBullet = -1;
+
+	for (int i = 0; i < bullets.size(); i++)
+	{
+		if (!bullets[i].get()->isActive)
+		{
+			nextBullet = i;
+			break;
+		}
+	}
+
+	return nextBullet;
 }
