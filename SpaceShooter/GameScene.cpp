@@ -98,17 +98,6 @@ void GameScene::handleInput(sf::RenderWindow* window, sf::Event* event)
 						isGameOver = true;
 					}
 				}
-
-				if (playerHUD.killEnemyButton.isClicked(sf::Mouse::getPosition(*window)))
-				{
-					enemiesKilled++;
-
-					if (enemiesKilled >= numberEmeniesToKill)
-					{
-						isGameOver = true;
-						playerWon = true;
-					}
-				}
 			}
 		}
 	}

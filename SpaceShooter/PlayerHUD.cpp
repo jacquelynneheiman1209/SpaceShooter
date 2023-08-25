@@ -1,7 +1,7 @@
 #include "PlayerHUD.h"
 #include <iostream>
 
-PlayerHUD::PlayerHUD() : killPlayerButton(sf::Vector2f(0, 0), "Kill Player"), killEnemyButton(sf::Vector2f(0, 0), "Kill Enemy")
+PlayerHUD::PlayerHUD() : killPlayerButton(sf::Vector2f(0, 0), "Kill Player")
 {
 
 }
@@ -18,7 +18,7 @@ bool PlayerHUD::initialize()
 	sf::Vector2f textPosition;
 
 	livesText.setFont(font);
-	livesText.setString("Lives: ");
+	livesText.setString("x 3");
 	livesText.setCharacterSize(25);
 	
 	textBounds = livesText.getLocalBounds();
@@ -29,7 +29,7 @@ bool PlayerHUD::initialize()
 	livesText.setPosition(textPosition);
 
 	enemiesRemainingText.setFont(font);
-	enemiesRemainingText.setString("Enemies Remaining: ");
+	enemiesRemainingText.setString("Enemies: ");
 	enemiesRemainingText.setCharacterSize(25);
 
 	textBounds = enemiesRemainingText.getLocalBounds();
@@ -40,17 +40,10 @@ bool PlayerHUD::initialize()
 	enemiesRemainingText.setPosition(textPosition);
 
 	killPlayerButton = RedButton(sf::Vector2f(158, 667), "Lose Life");
-	killEnemyButton = RedButton(sf::Vector2f(450, 667), "Defeat Enenemy");
 
 	if (!killPlayerButton.initialize())
 	{
 		std::cout << "PlayerHUD.cpp : Could not load 'killPlayerButton'" << std::endl;
-		return false;
-	}
-
-	if (!killEnemyButton.initialize())
-	{
-		std::cout << "PlayerHUD.cpp : Could not load 'killEnemyButton'" << std::endl;
 		return false;
 	}
 
@@ -60,12 +53,11 @@ bool PlayerHUD::initialize()
 void PlayerHUD::handleInput(sf::RenderWindow* window, sf::Event* event)
 {
 	killPlayerButton.handleInput(window, event);
-	killEnemyButton.handleInput(window, event);
 }
 
 void PlayerHUD::update(float deltaTime, int playerLives, int enemiesRemaining)
 {
-	livesText.setString("Lives: " + std::to_string(playerLives));
+	livesText.setString("x " + std::to_string(playerLives));
 	enemiesRemainingText.setString("Enemies Remaining: " + std::to_string(enemiesRemaining));
 }
 
@@ -74,5 +66,4 @@ void PlayerHUD::draw(sf::RenderWindow* window)
 	window->draw(livesText);
 	window->draw(enemiesRemainingText);
 	killPlayerButton.draw(window);
-	killEnemyButton.draw(window);
 }

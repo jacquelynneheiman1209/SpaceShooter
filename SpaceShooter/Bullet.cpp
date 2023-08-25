@@ -50,7 +50,7 @@ void Bullet::update(float deltaTime)
 		if (isOutOfBoundsX || isOutOfBoundsY)
 		{
 			destroy();
-		}
+		} 
 
 		if (destroyTimer < destroyDelay)
 		{

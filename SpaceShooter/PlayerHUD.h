@@ -18,9 +18,10 @@ public:
 
 	// DEVELOPMENT-TESTING BUTTONS
 	RedButton killPlayerButton;
-	RedButton killEnemyButton;
 
 private:
+	sf::Texture lifeTexture;
+	sf::Sprite lifeSprite;
 
 	sf::Font font;
 
