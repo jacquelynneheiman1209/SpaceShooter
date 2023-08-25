@@ -25,7 +25,7 @@ bool Button::initialize()
 	buttonBackground.setOrigin(buttonBounds.left + (buttonBounds.width / 2), buttonBounds.top + (buttonBounds.height / 2));
 	buttonBackground.setPosition(buttonPosition);
 
-	if (!font.loadFromFile("Assets/Fonts/kenvector_future.ttf"))
+	if (!font.loadFromFile("Assets/Fonts/nulshock.otf"))
 	{
 		return false;
 	}

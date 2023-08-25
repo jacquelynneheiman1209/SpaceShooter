@@ -1,51 +1,70 @@
 #include "PlayerHUD.h"
 #include <iostream>
+#include <algorithm>
 
-PlayerHUD::PlayerHUD() : killPlayerButton(sf::Vector2f(0, 0), "Kill Player")
+PlayerHUD::PlayerHUD(sf::FloatRect screenRect) : killPlayerButton(sf::Vector2f(0, 0), "Kill Player")
 {
-
+	screenBounds = screenRect;
 }
 
 bool PlayerHUD::initialize()
 {
-	if (!font.loadFromFile("Assets/Fonts/kenvector_future.ttf"))
+	if (!lifeTexture.loadFromFile("Assets/Graphics/UI/playerLife1_blue.png"))
+	{
+		std::cout << "PlayerHUD.cpp : Could not load 'lifeTexture' from 'Assets/Graphics/UI/playerLife1_blue.png'" << std::endl;
+		return false;
+	}
+
+	lifeSprite.setTexture(lifeTexture);
+	
+	sf::FloatRect bounds = lifeSprite.getLocalBounds();
+
+	sf::Vector2f origin;
+	origin.x = bounds.left + (bounds.width / 2);
+	origin.y = bounds.top + (bounds.height / 2);
+
+	sf::Vector2f position;
+	position.x = 50 + (bounds.width / 2);
+	position.y = 50 + (bounds.height / 2);
+
+	lifeSprite.setOrigin(origin);
+	lifeSprite.setPosition(position);
+
+	if (!font.loadFromFile("Assets/Fonts/nulshock.otf"))
 	{
 		std::cout << "PlayerHUD.cpp : Could not load 'font'" << std::endl;
 		return false;
 	}
 
-	sf::FloatRect textBounds;
-	sf::Vector2f textPosition;
-
 	livesText.setFont(font);
 	livesText.setString("x 3");
 	livesText.setCharacterSize(25);
 	
-	textBounds = livesText.getLocalBounds();
-	textPosition.x = 50 + (textBounds.width / 2);
-	textPosition.y = 20 + (textBounds.height / 2);;
+	bounds = livesText.getLocalBounds();
 
-	livesText.setOrigin(textBounds.left + (textBounds.width / 2), textBounds.top + (textBounds.height / 2));
-	livesText.setPosition(textPosition);
+	origin.x = bounds.left + (bounds.width / 2);
+	origin.y = bounds.top + (bounds.height / 2);
 
-	enemiesRemainingText.setFont(font);
-	enemiesRemainingText.setString("Enemies: ");
-	enemiesRemainingText.setCharacterSize(25);
+	position.x = (lifeSprite.getPosition().x + (lifeSprite.getLocalBounds().width / 2)) + (bounds.width / 2) + 10;
+	position.y = lifeSprite.getPosition().y;
 
-	textBounds = enemiesRemainingText.getLocalBounds();
-	textPosition.x = (livesText.getPosition().x + (livesText.getLocalBounds().width / 2)) + (textBounds.width / 2) + 100;
-	textPosition.y = 20 + (textBounds.height / 2);
+	livesText.setOrigin(origin);
+	livesText.setPosition(position);
 
-	enemiesRemainingText.setOrigin(textBounds.left + (textBounds.width / 2), textBounds.top + (textBounds.height / 2));
-	enemiesRemainingText.setPosition(textPosition);
+	scoreText.setFont(font);
+	scoreText.setString("000000");
+	scoreText.setCharacterSize(25);
 
-	killPlayerButton = RedButton(sf::Vector2f(158, 667), "Lose Life");
+	bounds = scoreText.getLocalBounds();
 
-	if (!killPlayerButton.initialize())
-	{
-		std::cout << "PlayerHUD.cpp : Could not load 'killPlayerButton'" << std::endl;
-		return false;
-	}
+	origin.x = bounds.left + (bounds.width / 2);
+	origin.y = bounds.left + (bounds.height / 2);
+
+	position.x = (screenBounds.left + screenBounds.width) - (bounds.width / 2) - 50;
+	position.y = livesText.getPosition().y;
+
+	scoreText.setOrigin(origin);
+	scoreText.setPosition(position);
 
 	return true;
 }
@@ -55,15 +74,25 @@ void PlayerHUD::handleInput(sf::RenderWindow* window, sf::Event* event)
 	killPlayerButton.handleInput(window, event);
 }
 
-void PlayerHUD::update(float deltaTime, int playerLives, int enemiesRemaining)
+void PlayerHUD::update(float deltaTime, int playerLives, int score)
 {
 	livesText.setString("x " + std::to_string(playerLives));
-	enemiesRemainingText.setString("Enemies Remaining: " + std::to_string(enemiesRemaining));
+	scoreText.setString(getScoreString(score));
 }
 
 void PlayerHUD::draw(sf::RenderWindow* window)
 {
+	window->draw(lifeSprite);
 	window->draw(livesText);
-	window->draw(enemiesRemainingText);
-	killPlayerButton.draw(window);
+	window->draw(scoreText);
+}
+
+std::string PlayerHUD::getScoreString(int score)
+{
+	std::string scoreAsString = std::to_string(score);
+	size_t scoreLength = 6;
+
+	int numZerosToAdd = scoreLength - std::min(scoreLength, scoreAsString.size());
+	
+	return std::string(numZerosToAdd, '0').append(scoreAsString);
 }

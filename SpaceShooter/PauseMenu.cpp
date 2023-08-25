@@ -8,7 +8,7 @@ PauseMenu::PauseMenu() : continueGameButton(sf::Vector2f(0, 0), "Continue"), res
 
 bool PauseMenu::initialize()
 {
-	if (!menuBackgroundTexture.loadFromFile("Assets/Graphics/UI/PauseMenu.png"))
+	if (!menuBackgroundTexture.loadFromFile("Assets/Graphics/UI/PauseMenu_Blue.png"))
 	{
 		std::cout << "PauseMenu.cpp : Could not load 'menuBackgroundTexture'" << std::endl;
 		return false;
@@ -18,12 +18,12 @@ bool PauseMenu::initialize()
 	menuBackgroundSprite.setScale(1.5, 1.5);
 	setupSprite(&menuBackgroundSprite, sf::Vector2f(640, 360));
 
-	continueGameButton = YellowButton(sf::Vector2f(menuBackgroundSprite.getGlobalBounds().left + (menuBackgroundSprite.getGlobalBounds().width / 2), menuBackgroundSprite.getGlobalBounds().top + 100), "Continue");
-	restartLevelButton = YellowButton(sf::Vector2f(menuBackgroundSprite.getGlobalBounds().left + (menuBackgroundSprite.getGlobalBounds().width / 2), menuBackgroundSprite.getGlobalBounds().top + 180), "Restart");
-	optionsButton = YellowButton(sf::Vector2f(menuBackgroundSprite.getGlobalBounds().left + (menuBackgroundSprite.getGlobalBounds().width / 2), menuBackgroundSprite.getGlobalBounds().top + 260), "Options");
+	continueGameButton = BlueButton(sf::Vector2f(menuBackgroundSprite.getGlobalBounds().left + (menuBackgroundSprite.getGlobalBounds().width / 2), menuBackgroundSprite.getGlobalBounds().top + 100), "Continue");
+	restartLevelButton = BlueButton(sf::Vector2f(menuBackgroundSprite.getGlobalBounds().left + (menuBackgroundSprite.getGlobalBounds().width / 2), menuBackgroundSprite.getGlobalBounds().top + 180), "Restart");
+	optionsButton = BlueButton(sf::Vector2f(menuBackgroundSprite.getGlobalBounds().left + (menuBackgroundSprite.getGlobalBounds().width / 2), menuBackgroundSprite.getGlobalBounds().top + 260), "Options");
 	quitButton = RedButton(sf::Vector2f(menuBackgroundSprite.getGlobalBounds().left + (menuBackgroundSprite.getGlobalBounds().width / 2), menuBackgroundSprite.getGlobalBounds().top + 340), "Quit");
 
-	if (!font.loadFromFile("Assets/Fonts/kenvector_future.ttf"))
+	if (!font.loadFromFile("Assets/Fonts/nulshock.otf"))
 	{
 		std::cout << "PauseMenu.cpp : Could not load 'font'" << std::endl;
 		return false;

@@ -1,7 +1,7 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include "RedButton.h"
-#include "YellowButton.h"
+#include "BlueButton.h"
 
 #ifndef PAUSE_MENU_H
 #define PAUSE_MENU_H
@@ -16,9 +16,9 @@ public:
 	void update(float deltaTime);
 	void draw(sf::RenderWindow* window);
 
-	YellowButton continueGameButton;
-	YellowButton restartLevelButton;
-	YellowButton optionsButton;
+	BlueButton continueGameButton;
+	BlueButton restartLevelButton;
+	BlueButton optionsButton;
 	RedButton quitButton;
 
 private:

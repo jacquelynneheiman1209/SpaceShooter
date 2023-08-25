@@ -1,7 +1,7 @@
 #include "GameScene.h"
 #include <iostream>
 
-GameScene::GameScene(SceneLoader* sceneLoader, sf::FloatRect gameBounds) : player(sf::Vector2f(640, 360), gameBounds), pauseMenu(), gameOverMenu(), playerHUD()
+GameScene::GameScene(SceneLoader* sceneLoader, sf::FloatRect gameBounds) : player(sf::Vector2f(640, 360), gameBounds), pauseMenu(), gameOverMenu(), playerHUD(gameBounds)
 {
 	this->sceneLoader = sceneLoader;
 	this->gameBounds = gameBounds;
@@ -18,7 +18,7 @@ bool GameScene::initialize()
 
 	pauseMenu = PauseMenu();
 	gameOverMenu = GameOverMenu();
-	playerHUD = PlayerHUD();
+	playerHUD = PlayerHUD(gameBounds);
 
 	if (!playerHUD.initialize())
 	{
@@ -86,19 +86,6 @@ void GameScene::handleInput(sf::RenderWindow* window, sf::Event* event)
 		{
 			player.handleInput(window, event);
 			playerHUD.handleInput(window, event);
-
-			if (event->type == sf::Event::MouseButtonPressed)
-			{
-				if (playerHUD.killPlayerButton.isClicked(sf::Mouse::getPosition(*window)))
-				{
-					player.loseLife();
-
-					if (player.getLives() <= 0)
-					{
-						isGameOver = true;
-					}
-				}
-			}
 		}
 	}
 	else

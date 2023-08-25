@@ -79,6 +79,9 @@
     <Filter Include="Source Files\Bullets\Bullet">
       <UniqueIdentifier>{1fd00222-6f6c-407f-b33f-d24e690cccee}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\UI Elements\Buttons\Blue Button">
+      <UniqueIdentifier>{58f66c64-0331-45a5-af43-3e4b278e866e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -132,6 +135,9 @@
     <ClCompile Include="Bullet.cpp">
       <Filter>Source Files\Bullets\Bullet</Filter>
     </ClCompile>
+    <ClCompile Include="BlueButton.cpp">
+      <Filter>Source Files\UI Elements\Buttons\Blue Button</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Background.h">
@@ -184,6 +190,9 @@
     </ClInclude>
     <ClInclude Include="Bullet.h">
       <Filter>Source Files\Bullets\Bullet</Filter>
+    </ClInclude>
+    <ClInclude Include="BlueButton.h">
+      <Filter>Source Files\UI Elements\Buttons\Blue Button</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -8,7 +8,7 @@ MainMenuScene::MainMenuScene(SceneLoader* sceneLoader) : startGameButton(sf::Vec
 
 bool MainMenuScene::initialize()
 {
-	if (!font.loadFromFile("Assets/Fonts/kenvector_future.ttf"))
+	if (!font.loadFromFile("Assets/Fonts/nulshock.otf"))
 	{
 		return false;
 	}

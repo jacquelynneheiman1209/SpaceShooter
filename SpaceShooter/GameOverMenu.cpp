@@ -74,7 +74,7 @@ bool GameOverMenu::initializeBackground()
 
 bool GameOverMenu::initializeText()
 {
-	if (!font.loadFromFile("Assets/Fonts/kenvector_future.ttf"))
+	if (!font.loadFromFile("Assets/Fonts/nulshock.otf"))
 	{
 		std::cout << "GameOverMenu.cpp : Could not load font for 'font'" << std::endl;
 		return false;

@@ -9,7 +9,7 @@
 class PlayerHUD
 {
 public:
-	PlayerHUD();
+	PlayerHUD(sf::FloatRect screenRect);
 
 	bool initialize();
 	void handleInput(sf::RenderWindow* window, sf::Event* event);
@@ -26,7 +26,11 @@ private:
 	sf::Font font;
 
 	sf::Text livesText;
-	sf::Text enemiesRemainingText;
+	sf::Text scoreText;
+
+	sf::FloatRect screenBounds;
+
+	std::string getScoreString(int score);
 	
 };
 

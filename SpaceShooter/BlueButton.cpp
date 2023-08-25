@@ -1,12 +1,13 @@
-#include "RedButton.h"
+#include "BlueButton.h"
+#include <iostream>
 
-RedButton::RedButton(sf::Vector2f position, std::string text) : Button(position, text)
+BlueButton::BlueButton(sf::Vector2f position, std::string text) : Button(position, text)
 {
 }
 
-bool RedButton::initialize()
+bool BlueButton::initialize()
 {
-	if (!buttonTexture.loadFromFile("Assets/Graphics/UI/buttonRed_Regular.png"))
+	if (!buttonTexture.loadFromFile("Assets/Graphics/UI/buttonBlue_Regular.png"))
 	{
 		return false;
 	}
@@ -28,15 +29,16 @@ bool RedButton::initialize()
 	text.setOrigin(text.getLocalBounds().left + (text.getLocalBounds().width / 2), text.getLocalBounds().top + (text.getLocalBounds().height / 2));
 	text.setPosition(buttonPosition);
 
-	if (!buttonHoverTexture.loadFromFile("Assets/Graphics/UI/buttonRed_Pressed.png"))
+	if (!buttonHoverTexture.loadFromFile("Assets/Graphics/UI/buttonBlue_Pressed.png"))
 	{
+		std::cout << "BlueButton.cpp : Could not load 'buttonHoverTexture'" << std::endl;
 		return false;
 	}
 
 	return true;
 }
 
-void RedButton::handleInput(sf::RenderWindow* window, sf::Event* event)
+void BlueButton::handleInput(sf::RenderWindow* window, sf::Event* event)
 {
 	if (isClicked(sf::Mouse::getPosition(*window)))
 	{
@@ -48,13 +50,13 @@ void RedButton::handleInput(sf::RenderWindow* window, sf::Event* event)
 	}
 }
 
-void RedButton::draw(sf::RenderWindow* window)
+void BlueButton::draw(sf::RenderWindow* window)
 {
 	window->draw(buttonSprite);
 	window->draw(text);
 }
 
-bool RedButton::isClicked(sf::Vector2i mousePosition)
+bool BlueButton::isClicked(sf::Vector2i mousePosition)
 {
 	float buttonMinX = buttonSprite.getGlobalBounds().left;
 	float buttonMinY = buttonSprite.getGlobalBounds().top;
@@ -68,17 +70,17 @@ bool RedButton::isClicked(sf::Vector2i mousePosition)
 	return mouseX >= buttonMinX && mouseX <= buttonMaxX && mouseY >= buttonMinY && mouseY <= buttonMaxY;
 }
 
-void RedButton::setScale(float scaleX, float scaleY)
+void BlueButton::setScale(float scaleX, float scaleY)
 {
 	buttonSprite.setScale(scaleX, scaleY);
 }
 
-void RedButton::setScale(sf::Vector2f scale)
+void BlueButton::setScale(sf::Vector2f scale)
 {
 	setScale(scale.x, scale.y);
 }
 
-sf::Vector2f RedButton::getScale()
+sf::Vector2f BlueButton::getScale()
 {
 	return buttonSprite.getScale();
 }

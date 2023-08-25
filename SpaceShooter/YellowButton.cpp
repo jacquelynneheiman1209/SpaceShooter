@@ -17,7 +17,7 @@ bool YellowButton::initialize()
 	buttonSprite.setOrigin(buttonSprite.getLocalBounds().left + (buttonSprite.getLocalBounds().width / 2), buttonSprite.getLocalBounds().top + (buttonSprite.getLocalBounds().height / 2));
 	buttonSprite.setPosition(buttonPosition);
 
-	if (!font.loadFromFile("Assets/Fonts/kenvector_future.ttf"))
+	if (!font.loadFromFile("Assets/Fonts/nulshock.otf"))
 	{
 		return false;
 	}
