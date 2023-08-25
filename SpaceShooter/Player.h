@@ -19,6 +19,7 @@ public:
 	void loseLife();
 	int getLives();
 
+	sf::FloatRect getCollider();
 	std::vector<Bullet*> getBullets();
 
 	sf::Vector2f getPosition();

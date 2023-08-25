@@ -11,6 +11,9 @@ bool GameScene::initialize()
 {
 	isGameOver = false;
 	isPaused = false;
+	numAsteroidsAllowedInScene = 3;
+	numAsteroidsSpawned = 0;
+	score = 0;
 
 	player = Player(sf::Vector2f(640, 360), gameBounds);
 
@@ -134,7 +137,7 @@ void GameScene::update(float deltaTime)
 			{
 				if (asteroidSpawnTimer < asteroidSpawnDelay)
 				{
-					asteroidSpawnTimer++;
+					asteroidSpawnTimer += deltaTime;
 				}
 
 				if (asteroidSpawnTimer >= asteroidSpawnDelay && numAsteroidsSpawned < numAsteroidsAllowedInScene)
@@ -150,9 +153,11 @@ void GameScene::update(float deltaTime)
 				{
 					asteroids[nextAsteroid].get()->spawn(player.getPosition(), gameBounds);
 					numAsteroidsSpawned++;
-					canSpawnAsteroid = false;
-					asteroidSpawnTimer = 0;
+					
 				}
+
+				canSpawnAsteroid = false;
+				asteroidSpawnTimer = 0;
 			}
 
 			// check collisions on the player bullets
@@ -162,15 +167,38 @@ void GameScene::update(float deltaTime)
 			{
 				for (int a = 0; a < asteroids.size(); a++)
 				{
-					if (playerBullets[i]->getCollider().intersects(asteroids[a].get()->getCollider()))
+					if (playerBullets[i]->isActive && asteroids[a].get()->isActive)
 					{
-						asteroids[a].get()->destroy();
-						playerBullets[i]->destroy();
+						if (playerBullets[i]->getCollider().intersects(asteroids[a].get()->getCollider()))
+						{
+							asteroids[a].get()->destroy();
+							playerBullets[i]->destroy();
 
-						score += asteroidPoints;
+							score += asteroidPoints;
+							numAsteroidsSpawned--;
+						}
+					}
+				}
+			}
+
+			// check collisions on the asteroids with the player
+			for (int i = 0; i < asteroids.size(); i++)
+			{
+				if (asteroids[i].get()->isActive)
+				{
+					if (asteroids[i].get()->getCollider().intersects(player.getCollider()))
+					{
+						player.loseLife();
+						asteroids[i].get()->destroy();
 						numAsteroidsSpawned--;
 					}
 				}
+			}
+
+			// check for game over
+			if (player.getLives() <= 0)
+			{
+				isGameOver = true;
 			}
 		}
 	}
@@ -201,6 +229,8 @@ void GameScene::draw(sf::RenderWindow* window)
 
 bool GameScene::initializeAsteroids()
 {
+	asteroids.clear();
+
 	for (int i = 0; i < numAsteroidsAllowedInScene; i++)
 	{
 		std::unique_ptr<Asteroid> asteroid = std::unique_ptr<Asteroid>(new Asteroid());

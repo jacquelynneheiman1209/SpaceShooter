@@ -134,6 +134,11 @@ int Player::getLives()
 	return lives;
 }
 
+sf::FloatRect Player::getCollider()
+{
+	return playerSprite.getGlobalBounds();
+}
+
 std::vector<Bullet*> Player::getBullets()
 {
 	std::vector<Bullet*> bulletsList;
