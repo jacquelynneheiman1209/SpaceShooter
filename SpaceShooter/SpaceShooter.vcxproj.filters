@@ -142,7 +142,7 @@
       <Filter>Source Files\UI Elements\Buttons\Blue Button</Filter>
     </ClCompile>
     <ClCompile Include="Asteroid.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Asteroids</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -201,7 +201,7 @@
       <Filter>Source Files\UI Elements\Buttons\Blue Button</Filter>
     </ClInclude>
     <ClInclude Include="Asteroid.h">
-      <Filter>Header Files</Filter>
+      <Filter>Source Files\Asteroids</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

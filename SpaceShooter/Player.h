@@ -19,6 +19,8 @@ public:
 	void loseLife();
 	int getLives();
 
+	std::vector<Bullet*> getBullets();
+
 	sf::Vector2f getPosition();
 
 private:

@@ -134,6 +134,18 @@ int Player::getLives()
 	return lives;
 }
 
+std::vector<Bullet*> Player::getBullets()
+{
+	std::vector<Bullet*> bulletsList;
+
+	for (int i = 0; i < bullets.size(); i++)
+	{
+		bulletsList.push_back(bullets[i].get());
+	}
+
+	return bulletsList;
+}
+
 sf::Vector2f Player::getPosition()
 {
 	return playerSprite.getPosition();

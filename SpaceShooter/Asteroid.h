@@ -17,6 +17,12 @@ public:
 	void spawn(sf::Vector2f targetPosition, sf::FloatRect gameBounds);
 	void destroy();
 
+	sf::FloatRect getCollider();
+
+	bool isActive = false;
+	bool isInGameBounds = false;
+	bool isAtInactivePosition = true;
+
 private:
 	std::vector<std::string> textures {
 		"Assets/Graphics/Meteors/meteorBrown_big1.png",
@@ -30,11 +36,10 @@ private:
 	sf::Texture asteroidTexture;
 	sf::Sprite asteroidSprite;
 
-	bool isActive = false;
-	bool isInGameBounds = false;
+	
 
 	sf::Vector2f inactivePosition = sf::Vector2f(-1000, -1000);
-	sf::Vector2f targetPosition;
+	sf::Vector2f moveDirection;
 
 	float moveSpeed = 100;
 

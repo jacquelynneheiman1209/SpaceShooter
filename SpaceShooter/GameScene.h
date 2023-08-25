@@ -39,13 +39,22 @@ private:
 	bool isGameOver = false;
 	bool playerWon = false;
 
+	int asteroidPoints = 50;
+	int enemyPoints = 200;
+
 	int score = 0;
 	int highScore = 0;
 
 	int numAsteroidsSpawned = 0;
 	int numAsteroidsAllowedInScene = 3;
 
+	float asteroidSpawnTimer = 0;
+	float asteroidSpawnDelay = 1;
+
+	bool canSpawnAsteroid = false;
+
 	bool initializeAsteroids();
+	int getNextAsteroidIndex();
 
 };
 

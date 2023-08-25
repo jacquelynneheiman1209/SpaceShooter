@@ -18,17 +18,17 @@ bool GameScene::initialize()
 	gameOverMenu = GameOverMenu();
 	playerHUD = PlayerHUD(gameBounds);
 
-	if (!initializeAsteroids())
-	{
-		return false;
-	}
-
 	if (!playerHUD.initialize())
 	{
 		return false;
 	}
 
 	if (!player.initialize())
+	{
+		return false;
+	}
+
+	if (!initializeAsteroids())
 	{
 		return false;
 	}
@@ -122,6 +122,55 @@ void GameScene::update(float deltaTime)
 			for (int i = 0; i < asteroids.size(); i++)
 			{
 				asteroids[i].get()->update(deltaTime);
+
+				if (asteroids[i].get()->isActive && !asteroids[i].get()->isInGameBounds)
+				{
+					asteroids[i].get()->destroy();
+					numAsteroidsSpawned--;
+				}
+			}
+
+			if (!canSpawnAsteroid)
+			{
+				if (asteroidSpawnTimer < asteroidSpawnDelay)
+				{
+					asteroidSpawnTimer++;
+				}
+
+				if (asteroidSpawnTimer >= asteroidSpawnDelay && numAsteroidsSpawned < numAsteroidsAllowedInScene)
+				{
+					canSpawnAsteroid = true;
+				}
+			}
+			else
+			{
+				int nextAsteroid = getNextAsteroidIndex();
+
+				if (nextAsteroid >= 0)
+				{
+					asteroids[nextAsteroid].get()->spawn(player.getPosition(), gameBounds);
+					numAsteroidsSpawned++;
+					canSpawnAsteroid = false;
+					asteroidSpawnTimer = 0;
+				}
+			}
+
+			// check collisions on the player bullets
+			auto playerBullets = player.getBullets();
+
+			for (int i = 0; i < playerBullets.size(); i++)
+			{
+				for (int a = 0; a < asteroids.size(); a++)
+				{
+					if (playerBullets[i]->getCollider().intersects(asteroids[a].get()->getCollider()))
+					{
+						asteroids[a].get()->destroy();
+						playerBullets[i]->destroy();
+
+						score += asteroidPoints;
+						numAsteroidsSpawned--;
+					}
+				}
 			}
 		}
 	}
@@ -166,4 +215,22 @@ bool GameScene::initializeAsteroids()
 	}
 
 	asteroids[0].get()->spawn(player.getPosition(), gameBounds);
+
+	return true;
+}
+
+int GameScene::getNextAsteroidIndex()
+{
+	int nextAsteroid = -1;
+
+	for (int i = 0; i < asteroids.size(); i++)
+	{
+		if (!asteroids[i].get()->isActive && asteroids[i].get()->isAtInactivePosition)
+		{
+			nextAsteroid = i;
+			break;
+		}
+	}
+
+	return nextAsteroid;
 }

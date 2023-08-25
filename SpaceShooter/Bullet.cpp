@@ -85,3 +85,8 @@ void Bullet::destroy()
 	isActive = false;
 	bulletSprite.setPosition(inactivePosition);
 }
+
+sf::FloatRect Bullet::getCollider()
+{
+	return bulletSprite.getGlobalBounds();
+}

@@ -18,6 +18,8 @@ public:
 	void spawn(sf::Vector2f position, float rotation);
 	void destroy();
 
+	sf::FloatRect getCollider();
+
 private:
 	sf::Texture bulletTexture;
 	sf::Sprite bulletSprite;

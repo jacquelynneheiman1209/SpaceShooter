@@ -33,11 +33,6 @@ bool Asteroid::initialize()
 
 void Asteroid::update(float deltaTime)
 {
-	if (isActive || (!isActive && asteroidSprite.getPosition() != inactivePosition))
-	{
-		std::cout << "Sprite Position: " << asteroidSprite.getPosition().x << ", " << asteroidSprite.getPosition().y << std::endl;
-	}
-
 	if (isActive)
 	{
 		move(deltaTime);
@@ -48,6 +43,15 @@ void Asteroid::update(float deltaTime)
 		{
 			move(deltaTime);
 		}
+	}
+
+	if (asteroidSprite.getPosition() == inactivePosition)
+	{
+		isAtInactivePosition = true;
+	}
+	else
+	{
+		isAtInactivePosition = false;
 	}
 }
 
@@ -69,37 +73,34 @@ void Asteroid::spawn(sf::Vector2f targetPosition, sf::FloatRect gameBounds)
 
 	if (randomScreenEdge == ScreenEdge::LEFT)
 	{
-		std::cout << "Spawn on LEFT side of screen..." << std::endl;
 		spawnPosition.x = gameBounds.left - 200;
 		spawnPosition.y = (rand() % static_cast<int>((gameBounds.top + gameBounds.height) - 200)) + 100;
 	}
 
 	if (randomScreenEdge == ScreenEdge::RIGHT)
 	{
-		std::cout << "Spawn on RIGHT side of screen..." << std::endl;
 		spawnPosition.x = (gameBounds.left + gameBounds.width) + 200;
 		spawnPosition.y = (rand() % static_cast<int>((gameBounds.top + gameBounds.height) - 200)) + 100;
 	}
 
 	if (randomScreenEdge == ScreenEdge::TOP)
 	{
-		std::cout << "Spawn on TOP side of screen..." << std::endl;
 		spawnPosition.x = (rand() % static_cast<int>((gameBounds.left + gameBounds.width))) + 100;
 		spawnPosition.y = gameBounds.top - 200;
 	}
 
 	if (randomScreenEdge == ScreenEdge::BOTTOM)
 	{
-		std::cout << "Spawn on BOTTOM side of screen..." << std::endl;
 		spawnPosition.x = (rand() % static_cast<int>((gameBounds.left + gameBounds.width))) + 100;
 		spawnPosition.y = (gameBounds.top + gameBounds.height) + 200;
 	}
 
 	asteroidSprite.setPosition(spawnPosition);
-	this->targetPosition = targetPosition - asteroidSprite.getPosition();
+	moveDirection = targetPosition - asteroidSprite.getPosition();
 
-	std::cout << "Spawn Position: " << asteroidSprite.getPosition().x << ", " << asteroidSprite.getPosition().y << std::endl;
-	std::cout << "Direction To Target: " << targetPosition.x << ", " << targetPosition.y << std::endl;
+	// Normalizing the moveDirection vector
+	float magnitude = sqrt((moveDirection.x * moveDirection.x) + (moveDirection.y * moveDirection.y));
+	moveDirection /= magnitude;
 }
 
 void Asteroid::destroy()
@@ -108,32 +109,28 @@ void Asteroid::destroy()
 	asteroidSprite.setPosition(inactivePosition);
 }
 
+sf::FloatRect Asteroid::getCollider()
+{
+	return asteroidSprite.getGlobalBounds();
+}
+
 void Asteroid::move(float deltaTime)
 {
-	// TODO : Get the asteroid moving towards the player
-
-	float dx = asteroidSprite.getPosition().x - targetPosition.x;
-	float dy = asteroidSprite.getPosition().y - targetPosition.y;
-
-	float rotation = (atan2(dy, dx)) * 180 / 3.14159265;
+	float rotation = asteroidSprite.getRotation();
 
 	sf::Vector2f currentPosition = asteroidSprite.getPosition();
-	currentPosition.x += static_cast<float>(cos(rotation * (3.14159265 / 180)) * moveSpeed * deltaTime);
-	currentPosition.y += static_cast<float>(sin(rotation * (3.14159265 / 180)) * moveSpeed * deltaTime);
+	currentPosition.x += moveDirection.x * moveSpeed * deltaTime;
+	currentPosition.y += moveDirection.y * moveSpeed * deltaTime;
 
 	bool isInBoundsX = (currentPosition.x > gameBounds.left && currentPosition.x < (gameBounds.left + gameBounds.width));
 	bool isInBoundsY = (currentPosition.y > gameBounds.top && currentPosition.y < (gameBounds.top + gameBounds.height));
 
+	isInGameBounds = isInBoundsX && isInBoundsY;
+
+	asteroidSprite.setRotation(rotation);
 	asteroidSprite.setPosition(currentPosition);
 
-	if (isActive)
-	{
-		if (!isInBoundsX || !isInBoundsY)
-		{
-			destroy();
-		}
-	}
-	else
+	if (!isActive)
 	{
 		if ((asteroidSprite.getPosition() != inactivePosition) && (isInBoundsX && isInBoundsY))
 		{
