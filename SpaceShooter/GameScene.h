@@ -7,6 +7,7 @@
 #include "PauseMenu.h"
 #include "GameOverMenu.h"
 #include "PlayerHUD.h"
+#include "Asteroid.h"
 
 #ifndef GAME_SCENE_H
 #define GAME_SCENE_H
@@ -32,12 +33,19 @@ private:
 	GameOverMenu gameOverMenu;
 	PlayerHUD playerHUD;
 
+	std::vector<std::unique_ptr<Asteroid>> asteroids;
+
 	bool isPaused = false;
 	bool isGameOver = false;
 	bool playerWon = false;
 
-	int enemiesKilled = 0;
-	int numberEmeniesToKill = 3;
+	int score = 0;
+	int highScore = 0;
+
+	int numAsteroidsSpawned = 0;
+	int numAsteroidsAllowedInScene = 3;
+
+	bool initializeAsteroids();
 
 };
 

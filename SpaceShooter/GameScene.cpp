@@ -12,13 +12,16 @@ bool GameScene::initialize()
 	isGameOver = false;
 	isPaused = false;
 
-	enemiesKilled = 0;
-
 	player = Player(sf::Vector2f(640, 360), gameBounds);
 
 	pauseMenu = PauseMenu();
 	gameOverMenu = GameOverMenu();
 	playerHUD = PlayerHUD(gameBounds);
+
+	if (!initializeAsteroids())
+	{
+		return false;
+	}
 
 	if (!playerHUD.initialize())
 	{
@@ -114,7 +117,12 @@ void GameScene::update(float deltaTime)
 		if (!isPaused)
 		{
 			player.update(deltaTime);
-			playerHUD.update(deltaTime, player.getLives(), (numberEmeniesToKill - enemiesKilled));
+			playerHUD.update(deltaTime, player.getLives(), score);
+
+			for (int i = 0; i < asteroids.size(); i++)
+			{
+				asteroids[i].get()->update(deltaTime);
+			}
 		}
 	}
 }
@@ -126,6 +134,11 @@ void GameScene::draw(sf::RenderWindow* window)
 		player.draw(window);
 		playerHUD.draw(window);
 
+		for (int i = 0; i < asteroids.size(); i++)
+		{
+			asteroids[i].get()->draw(window);
+		}
+
 		if (isPaused)
 		{
 			pauseMenu.draw(window);
@@ -135,4 +148,22 @@ void GameScene::draw(sf::RenderWindow* window)
 	{
 		gameOverMenu.draw(window, playerWon);
 	}
+}
+
+bool GameScene::initializeAsteroids()
+{
+	for (int i = 0; i < numAsteroidsAllowedInScene; i++)
+	{
+		std::unique_ptr<Asteroid> asteroid = std::unique_ptr<Asteroid>(new Asteroid());
+		
+		if (!asteroid.get()->initialize())
+		{
+			std::cout << "GameScene.cpp : Could not load asteroid " << i << std::endl;
+			return false;
+		}
+		
+		asteroids.push_back(std::move(asteroid));
+	}
+
+	asteroids[0].get()->spawn(player.getPosition(), gameBounds);
 }

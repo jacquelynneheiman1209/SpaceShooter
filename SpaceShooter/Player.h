@@ -19,6 +19,8 @@ public:
 	void loseLife();
 	int getLives();
 
+	sf::Vector2f getPosition();
+
 private:
 	sf::Texture playerTexture;
 	sf::Sprite playerSprite;

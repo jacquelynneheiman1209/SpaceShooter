@@ -134,6 +134,11 @@ int Player::getLives()
 	return lives;
 }
 
+sf::Vector2f Player::getPosition()
+{
+	return playerSprite.getPosition();
+}
+
 void Player::move(float deltaTime)
 {
 	sf::Vector2f currentPosition = playerSprite.getPosition();

@@ -82,6 +82,9 @@
     <Filter Include="Source Files\UI Elements\Buttons\Blue Button">
       <UniqueIdentifier>{58f66c64-0331-45a5-af43-3e4b278e866e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Asteroids">
+      <UniqueIdentifier>{ea57e16c-602f-46c6-a75f-0dc5df2e3b25}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -138,6 +141,9 @@
     <ClCompile Include="BlueButton.cpp">
       <Filter>Source Files\UI Elements\Buttons\Blue Button</Filter>
     </ClCompile>
+    <ClCompile Include="Asteroid.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Background.h">
@@ -193,6 +199,9 @@
     </ClInclude>
     <ClInclude Include="BlueButton.h">
       <Filter>Source Files\UI Elements\Buttons\Blue Button</Filter>
+    </ClInclude>
+    <ClInclude Include="Asteroid.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
