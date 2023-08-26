@@ -41,7 +41,10 @@ private:
 	sf::Vector2f inactivePosition = sf::Vector2f(-1000, -1000);
 	sf::Vector2f moveDirection;
 
-	float moveSpeed = 100;
+	int minMoveSpeed = 50;
+	int maxMoveSpeed = 150;
+
+	float moveSpeed = 75;
 
 	sf::FloatRect gameBounds;
 

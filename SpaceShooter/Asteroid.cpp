@@ -26,6 +26,9 @@ bool Asteroid::initialize()
 	asteroidSprite.setOrigin(origin);
 	asteroidSprite.setPosition(inactivePosition);
 
+	// randomly select a move speed
+	moveSpeed = (rand() % maxMoveSpeed) + minMoveSpeed;
+
 	return true;
 }
 
