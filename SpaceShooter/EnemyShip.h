@@ -7,17 +7,21 @@
 class EnemyShip
 {
 public:
-	EnemyShip(sf::FloatRect gameBounds);
+	enum ScreenEdge { LEFT, TOP, RIGHT, BOTTOM};
+	EnemyShip();
 
 	bool initialize();
-	void update(float deltaTime);
+	void update(float deltaTime, sf::Vector2f targetPosition);
 	void draw(sf::RenderWindow* window);
 
-	void spawn(sf::Vector2f position, sf::Vector2f targetPosition);
+	void spawn(sf::Vector2f targetPosition, sf::FloatRect gameBounds);
 	void destroy();
+
+	sf::FloatRect getCollider();
 
 	bool isActive;
 	bool isInGameBounds;
+	bool isAtInactivePosition;
 
 private:
 	std::vector<std::string> textures {
@@ -45,7 +49,14 @@ private:
 	sf::Texture enemyTexture;
 	sf::Sprite enemySprite;
 
-	sf::Vector2f targetPosition;
+	sf::Vector2f enemyScale = sf::Vector2f(0.5f, 0.5f);
+	sf::Vector2f inactivePosition = sf::Vector2f(-1000, -1000);
+
+	sf::FloatRect gameBounds;
+
+	float moveSpeed = 150;
+
+	void move(float deltaTime, sf::Vector2f targetPosition);
 
 };
 

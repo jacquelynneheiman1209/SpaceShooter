@@ -8,6 +8,7 @@
 #include "GameOverMenu.h"
 #include "PlayerHUD.h"
 #include "Asteroid.h"
+#include "EnemyShip.h"
 
 #ifndef GAME_SCENE_H
 #define GAME_SCENE_H
@@ -33,6 +34,7 @@ private:
 	GameOverMenu gameOverMenu;
 	PlayerHUD playerHUD;
 
+	std::vector<std::unique_ptr<EnemyShip>> enemyShips;
 	std::vector<std::unique_ptr<Asteroid>> asteroids;
 
 	bool isPaused = false;
@@ -48,13 +50,25 @@ private:
 	int numAsteroidsSpawned = 0;
 	int numAsteroidsAllowedInScene = 3;
 
+	int numEnemiesShipsSpawned = 0;
+	int numEnemiesAllowedInScene = 1;
+
 	float asteroidSpawnTimer = 0;
 	float asteroidSpawnDelay = 1;
 
+	float enemySpawnTimer = 0;
+	float minEnemyShipSpawnDelay = 10;		// in seconds
+	float maxEnemyShipSpawnDelay = 40;		// in seconds
+	float enemySpawnDelay = 1;
+
 	bool canSpawnAsteroid = false;
+	bool canSpawnEnemy = false;
 
 	bool initializeAsteroids();
+	bool initializeEnemyShips();
+
 	int getNextAsteroidIndex();
+	int getNextEnemyShipIndex();
 
 };
 

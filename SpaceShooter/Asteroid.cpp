@@ -55,16 +55,16 @@ void Asteroid::update(float deltaTime)
 
 void Asteroid::draw(sf::RenderWindow* window)
 {
-	window->draw(asteroidSprite);
+	if (isActive)
+	{
+		window->draw(asteroidSprite);
+	}
 }
 
 void Asteroid::spawn(sf::Vector2f targetPosition, sf::FloatRect gameBounds)
 {
 	this->gameBounds = gameBounds;
 
-	srand(time(0));
-
-	// choose a random edge of the screen
 	ScreenEdge randomScreenEdge = static_cast<ScreenEdge>(rand() % 4);
 
 	sf::Vector2f spawnPosition;
@@ -114,8 +114,6 @@ sf::FloatRect Asteroid::getCollider()
 
 void Asteroid::move(float deltaTime)
 {
-	float rotation = asteroidSprite.getRotation();
-
 	sf::Vector2f currentPosition = asteroidSprite.getPosition();
 	currentPosition.x += moveDirection.x * moveSpeed * deltaTime;
 	currentPosition.y += moveDirection.y * moveSpeed * deltaTime;
@@ -125,7 +123,6 @@ void Asteroid::move(float deltaTime)
 
 	isInGameBounds = isInBoundsX && isInBoundsY;
 
-	asteroidSprite.setRotation(rotation);
 	asteroidSprite.setPosition(currentPosition);
 
 	if (!isActive)

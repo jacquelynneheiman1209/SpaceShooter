@@ -1,4 +1,7 @@
 #include "Game.h"
+#include "Debug.h"
+
+Debug debugger;
 
 int main()
 {
