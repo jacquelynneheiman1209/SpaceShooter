@@ -38,8 +38,8 @@ private:
 
 	std::vector<std::unique_ptr<Bullet>> bullets;
 
-	float moveSpeed = 200;
-	float rotateSpeed = 100;
+	float moveSpeed = 300;
+	float rotateSpeed = 150;
 
 	float shootTimer = 0;				
 	float shootDelaySeconds = 0.5;		// shoot twice per second
