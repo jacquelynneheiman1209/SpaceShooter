@@ -66,9 +66,9 @@ private:
 	bool canSpawnAsteroid = false;
 	bool canSpawnEnemy = false;
 
-	int difficultyScoreThreshold = 1000;
-	int scoreThresholdIncreasePerDifficulty = 1000;
-	int difficulty = 0;
+	int difficultyScoreThreshold = 500;
+	int scoreThresholdIncreasePerDifficulty = 500;
+	int difficultyLevel = 0;
 
 	bool initializeAsteroids();
 	bool initializeEnemyShips();

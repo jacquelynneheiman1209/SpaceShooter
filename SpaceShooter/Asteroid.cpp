@@ -113,6 +113,11 @@ void Asteroid::destroy()
 	asteroidSprite.setPosition(inactivePosition);
 }
 
+void Asteroid::increaseSpeed(float amount)
+{
+	moveSpeed += amount;
+}
+
 sf::FloatRect Asteroid::getCollider()
 {
 	return asteroidSprite.getGlobalBounds();

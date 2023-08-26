@@ -27,9 +27,9 @@ bool GameScene::initialize()
 	score = 0;
 
 	// reset difficulty modifiers
-	difficultyScoreThreshold = 1000;
-	scoreThresholdIncreasePerDifficulty = 1000;
-	difficulty = 0;
+	difficultyScoreThreshold = 500;
+	scoreThresholdIncreasePerDifficulty = 500;
+	difficultyLevel = 0;
 
 	// create new game objects
 	player = Player(sf::Vector2f(640, 360), gameBounds);
@@ -380,12 +380,14 @@ int GameScene::getNextEnemyShipIndex()
 
 void GameScene::increaseDifficulty()
 {
-	Debug::Log("Increasing Difficulty....");
+	Debug::Log("Increase Dificulty");
 
-	int randIncrease = rand() % 2;
+	int randIncrease = rand() % 3;
 
 	if (randIncrease == 0)
 	{
+		Debug::Log("Increase Number of Asteroids Allowed in Scene");
+
 		// increase number of asteroids allowed in the scene
 		numAsteroidsAllowedInScene++;
 
@@ -398,39 +400,51 @@ void GameScene::increaseDifficulty()
 	}
 	else if (randIncrease == 1)
 	{
+		Debug::Log("Increase Number of Asteroids Allowed in Scene");
+
 		// increase the number of enemies allowed in the scene
 		numEnemiesAllowedInScene++;
 		Debug::Log("Number Enemies Allowed in Scene: " + std::to_string(numEnemiesAllowedInScene));
 	}
+	else if (randIncrease == 2)
+	{
+		Debug::Log("Increase Asteroid Speed");
 
-	difficulty++;
+		// increase asteroid speed
+		for (int i = 0; i < asteroids.size(); i++)
+		{
+			int randSpeedIncrease = (rand() % 5) + 1;
+			asteroids[i].get()->increaseSpeed(randSpeedIncrease);
+		}
+	}
+
+	difficultyLevel++;
 	difficultyScoreThreshold += scoreThresholdIncreasePerDifficulty;
-	scoreThresholdIncreasePerDifficulty += (1.5 * difficulty) * scoreThresholdIncreasePerDifficulty;
+	scoreThresholdIncreasePerDifficulty += 1000;
 }
 
 void GameScene::addScore(int amountToAdd)
 {
 	int newScore = score + amountToAdd;
 
-	Debug::Log("----------------------");
+	Debug::Log("---------------------------------------");
+	Debug::Log("Current Score: " + std::to_string(score));
 	Debug::Log("New Score: " + std::to_string(newScore));
 
+	Debug::Log("Difficulty Score Threshold: " + std::to_string(difficultyScoreThreshold));
+
 	if (score < difficultyScoreThreshold && newScore >= difficultyScoreThreshold)
-	{	
+	{
 		increaseDifficulty();
 	}
 
 	score = newScore;
 
-	if (score % 5000 == 0)
-	{
-		player.gainLife();
-	}
-
 	if (score > highScore)
 	{
 		highScore = score;
 	}
+
 }
 
 void GameScene::spawnAsteroid()

@@ -16,6 +16,8 @@ public:
 
 	void spawn(sf::Vector2f targetPosition, sf::FloatRect gameBounds);
 	void destroy();
+
+	void increaseSpeed(float amount);
 	
 	sf::FloatRect getCollider();
 
