@@ -180,17 +180,7 @@ void GameScene::update(float deltaTime)
 			}
 			else
 			{
-				int nextAsteroid = getNextAsteroidIndex();
-
-				if (nextAsteroid >= 0)
-				{
-					asteroids[nextAsteroid].get()->spawn(player.getPosition(), gameBounds);
-					numAsteroidsSpawned++;
-					
-				}
-
-				canSpawnAsteroid = false;
-				asteroidSpawnTimer = 0;
+				spawnAsteroid();
 			}
 
 			if (!canSpawnEnemy)
@@ -207,19 +197,7 @@ void GameScene::update(float deltaTime)
 			}
 			else
 			{
-				int nextEnemyShip = getNextEnemyShipIndex();
-
-				if (nextEnemyShip >= 0)
-				{
-					enemyShips[nextEnemyShip].get()->spawn(player.getPosition(), gameBounds);
-					numEnemiesShipsSpawned++;
-				}
-
-				canSpawnEnemy = false;
-
-				// reset the spawn timer & select a random spawn delay
-				enemySpawnTimer = 0;
-				enemySpawnDelay = (rand() % static_cast<int>(maxEnemyShipSpawnDelay)) + minEnemyShipSpawnDelay;
+				spawnEnemy();
 			}
 
 			// check collisions on the player bullets
@@ -402,12 +380,20 @@ int GameScene::getNextEnemyShipIndex()
 
 void GameScene::increaseDifficulty()
 {
-	int randIncrease = rand() % 3;
+	Debug::Log("Increasing Difficulty....");
+
+	int randIncrease = rand() % 2;
 
 	if (randIncrease == 0)
 	{
 		// increase number of asteroids allowed in the scene
 		numAsteroidsAllowedInScene++;
+
+		if (numAsteroidsSpawned < numAsteroidsAllowedInScene)
+		{
+			spawnAsteroid();
+		}
+
 		Debug::Log("Number Asteroids Allowed in Scene: " + std::to_string(numAsteroidsAllowedInScene));
 	}
 	else if (randIncrease == 1)
@@ -415,16 +401,6 @@ void GameScene::increaseDifficulty()
 		// increase the number of enemies allowed in the scene
 		numEnemiesAllowedInScene++;
 		Debug::Log("Number Enemies Allowed in Scene: " + std::to_string(numEnemiesAllowedInScene));
-	}
-	else if (randIncrease == 2)
-	{
-		// decrease the time between enemy spawns
-		if (maxEnemyShipSpawnDelay > 10)
-		{
-			maxEnemyShipSpawnDelay -= 2;
-		}
-
-		Debug::Log("Enemy Spawn Range: " + std::to_string(minEnemyShipSpawnDelay) + " - " + std::to_string(maxEnemyShipSpawnDelay));
 	}
 
 	difficulty++;
@@ -435,6 +411,9 @@ void GameScene::increaseDifficulty()
 void GameScene::addScore(int amountToAdd)
 {
 	int newScore = score + amountToAdd;
+
+	Debug::Log("----------------------");
+	Debug::Log("New Score: " + std::to_string(newScore));
 
 	if (score < difficultyScoreThreshold && newScore >= difficultyScoreThreshold)
 	{	
@@ -452,4 +431,36 @@ void GameScene::addScore(int amountToAdd)
 	{
 		highScore = score;
 	}
+}
+
+void GameScene::spawnAsteroid()
+{
+	int nextAsteroid = getNextAsteroidIndex();
+
+	if (nextAsteroid >= 0)
+	{
+		asteroids[nextAsteroid].get()->spawn(player.getPosition(), gameBounds);
+		numAsteroidsSpawned++;
+
+	}
+
+	canSpawnAsteroid = false;
+	asteroidSpawnTimer = 0;
+}
+
+void GameScene::spawnEnemy()
+{
+	int nextEnemyShip = getNextEnemyShipIndex();
+
+	if (nextEnemyShip >= 0)
+	{
+		enemyShips[nextEnemyShip].get()->spawn(player.getPosition(), gameBounds);
+		numEnemiesShipsSpawned++;
+	}
+
+	canSpawnEnemy = false;
+
+	// reset the spawn timer & select a random spawn delay
+	enemySpawnTimer = 0;
+	enemySpawnDelay = (rand() % static_cast<int>(maxEnemyShipSpawnDelay)) + minEnemyShipSpawnDelay;
 }

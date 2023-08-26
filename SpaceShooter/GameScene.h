@@ -78,6 +78,9 @@ private:
 
 	void increaseDifficulty();
 	void addScore(int amountToAdd);
+
+	void spawnAsteroid();
+	void spawnEnemy();
 	
 };
 
