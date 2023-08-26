@@ -17,6 +17,7 @@ public:
 	void draw(sf::RenderWindow* window);
 
 	void loseLife();
+	void gainLife();
 	int getLives();
 
 	sf::FloatRect getCollider();

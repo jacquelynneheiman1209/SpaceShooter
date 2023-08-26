@@ -88,6 +88,9 @@
     <Filter Include="Source Files\Enemy Ship">
       <UniqueIdentifier>{c52108d9-9fc9-4777-acbe-79b5ab7b7dc9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Asteroid Manager">
+      <UniqueIdentifier>{679d76a4-b5c2-4082-a5d0-32b391cf27dd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">

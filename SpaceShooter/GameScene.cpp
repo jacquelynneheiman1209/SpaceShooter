@@ -1,5 +1,5 @@
 #include "GameScene.h"
-#include <iostream>
+#include "Debug.h"
 
 GameScene::GameScene(SceneLoader* sceneLoader, sf::FloatRect gameBounds) : player(sf::Vector2f(640, 360), gameBounds), pauseMenu(), gameOverMenu(), playerHUD(gameBounds)
 {
@@ -14,15 +14,22 @@ bool GameScene::initialize()
 	isPaused = false;
 
 	// reset asteroids
+	numAsteroidsInPool = 10;
 	numAsteroidsAllowedInScene = 3;
 	numAsteroidsSpawned = 0;
 
 	// reset enemies
+	numEnemiesInPool = 5;
 	numEnemiesAllowedInScene = 1;
 	numEnemiesShipsSpawned = 0;
 
 	// reset score
 	score = 0;
+
+	// reset difficulty modifiers
+	difficultyScoreThreshold = 1000;
+	scoreThresholdIncreasePerDifficulty = 1000;
+	difficulty = 0;
 
 	// create new game objects
 	player = Player(sf::Vector2f(640, 360), gameBounds);
@@ -232,7 +239,7 @@ void GameScene::update(float deltaTime)
 								asteroids[a].get()->destroy();
 								playerBullets[i]->destroy();
 
-								score += asteroidPoints;
+								addScore(asteroidPoints);
 								numAsteroidsSpawned--;
 							}
 						}
@@ -248,7 +255,7 @@ void GameScene::update(float deltaTime)
 								enemyShips[e].get()->destroy();
 								playerBullets[i]->destroy();
 
-								score += enemyPoints;
+								addScore(enemyPoints);
 								numEnemiesShipsSpawned--;
 							}
 						}
@@ -325,13 +332,13 @@ bool GameScene::initializeAsteroids()
 {
 	asteroids.clear();
 
-	for (int i = 0; i < numAsteroidsAllowedInScene; i++)
+	for (int i = 0; i < numAsteroidsInPool; i++)
 	{
 		std::unique_ptr<Asteroid> asteroid = std::unique_ptr<Asteroid>(new Asteroid());
 		
 		if (!asteroid.get()->initialize())
 		{
-			std::cout << "GameScene.cpp : Could not load asteroid " << i << std::endl;
+			Debug::Log("GameScene.cpp : Could not load asteroid " + std::to_string(i));
 			return false;
 		}
 		
@@ -345,13 +352,13 @@ bool GameScene::initializeEnemyShips()
 {
 	enemyShips.clear();
 
-	for (int i = 0; i < numEnemiesAllowedInScene; i++)
+	for (int i = 0; i < numEnemiesInPool; i++)
 	{
 		std::unique_ptr<EnemyShip> enemyShip = std::unique_ptr<EnemyShip>(new EnemyShip());
 
 		if (!enemyShip.get()->initialize())
 		{
-			std::cout << "GameScene.cpp : Could not load enemyShip " << i << std::endl;
+			Debug::Log("GameScene.cpp : Could not load enemyShip " + std::to_string(i));
 			return false;
 		}
 
@@ -391,4 +398,58 @@ int GameScene::getNextEnemyShipIndex()
 	}
 
 	return nextEnemyIndex;
+}
+
+void GameScene::increaseDifficulty()
+{
+	int randIncrease = rand() % 3;
+
+	if (randIncrease == 0)
+	{
+		// increase number of asteroids allowed in the scene
+		numAsteroidsAllowedInScene++;
+		Debug::Log("Number Asteroids Allowed in Scene: " + std::to_string(numAsteroidsAllowedInScene));
+	}
+	else if (randIncrease == 1)
+	{
+		// increase the number of enemies allowed in the scene
+		numEnemiesAllowedInScene++;
+		Debug::Log("Number Enemies Allowed in Scene: " + std::to_string(numEnemiesAllowedInScene));
+	}
+	else if (randIncrease == 2)
+	{
+		// decrease the time between enemy spawns
+		if (maxEnemyShipSpawnDelay > 10)
+		{
+			maxEnemyShipSpawnDelay -= 2;
+		}
+
+		Debug::Log("Enemy Spawn Range: " + std::to_string(minEnemyShipSpawnDelay) + " - " + std::to_string(maxEnemyShipSpawnDelay));
+	}
+
+	difficulty++;
+	difficultyScoreThreshold += scoreThresholdIncreasePerDifficulty;
+	scoreThresholdIncreasePerDifficulty += (1.5 * difficulty) * scoreThresholdIncreasePerDifficulty;
+}
+
+void GameScene::addScore(int amountToAdd)
+{
+	int newScore = score + amountToAdd;
+
+	if (score < difficultyScoreThreshold && newScore >= difficultyScoreThreshold)
+	{	
+		increaseDifficulty();
+	}
+
+	score = newScore;
+
+	if (score % 5000 == 0)
+	{
+		player.gainLife();
+	}
+
+	if (score > highScore)
+	{
+		highScore = score;
+	}
 }

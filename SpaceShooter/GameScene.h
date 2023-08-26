@@ -49,9 +49,11 @@ private:
 
 	int numAsteroidsSpawned = 0;
 	int numAsteroidsAllowedInScene = 3;
+	int numAsteroidsInPool = 10;
 
 	int numEnemiesShipsSpawned = 0;
 	int numEnemiesAllowedInScene = 1;
+	int numEnemiesInPool = 5;
 
 	float asteroidSpawnTimer = 0;
 	float asteroidSpawnDelay = 1;
@@ -64,12 +66,19 @@ private:
 	bool canSpawnAsteroid = false;
 	bool canSpawnEnemy = false;
 
+	int difficultyScoreThreshold = 1000;
+	int scoreThresholdIncreasePerDifficulty = 1000;
+	int difficulty = 0;
+
 	bool initializeAsteroids();
 	bool initializeEnemyShips();
 
 	int getNextAsteroidIndex();
 	int getNextEnemyShipIndex();
 
+	void increaseDifficulty();
+	void addScore(int amountToAdd);
+	
 };
 
 #endif // !GAME_SCENE_H

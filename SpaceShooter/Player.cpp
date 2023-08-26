@@ -223,6 +223,11 @@ void Player::loseLife()
 	resetPosition();
 }
 
+void Player::gainLife()
+{
+	lives++;
+}
+
 void Player::resetPosition()
 {
 	playerSprite.setPosition(sf::Vector2f(levelBounds.left + (levelBounds.width / 2), levelBounds.top + (levelBounds.height / 2)));

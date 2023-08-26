@@ -16,7 +16,7 @@ public:
 
 	void spawn(sf::Vector2f targetPosition, sf::FloatRect gameBounds);
 	void destroy();
-
+	
 	sf::FloatRect getCollider();
 
 	bool isActive = false;
@@ -35,8 +35,6 @@ private:
 
 	sf::Texture asteroidTexture;
 	sf::Sprite asteroidSprite;
-
-	
 
 	sf::Vector2f inactivePosition = sf::Vector2f(-1000, -1000);
 	sf::Vector2f moveDirection;

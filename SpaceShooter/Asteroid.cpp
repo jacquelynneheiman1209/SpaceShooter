@@ -29,6 +29,9 @@ bool Asteroid::initialize()
 	// randomly select a move speed
 	moveSpeed = (rand() % maxMoveSpeed) + minMoveSpeed;
 
+	// randomly select a rotation
+	asteroidSprite.setRotation(rand() % 360);
+
 	return true;
 }
 
