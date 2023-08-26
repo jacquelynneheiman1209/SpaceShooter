@@ -7,8 +7,6 @@ Asteroid::Asteroid()
 
 bool Asteroid::initialize()
 {
-	srand(time(0));
-
 	int randAsteroidIndex = rand() % textures.size();
 
 	if (!asteroidTexture.loadFromFile(textures[randAsteroidIndex]))

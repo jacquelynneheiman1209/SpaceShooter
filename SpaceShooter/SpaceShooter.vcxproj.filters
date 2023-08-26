@@ -85,6 +85,9 @@
     <Filter Include="Source Files\Asteroids">
       <UniqueIdentifier>{ea57e16c-602f-46c6-a75f-0dc5df2e3b25}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Enemy Ship">
+      <UniqueIdentifier>{c52108d9-9fc9-4777-acbe-79b5ab7b7dc9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -144,6 +147,9 @@
     <ClCompile Include="Asteroid.cpp">
       <Filter>Source Files\Asteroids</Filter>
     </ClCompile>
+    <ClCompile Include="EnemyShip.cpp">
+      <Filter>Source Files\Enemy Ship</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Background.h">
@@ -202,6 +208,9 @@
     </ClInclude>
     <ClInclude Include="Asteroid.h">
       <Filter>Source Files\Asteroids</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyShip.h">
+      <Filter>Source Files\Enemy Ship</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
