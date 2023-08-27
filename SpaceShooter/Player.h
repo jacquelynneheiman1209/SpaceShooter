@@ -1,5 +1,6 @@
 #pragma once
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 #include <vector>
 #include "Bullet.h"
 
@@ -33,6 +34,12 @@ private:
 	sf::Vector2f playerScale = sf::Vector2f(0.5f, 0.5f);
 
 	sf::FloatRect levelBounds;
+
+	sf::SoundBuffer shootSoundBuffer;
+	sf::Sound shootSound;
+
+	sf::SoundBuffer deathSoundBuffer;
+	sf::Sound deathSound;
 
 	int lives = 3;
 	int totalNumberOfBullets = 20;

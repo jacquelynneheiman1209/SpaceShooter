@@ -1,5 +1,6 @@
 #pragma once
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 
 #ifndef BUTTON_H
 #define BUTTON_H
@@ -28,6 +29,12 @@ protected:
 
 	sf::RectangleShape buttonBackground;	// default button background
 
+	sf::SoundBuffer hoverSoundBuffer;
+	sf::SoundBuffer clickedSoundBuffer;
+
+	sf::Sound hoverSound;
+	sf::Sound clickedSound;
+
 	sf::Font font;
 	sf::Text text;
 
@@ -36,6 +43,8 @@ protected:
 
 	sf::Color buttonColor = sf::Color::White;
 	sf::Color buttonHoverColor = sf::Color::Transparent;
+
+	bool isMouseOverButton = false;
 };
 
 #endif // !BUTTON_H

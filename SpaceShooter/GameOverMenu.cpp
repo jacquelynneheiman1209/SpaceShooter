@@ -6,9 +6,10 @@ GameOverMenu::GameOverMenu() : playAgainButton(sf::Vector2f(0, 0), "Play Again")
 
 }
 
-bool GameOverMenu::initialize()
+bool GameOverMenu::initialize(sf::FloatRect windowBounds)
 {
-	if (!initializeBackground())
+
+	if (!initializeBackground(windowBounds))
 	{
 		return false;
 	}
@@ -54,7 +55,7 @@ void GameOverMenu::draw(sf::RenderWindow* window, bool playerWon)
 	mainMenuButton.draw(window);
 }
 
-bool GameOverMenu::initializeBackground()
+bool GameOverMenu::initializeBackground(sf::FloatRect windowBounds)
 {
 	if (!backgroundTexture.loadFromFile("Assets/Graphics/UI/GameOverMenu_Background.png"))
 	{
@@ -67,7 +68,7 @@ bool GameOverMenu::initializeBackground()
 	sf::FloatRect backgroundBounds = backgroundSprite.getLocalBounds();
 
 	backgroundSprite.setOrigin(backgroundBounds.left + (backgroundBounds.width / 2), backgroundBounds.top + (backgroundBounds.height / 2));
-	backgroundSprite.setPosition(640, 360);
+	backgroundSprite.setPosition(windowBounds.left + (windowBounds.width / 2), windowBounds.top + (windowBounds.height / 2));
 
 	return true;
 }
@@ -156,9 +157,8 @@ bool GameOverMenu::intializePlayAgainButton()
 
 	playAgainButton = GreenButton(buttonPosition, "Play Again");
 
-	if (!playAgainButton.initialize())
+	if (!playAgainButton.initialize(backgroundBounds))
 	{
-		std::cout << "GameOverMenu.cpp : Could not initialize 'playAgainButton'" << std::endl;
 		return false;
 	}
 
@@ -177,7 +177,7 @@ bool GameOverMenu::initializeMainMenuButton()
 
 	mainMenuButton = RedButton(buttonPosition, "Main Menu");
 
-	if (!mainMenuButton.initialize())
+	if (!mainMenuButton.initialize(backgroundBounds))
 	{
 		std::cout << "GameOverMenu.cpp : Could not initialize 'mainMenuButton'" << std::endl;
 		return false;

@@ -9,7 +9,7 @@ class RedButton : public Button
 public:
 	RedButton(sf::Vector2f position, std::string text);
 
-	bool initialize() override;
+	bool initialize(sf::FloatRect windowBounds);
 	void handleInput(sf::RenderWindow* window, sf::Event* event);
 	void draw(sf::RenderWindow* window);
 
@@ -17,6 +17,8 @@ public:
 
 	void setScale(float scaleX, float scaleY) override;
 	void setScale(sf::Vector2f scale) override;
+
+	void click();
 
 	sf::Vector2f getScale();
 

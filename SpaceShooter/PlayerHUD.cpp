@@ -7,8 +7,10 @@ PlayerHUD::PlayerHUD(sf::FloatRect screenRect) : killPlayerButton(sf::Vector2f(0
 	screenBounds = screenRect;
 }
 
-bool PlayerHUD::initialize()
+bool PlayerHUD::initialize(sf::FloatRect windowBounds)
 {
+	screenBounds = windowBounds;
+
 	if (!lifeTexture.loadFromFile("Assets/Graphics/UI/playerLife1_blue.png"))
 	{
 		std::cout << "PlayerHUD.cpp : Could not load 'lifeTexture' from 'Assets/Graphics/UI/playerLife1_blue.png'" << std::endl;
@@ -24,8 +26,8 @@ bool PlayerHUD::initialize()
 	origin.y = bounds.top + (bounds.height / 2);
 
 	sf::Vector2f position;
-	position.x = 50 + (bounds.width / 2);
-	position.y = 50 + (bounds.height / 2);
+	position.x = windowBounds.left + (50 + (bounds.width / 2));
+	position.y = windowBounds.top + (50 + (bounds.height / 2));
 
 	lifeSprite.setOrigin(origin);
 	lifeSprite.setPosition(position);

@@ -18,11 +18,13 @@ class GameScene : public Scene
 public:
 	GameScene(SceneLoader* sceneLoader, sf::FloatRect gameBounds);
 
-	bool initialize() override;
+	bool initialize(sf::FloatRect windowBounds);
 
 	void handleInput(sf::RenderWindow* window, sf::Event* event);
 	void update(float deltaTime) override;
 	void draw(sf::RenderWindow* window) override;
+
+	void handleWindowResize(sf::FloatRect newWindowSize);
 
 private:
 	SceneLoader* sceneLoader;

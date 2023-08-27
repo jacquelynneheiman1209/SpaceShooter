@@ -17,6 +17,7 @@ public:
 	void draw(sf::RenderWindow* window);
 
 	void handleInput(sf::RenderWindow* window, sf::Event* event);
+	void handleWindowResize(sf::FloatRect newWindowSize);
 
 	void SceneLoader::loadScene(std::string sceneName)
 	{
@@ -24,11 +25,11 @@ public:
 
 		if (currentScene == "Main Menu")
 		{
-			mainMenuScene.initialize();
+			mainMenuScene.initialize(gameBounds);
 		}
 		else if (currentScene == "Game")
 		{
-			gameScene.initialize();
+			gameScene.initialize(gameBounds);
 		}
 	}
 

@@ -4,7 +4,7 @@
 
 SceneManager* SceneManager::instance = nullptr;
 
-SceneManager::SceneManager() : mainMenuScene(this), gameScene(this, gameBounds)
+SceneManager::SceneManager() : mainMenuScene(this, gameBounds), gameScene(this, gameBounds)
 {
 	assert(instance == nullptr);
 	instance = this;
@@ -13,12 +13,12 @@ SceneManager::SceneManager() : mainMenuScene(this), gameScene(this, gameBounds)
 bool SceneManager::initialize(sf::FloatRect gameBounds)
 {
 	this->gameBounds = gameBounds;
-	mainMenuScene = MainMenuScene(this);
+	mainMenuScene = MainMenuScene(this, gameBounds);
 	gameScene = GameScene(this, gameBounds);
 
 	currentScene = "Main Menu";
 
-	if (!mainMenuScene.initialize())
+	if (!mainMenuScene.initialize(gameBounds))
 	{
 		return false;
 	}
@@ -28,11 +28,7 @@ bool SceneManager::initialize(sf::FloatRect gameBounds)
 
 void SceneManager::update(float deltaTime)
 {
-	if (currentScene == "Main Menu")
-	{
-		mainMenuScene.update(deltaTime);
-	}
-	else if (currentScene == "Game")
+	if (currentScene == "Game")
 	{
 		gameScene.update(deltaTime);
 	}
@@ -59,6 +55,18 @@ void SceneManager::handleInput(sf::RenderWindow* window, sf::Event* event)
 	else if (currentScene == "Game")
 	{
 		gameScene.handleInput(window, event);
+	}
+}
+
+void SceneManager::handleWindowResize(sf::FloatRect newWindowSize)
+{
+	if (currentScene == "Main Menu")
+	{
+		mainMenuScene.handleWindowResize(newWindowSize);
+	}
+	else if (currentScene == "Game")
+	{
+		gameScene.handleWindowResize(newWindowSize);
 	}
 }
 

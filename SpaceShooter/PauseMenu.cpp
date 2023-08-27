@@ -6,7 +6,7 @@ PauseMenu::PauseMenu() : continueGameButton(sf::Vector2f(0, 0), "Continue"), res
 
 }
 
-bool PauseMenu::initialize()
+bool PauseMenu::initialize(sf::FloatRect windowBounds)
 {
 	if (!menuBackgroundTexture.loadFromFile("Assets/Graphics/UI/PauseMenu_Blue.png"))
 	{
@@ -16,12 +16,15 @@ bool PauseMenu::initialize()
 
 	menuBackgroundSprite.setTexture(menuBackgroundTexture);
 	menuBackgroundSprite.setScale(1.5, 1.5);
-	setupSprite(&menuBackgroundSprite, sf::Vector2f(640, 360));
+	setupSprite(&menuBackgroundSprite, sf::Vector2f(windowBounds.left + (windowBounds.width / 2), windowBounds.top + (windowBounds.height / 2)));
 
-	continueGameButton = BlueButton(sf::Vector2f(menuBackgroundSprite.getGlobalBounds().left + (menuBackgroundSprite.getGlobalBounds().width / 2), menuBackgroundSprite.getGlobalBounds().top + 100), "Continue");
-	restartLevelButton = BlueButton(sf::Vector2f(menuBackgroundSprite.getGlobalBounds().left + (menuBackgroundSprite.getGlobalBounds().width / 2), menuBackgroundSprite.getGlobalBounds().top + 180), "Restart");
-	optionsButton = BlueButton(sf::Vector2f(menuBackgroundSprite.getGlobalBounds().left + (menuBackgroundSprite.getGlobalBounds().width / 2), menuBackgroundSprite.getGlobalBounds().top + 260), "Options");
-	quitButton = RedButton(sf::Vector2f(menuBackgroundSprite.getGlobalBounds().left + (menuBackgroundSprite.getGlobalBounds().width / 2), menuBackgroundSprite.getGlobalBounds().top + 340), "Quit");
+	sf::Vector2f buttonPosition;
+	buttonPosition.x = menuBackgroundSprite.getGlobalBounds().width / 2;
+
+	continueGameButton = BlueButton(sf::Vector2f(buttonPosition.x, 100), "Continue");
+	restartLevelButton = BlueButton(sf::Vector2f(buttonPosition.x, 180), "Restart");
+	optionsButton = BlueButton(sf::Vector2f(buttonPosition.x, 260), "Options");
+	quitButton = RedButton(sf::Vector2f(buttonPosition.x, 340), "Quit");
 
 	if (!font.loadFromFile("Assets/Fonts/nulshock.otf"))
 	{
@@ -35,22 +38,22 @@ bool PauseMenu::initialize()
 	menuTitleText.setOrigin(menuTitleText.getLocalBounds().left + (menuTitleText.getLocalBounds().width / 2), menuTitleText.getLocalBounds().top + (menuTitleText.getLocalBounds().height / 2));
 	menuTitleText.setPosition(menuBackgroundSprite.getGlobalBounds().left + (menuBackgroundSprite.getGlobalBounds().width / 2), menuBackgroundSprite.getGlobalBounds().top + (menuTitleText.getLocalBounds().height / 2) + 15);
 
-	if (!continueGameButton.initialize())
+	if (!continueGameButton.initialize(menuBackgroundSprite.getGlobalBounds()))
 	{
 		return false;
 	}
 
-	if (!restartLevelButton.initialize())
+	if (!restartLevelButton.initialize(menuBackgroundSprite.getGlobalBounds()))
 	{
 		return false;
 	}
 
-	if (!optionsButton.initialize())
+	if (!optionsButton.initialize(menuBackgroundSprite.getGlobalBounds()))
 	{
 		return false;
 	}
 
-	if (!quitButton.initialize())
+	if (!quitButton.initialize(menuBackgroundSprite.getGlobalBounds()))
 	{
 		return false;
 	}

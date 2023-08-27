@@ -11,7 +11,7 @@ class PauseMenu
 public:
 	PauseMenu();
 
-	bool initialize();
+	bool initialize(sf::FloatRect windowBounds);
 	void handleInput(sf::RenderWindow* window, sf::Event* event);
 	void update(float deltaTime);
 	void draw(sf::RenderWindow* window);

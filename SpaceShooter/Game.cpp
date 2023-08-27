@@ -29,6 +29,11 @@ void Game::run()
 
 	sf::RenderWindow window(sf::VideoMode(windowWidth, windowHeight), "Space Shooter");
 
+	gameView.setCenter(windowWidth / 2, windowHeight / 2);
+	gameView.setSize(windowWidth, windowHeight);
+
+	window.setView(gameView);
+
 	while (window.isOpen())
 	{
 		deltaTime = gameClock.restart().asSeconds();
@@ -40,6 +45,16 @@ void Game::run()
 			if (event.type == sf::Event::Closed)
 			{
 				window.close();
+			}
+
+			if (event.type == sf::Event::Resized)
+			{
+				sf::FloatRect visibleArea = sf::FloatRect(0, 0, event.size.width, event.size.height);
+				gameView = sf::View(visibleArea);
+				window.setView(gameView);
+
+				background.resize(event.size.width, event.size.height);
+				sceneManager.handleWindowResize(visibleArea);
 			}
 
 			sceneManager.handleInput(&window, &event);

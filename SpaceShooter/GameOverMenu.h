@@ -11,7 +11,7 @@ class GameOverMenu
 public:
 	GameOverMenu();
 
-	bool initialize();
+	bool initialize(sf::FloatRect windowBounds);
 	void handleInput(sf::RenderWindow* window, sf::Event* event);
 	void update(float deltaTime);
 	void draw(sf::RenderWindow* window, bool playerWon);
@@ -30,7 +30,7 @@ private:
 	sf::Text gameOverText;
 	sf::Text playAgainText;
 
-	bool initializeBackground();
+	bool initializeBackground(sf::FloatRect windowBounds);
 
 	bool initializeText();
 	bool initializeGameOverText(std::string textString);

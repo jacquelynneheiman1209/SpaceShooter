@@ -5,7 +5,7 @@ YellowButton::YellowButton(sf::Vector2f position, std::string text) : Button(pos
 {
 }
 
-bool YellowButton::initialize()
+bool YellowButton::initialize(sf::FloatRect windowBounds)
 {
     if (!buttonTexture.loadFromFile("Assets/Graphics/UI/buttonYellow_Regular.png"))
     {
@@ -15,7 +15,35 @@ bool YellowButton::initialize()
 	buttonSprite.setTexture(buttonTexture);
 	buttonSprite.setScale(1.5, 1.5);
 	buttonSprite.setOrigin(buttonSprite.getLocalBounds().left + (buttonSprite.getLocalBounds().width / 2), buttonSprite.getLocalBounds().top + (buttonSprite.getLocalBounds().height / 2));
+
+	float positionX = buttonPosition.x;
+	float positionY = buttonPosition.y;
+
+	buttonPosition.x = windowBounds.left + buttonPosition.x;
+	buttonPosition.y = windowBounds.top + buttonPosition.y;
+
 	buttonSprite.setPosition(buttonPosition);
+
+	if (!buttonHoverTexture.loadFromFile("Assets/Graphics/UI/buttonYellow_Pressed.png"))
+	{
+		return false;
+	}
+
+	// setup hover sound for button
+	if (!hoverSoundBuffer.loadFromFile("Assets/Audio/ButtonClick_2.mp3"))
+	{
+		return false;
+	}
+
+	hoverSound.setBuffer(hoverSoundBuffer);
+
+	// setup click sound for button
+	if (!clickedSoundBuffer.loadFromFile("Assets/Audio/ButtonClick_1.mp3"))
+	{
+		return false;
+	}
+
+	clickedSound.setBuffer(clickedSoundBuffer);
 
 	if (!font.loadFromFile("Assets/Fonts/nulshock.otf"))
 	{
@@ -29,12 +57,6 @@ bool YellowButton::initialize()
 	text.setOrigin(text.getLocalBounds().left + (text.getLocalBounds().width / 2), text.getLocalBounds().top + (text.getLocalBounds().height / 2));
 	text.setPosition(buttonPosition);
 
-	if (!buttonHoverTexture.loadFromFile("Assets/Graphics/UI/buttonYellow_Pressed.png"))
-	{
-		std::cout << "YellowButton.cpp : Could not load 'buttonHoverTexture'" << std::endl;
-		return false;
-	}
-
     return true;
 }
 
@@ -43,10 +65,17 @@ void YellowButton::handleInput(sf::RenderWindow* window, sf::Event* event)
 	if (isClicked(sf::Mouse::getPosition(*window)))
 	{
 		buttonSprite.setTexture(buttonHoverTexture);
+
+		if (!isMouseOverButton)
+		{
+			hoverSound.play();
+			isMouseOverButton = true;
+		}
 	}
 	else
 	{
 		buttonSprite.setTexture(buttonTexture);
+		isMouseOverButton = false;
 	}
 }
 
@@ -78,6 +107,11 @@ void YellowButton::setScale(float scaleX, float scaleY)
 void YellowButton::setScale(sf::Vector2f scale)
 {
 	setScale(scale.x, scale.y);
+}
+
+void YellowButton::click()
+{
+	clickedSound.play();
 }
 
 sf::Vector2f YellowButton::getScale()

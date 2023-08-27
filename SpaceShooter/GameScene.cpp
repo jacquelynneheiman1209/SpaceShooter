@@ -7,8 +7,10 @@ GameScene::GameScene(SceneLoader* sceneLoader, sf::FloatRect gameBounds) : playe
 	this->gameBounds = gameBounds;
 }
 
-bool GameScene::initialize()
+bool GameScene::initialize(sf::FloatRect windowBounds)
 {
+	gameBounds = windowBounds;
+
 	// reset game over & pause settings
 	isGameOver = false;
 	isPaused = false;
@@ -38,7 +40,7 @@ bool GameScene::initialize()
 	playerHUD = PlayerHUD(gameBounds);
 
 	// initialize game objects
-	if (!playerHUD.initialize())
+	if (!playerHUD.initialize(gameBounds))
 	{
 		return false;
 	}
@@ -58,12 +60,12 @@ bool GameScene::initialize()
 		return false;
 	}
 
-	if (!pauseMenu.initialize())
+	if (!pauseMenu.initialize(windowBounds))
 	{
 		return false;
 	}
 
-	if (!gameOverMenu.initialize())
+	if (!gameOverMenu.initialize(windowBounds))
 	{
 		return false;
 	}
@@ -90,20 +92,23 @@ void GameScene::handleInput(sf::RenderWindow* window, sf::Event* event)
 				if (pauseMenu.continueGameButton.isClicked(sf::Mouse::getPosition(*window)))
 				{
 					isPaused = false;
+					pauseMenu.continueGameButton.click();
 				}
 
 				if (pauseMenu.restartLevelButton.isClicked(sf::Mouse::getPosition(*window)))
 				{
-					initialize();
+					pauseMenu.restartLevelButton.click();
+					initialize(gameBounds);
 				}
 
 				if (pauseMenu.optionsButton.isClicked(sf::Mouse::getPosition(*window)))
 				{
-
+					//pauseMenu.optionsButton.click();
 				}
 
 				if (pauseMenu.quitButton.isClicked(sf::Mouse::getPosition(*window)))
 				{
+					pauseMenu.quitButton.click();
 					window->close();
 				}
 			}
@@ -124,11 +129,13 @@ void GameScene::handleInput(sf::RenderWindow* window, sf::Event* event)
 		{
 			if (gameOverMenu.playAgainButton.isClicked(sf::Mouse::getPosition(*window)))
 			{
-				initialize();
+				gameOverMenu.playAgainButton.click();
+				initialize(gameBounds);
 			}
 
 			if (gameOverMenu.mainMenuButton.isClicked(sf::Mouse::getPosition(*window)))
 			{
+				gameOverMenu.mainMenuButton.click();
 				sceneLoader->loadScene("Main Menu");
 			}
 		}
@@ -306,6 +313,27 @@ void GameScene::draw(sf::RenderWindow* window)
 	}
 }
 
+void GameScene::handleWindowResize(sf::FloatRect newWindowSize)
+{
+	gameBounds = newWindowSize;
+	
+	if (!isPaused)
+	{
+		isPaused = true;
+	}
+
+	playerHUD = PlayerHUD(newWindowSize);
+	pauseMenu = PauseMenu();
+	gameOverMenu = GameOverMenu();
+
+	player = Player(sf::Vector2f(newWindowSize.left + (newWindowSize.width / 2), newWindowSize.top + (newWindowSize.height / 2)), newWindowSize);
+
+	player.initialize();
+	playerHUD.initialize(newWindowSize);
+	pauseMenu.initialize(newWindowSize);
+	gameOverMenu.initialize(newWindowSize);
+}
+
 bool GameScene::initializeAsteroids()
 {
 	asteroids.clear();
@@ -380,14 +408,10 @@ int GameScene::getNextEnemyShipIndex()
 
 void GameScene::increaseDifficulty()
 {
-	Debug::Log("Increase Dificulty");
-
 	int randIncrease = rand() % 3;
 
 	if (randIncrease == 0)
 	{
-		Debug::Log("Increase Number of Asteroids Allowed in Scene");
-
 		// increase number of asteroids allowed in the scene
 		numAsteroidsAllowedInScene++;
 
@@ -395,21 +419,14 @@ void GameScene::increaseDifficulty()
 		{
 			spawnAsteroid();
 		}
-
-		Debug::Log("Number Asteroids Allowed in Scene: " + std::to_string(numAsteroidsAllowedInScene));
 	}
 	else if (randIncrease == 1)
 	{
-		Debug::Log("Increase Number of Asteroids Allowed in Scene");
-
 		// increase the number of enemies allowed in the scene
 		numEnemiesAllowedInScene++;
-		Debug::Log("Number Enemies Allowed in Scene: " + std::to_string(numEnemiesAllowedInScene));
 	}
 	else if (randIncrease == 2)
 	{
-		Debug::Log("Increase Asteroid Speed");
-
 		// increase asteroid speed
 		for (int i = 0; i < asteroids.size(); i++)
 		{
@@ -426,12 +443,6 @@ void GameScene::increaseDifficulty()
 void GameScene::addScore(int amountToAdd)
 {
 	int newScore = score + amountToAdd;
-
-	Debug::Log("---------------------------------------");
-	Debug::Log("Current Score: " + std::to_string(score));
-	Debug::Log("New Score: " + std::to_string(newScore));
-
-	Debug::Log("Difficulty Score Threshold: " + std::to_string(difficultyScoreThreshold));
 
 	if (score < difficultyScoreThreshold && newScore >= difficultyScoreThreshold)
 	{

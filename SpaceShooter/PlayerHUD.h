@@ -11,7 +11,7 @@ class PlayerHUD
 public:
 	PlayerHUD(sf::FloatRect screenRect);
 
-	bool initialize();
+	bool initialize(sf::FloatRect windowBounds);
 	void handleInput(sf::RenderWindow* window, sf::Event* event);
 	void update(float deltaTime, int playerLives, int enemiesRemaining);
 	void draw(sf::RenderWindow* window);

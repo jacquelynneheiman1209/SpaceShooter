@@ -21,6 +21,8 @@ private:
 	sf::Clock gameClock;
 	float deltaTime = 0;
 
+	sf::View gameView;
+
 	Background background;
 	SceneManager sceneManager;
 
