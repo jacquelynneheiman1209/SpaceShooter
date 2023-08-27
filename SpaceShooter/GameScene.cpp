@@ -34,7 +34,7 @@ bool GameScene::initialize(sf::FloatRect windowBounds)
 	difficultyLevel = 0;
 
 	// create new game objects
-	player = Player(sf::Vector2f(640, 360), gameBounds);
+	player = Player(sf::Vector2f(gameBounds.left + (gameBounds.width / 2), gameBounds.top + (gameBounds.height / 2)), gameBounds);
 	pauseMenu = PauseMenu();
 	gameOverMenu = GameOverMenu();
 	playerHUD = PlayerHUD(gameBounds);
@@ -136,7 +136,7 @@ void GameScene::handleInput(sf::RenderWindow* window, sf::Event* event)
 			if (gameOverMenu.mainMenuButton.isClicked(sf::Mouse::getPosition(*window)))
 			{
 				gameOverMenu.mainMenuButton.click();
-				sceneLoader->loadScene("Main Menu");
+				sceneLoader->loadScene("Main Menu", gameBounds);
 			}
 		}
 	}

@@ -1,5 +1,6 @@
 #pragma once
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 
 #ifndef ASTEROID_H
 #define ASTEROID_H
@@ -40,6 +41,9 @@ private:
 
 	sf::Vector2f inactivePosition = sf::Vector2f(-1000, -1000);
 	sf::Vector2f moveDirection;
+
+	sf::SoundBuffer destroySoundBuffer;
+	sf::Sound destroySound;
 
 	int minMoveSpeed = 25;
 	int maxMoveSpeed = 50;

@@ -61,7 +61,7 @@ void MainMenuScene::handleInput(sf::RenderWindow* window, sf::Event* event)
 		if (startGameButton.isClicked(sf::Mouse::getPosition(*window)))
 		{
 			startGameButton.click();
-			sceneLoader->loadScene("Game");
+			sceneLoader->loadScene("Game", windowSize);
 		}
 
 		if (optionsButton.isClicked(sf::Mouse::getPosition(*window)))

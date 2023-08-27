@@ -7,7 +7,7 @@
 class SceneLoader
 {
 public:
-	virtual void loadScene(std::string sceneName) = 0;
+	virtual void loadScene(std::string sceneName, sf::FloatRect windowSize) = 0;
 };
 
 #endif // !SCENE_LOADER_H

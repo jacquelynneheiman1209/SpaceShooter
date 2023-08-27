@@ -32,6 +32,13 @@ bool Asteroid::initialize()
 	// randomly select a rotation
 	asteroidSprite.setRotation(rand() % 360);
 
+	if (!destroySoundBuffer.loadFromFile("Assets/Audio/sfx_explosion.mp3"))
+	{
+		return false;
+	}
+
+	destroySound.setBuffer(destroySoundBuffer);
+
 	return true;
 }
 
@@ -109,6 +116,7 @@ void Asteroid::spawn(sf::Vector2f targetPosition, sf::FloatRect gameBounds)
 
 void Asteroid::destroy()
 {
+	destroySound.play();
 	isActive = false;
 	asteroidSprite.setPosition(inactivePosition);
 }

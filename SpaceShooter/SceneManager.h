@@ -19,17 +19,17 @@ public:
 	void handleInput(sf::RenderWindow* window, sf::Event* event);
 	void handleWindowResize(sf::FloatRect newWindowSize);
 
-	void SceneLoader::loadScene(std::string sceneName)
+	void SceneLoader::loadScene(std::string sceneName, sf::FloatRect windowSize)
 	{
 		currentScene = sceneName;
 
 		if (currentScene == "Main Menu")
 		{
-			mainMenuScene.initialize(gameBounds);
+			mainMenuScene.initialize(windowSize);
 		}
 		else if (currentScene == "Game")
 		{
-			gameScene.initialize(gameBounds);
+			gameScene.initialize(windowSize);
 		}
 	}
 
