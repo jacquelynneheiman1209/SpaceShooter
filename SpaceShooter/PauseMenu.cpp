@@ -1,7 +1,7 @@
 #include "PauseMenu.h"
 #include <iostream>
 
-PauseMenu::PauseMenu() : continueGameButton(sf::Vector2f(0, 0), "Continue"), restartLevelButton(sf::Vector2f(0, 0), "Resume"), optionsButton(sf::Vector2f(0, 0), "Options"), quitButton(sf::Vector2f(30, 300), "Quit")
+PauseMenu::PauseMenu() : continueGameButton(sf::Vector2f(0, 0), "Continue"), restartLevelButton(sf::Vector2f(0, 0), "Resume"), optionsButton(sf::Vector2f(0, 0), "Options"), menuButton(sf::Vector2f(30, 300), "Main Menu")
 {
 
 }
@@ -24,7 +24,7 @@ bool PauseMenu::initialize(sf::FloatRect windowBounds)
 	continueGameButton = BlueButton(sf::Vector2f(buttonPosition.x, 100), "Continue");
 	restartLevelButton = BlueButton(sf::Vector2f(buttonPosition.x, 180), "Restart");
 	optionsButton = BlueButton(sf::Vector2f(buttonPosition.x, 260), "Options");
-	quitButton = RedButton(sf::Vector2f(buttonPosition.x, 340), "Quit");
+	menuButton = RedButton(sf::Vector2f(buttonPosition.x, 340), "Main Menu");
 
 	if (!font.loadFromFile("Assets/Fonts/nulshock.otf"))
 	{
@@ -53,7 +53,7 @@ bool PauseMenu::initialize(sf::FloatRect windowBounds)
 		return false;
 	}
 
-	if (!quitButton.initialize(menuBackgroundSprite.getGlobalBounds()))
+	if (!menuButton.initialize(menuBackgroundSprite.getGlobalBounds()))
 	{
 		return false;
 	}
@@ -66,7 +66,7 @@ void PauseMenu::handleInput(sf::RenderWindow* window, sf::Event* event)
 	continueGameButton.handleInput(window, event);
 	restartLevelButton.handleInput(window, event);
 	optionsButton.handleInput(window, event);
-	quitButton.handleInput(window, event);
+	menuButton.handleInput(window, event);
 }
 
 void PauseMenu::update(float deltaTime)
@@ -80,7 +80,7 @@ void PauseMenu::draw(sf::RenderWindow* window)
 	continueGameButton.draw(window);
 	restartLevelButton.draw(window);
 	optionsButton.draw(window);
-	quitButton.draw(window);
+	menuButton.draw(window);
 }
 
 void PauseMenu::setupSprite(sf::Sprite* sprite, sf::Vector2f position)

@@ -19,7 +19,7 @@ public:
 	BlueButton continueGameButton;
 	BlueButton restartLevelButton;
 	BlueButton optionsButton;
-	RedButton quitButton;
+	RedButton menuButton;
 
 private:
 	sf::Texture menuBackgroundTexture;
