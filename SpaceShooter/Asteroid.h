@@ -19,6 +19,7 @@ public:
 	void destroy();
 
 	void increaseSpeed(float amount);
+	void reposition(sf::FloatRect newGameBounds);
 	
 	sf::FloatRect getCollider();
 

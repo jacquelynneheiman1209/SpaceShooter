@@ -31,6 +31,13 @@ bool EnemyShip::initialize()
 	enemySprite.setOrigin(origin);
 	enemySprite.setPosition(inactivePosition);
 
+	if (!destroySoundBuffer.loadFromFile("Assets/Audio/sfx_twoTone.ogg"))
+	{
+		return false;
+	}
+
+	destroySound.setBuffer(destroySoundBuffer);
+
 	return true;
 }
 
@@ -103,8 +110,25 @@ void EnemyShip::spawn(sf::Vector2f targetPosition, sf::FloatRect gameBounds)
 
 void EnemyShip::destroy()
 {
+	destroySound.play();
 	isActive = false;
 	enemySprite.setPosition(inactivePosition);
+}
+
+void EnemyShip::reposition(sf::FloatRect newGameBounds)
+{
+	if (isActive || (!isActive && !isAtInactivePosition))
+	{
+		float percentX = enemySprite.getPosition().x / (gameBounds.left + gameBounds.width);
+		float percentY = enemySprite.getPosition().y / (gameBounds.top + gameBounds.height);
+
+		float newX = percentX * (newGameBounds.left + newGameBounds.width);
+		float newY = percentY * (newGameBounds.top + newGameBounds.height);
+
+		enemySprite.setPosition(newX, newY);
+	}
+
+	gameBounds = newGameBounds;
 }
 
 sf::FloatRect EnemyShip::getCollider()

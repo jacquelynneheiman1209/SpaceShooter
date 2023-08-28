@@ -1,5 +1,6 @@
 #pragma once
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 
 #ifndef ENEMY_SHIP_H
 #define ENEMY_SHIP_H
@@ -16,6 +17,8 @@ public:
 
 	void spawn(sf::Vector2f targetPosition, sf::FloatRect gameBounds);
 	void destroy();
+
+	void reposition(sf::FloatRect newGameBounds);
 
 	sf::FloatRect getCollider();
 
@@ -51,6 +54,9 @@ private:
 
 	sf::Vector2f enemyScale = sf::Vector2f(0.5f, 0.5f);
 	sf::Vector2f inactivePosition = sf::Vector2f(-1000, -1000);
+
+	sf::SoundBuffer destroySoundBuffer;
+	sf::Sound destroySound;
 
 	sf::FloatRect gameBounds;
 

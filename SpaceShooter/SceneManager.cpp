@@ -60,13 +60,7 @@ void SceneManager::handleInput(sf::RenderWindow* window, sf::Event* event)
 
 void SceneManager::handleWindowResize(sf::FloatRect newWindowSize)
 {
-	if (currentScene == "Main Menu")
-	{
-		mainMenuScene.handleWindowResize(newWindowSize);
-	}
-	else if (currentScene == "Game")
-	{
-		gameScene.handleWindowResize(newWindowSize);
-	}
+	mainMenuScene.handleWindowResize(newWindowSize);
+	gameScene.handleWindowResize(newWindowSize);
 }
 

@@ -1,5 +1,5 @@
 #include "Asteroid.h"
-#include <iostream>
+#include "Debug.h"
 
 Asteroid::Asteroid()
 {
@@ -11,7 +11,7 @@ bool Asteroid::initialize()
 
 	if (!asteroidTexture.loadFromFile(textures[randAsteroidIndex]))
 	{
-		std::cout << "Asteroid.cpp : Could not load 'asteroidTexture' from 'Assets/Graphics/Meteors/meteorBrown_big1.png'" << std::endl;
+		Debug::Log("Asteroid.cpp : Could not load 'asteroidTexture' from 'Assets/Graphics/Meteors/meteorBrown_big1.png'");
 		return false;
 	}
 
@@ -32,8 +32,9 @@ bool Asteroid::initialize()
 	// randomly select a rotation
 	asteroidSprite.setRotation(rand() % 360);
 
-	if (!destroySoundBuffer.loadFromFile("Assets/Audio/sfx_explosion.mp3"))
+	if (!destroySoundBuffer.loadFromFile("Assets/Audio/sfx_twoTone.ogg"))
 	{
+		Debug::Log("Asteroid.cpp : Could not load 'destroySoundBuffer' from 'Assets/Audio/sfx_twoTone.ogg'");
 		return false;
 	}
 
@@ -124,6 +125,22 @@ void Asteroid::destroy()
 void Asteroid::increaseSpeed(float amount)
 {
 	moveSpeed += amount;
+}
+
+void Asteroid::reposition(sf::FloatRect newGameBounds)
+{
+	if (isActive || (!isActive && !isAtInactivePosition))
+	{
+		float percentX = asteroidSprite.getPosition().x / (gameBounds.left + gameBounds.width);
+		float percentY = asteroidSprite.getPosition().y / (gameBounds.top + gameBounds.height);
+
+		float newX = percentX * (newGameBounds.left + newGameBounds.width);
+		float newY = percentY * (newGameBounds.top + newGameBounds.height);
+
+		asteroidSprite.setPosition(newX, newY);
+	}
+
+	gameBounds = newGameBounds;
 }
 
 sf::FloatRect Asteroid::getCollider()

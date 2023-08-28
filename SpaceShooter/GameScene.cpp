@@ -315,8 +315,6 @@ void GameScene::draw(sf::RenderWindow* window)
 
 void GameScene::handleWindowResize(sf::FloatRect newWindowSize)
 {
-	gameBounds = newWindowSize;
-	
 	if (!isPaused)
 	{
 		isPaused = true;
@@ -326,12 +324,24 @@ void GameScene::handleWindowResize(sf::FloatRect newWindowSize)
 	pauseMenu = PauseMenu();
 	gameOverMenu = GameOverMenu();
 
-	player = Player(sf::Vector2f(newWindowSize.left + (newWindowSize.width / 2), newWindowSize.top + (newWindowSize.height / 2)), newWindowSize);
+	player = Player(sf::Vector2f(newWindowSize.left + (newWindowSize.width / 2), newWindowSize.top + (newWindowSize.height / 2)), newWindowSize);  
 
 	player.initialize();
 	playerHUD.initialize(newWindowSize);
 	pauseMenu.initialize(newWindowSize);
 	gameOverMenu.initialize(newWindowSize);
+
+	for (int i = 0; i < asteroids.size(); i++)
+	{
+		asteroids[i].get()->reposition(newWindowSize);
+	}
+
+	for (int i = 0; i < enemyShips.size(); i++)
+	{
+		enemyShips[i].get()->reposition(newWindowSize);
+	}
+
+	gameBounds = newWindowSize;
 }
 
 bool GameScene::initializeAsteroids()
