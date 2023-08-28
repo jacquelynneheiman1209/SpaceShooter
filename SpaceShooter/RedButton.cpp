@@ -19,8 +19,8 @@ bool RedButton::initialize(sf::FloatRect windowBounds)
 	float positionX = buttonPosition.x;
 	float positionY = buttonPosition.y;
 
-	buttonPosition.x = windowBounds.left + buttonPosition.x;
-	buttonPosition.y = windowBounds.top + buttonPosition.y;
+	buttonPosition.x = windowBounds.left + positionX;
+	buttonPosition.y = windowBounds.top + positionY;
 
 	buttonSprite.setPosition(buttonPosition);
 

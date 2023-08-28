@@ -2,43 +2,29 @@
 #include <SFML/Graphics.hpp>
 #include "GreenButton.h"
 #include "RedButton.h"
+#include "Menu.h"
 
 #ifndef GAME_OVER_MENU_H
 #define GAME_OVER_MENU_H
 
-class GameOverMenu
+class GameOverMenu : public Menu
 {
 public:
 	GameOverMenu();
 
-	bool initialize(sf::FloatRect windowBounds);
-	void handleInput(sf::RenderWindow* window, sf::Event* event);
-	void update(float deltaTime);
-	void draw(sf::RenderWindow* window, bool playerWon);
+	bool initialize(sf::FloatRect windowBounds) override;
+	void handleInput(sf::RenderWindow* window, sf::Event* event) override;
+	void draw(sf::RenderWindow* window) override;
 
 	GreenButton playAgainButton;
 	RedButton mainMenuButton;
 
-private:
-	sf::Texture backgroundTexture;	// for use later when I have the art pieces
-	sf::Sprite backgroundSprite;	// for use later when I have the art pieces
-
-	sf::RectangleShape backgroundShape;
-
-	sf::Font font;
-
-	sf::Text gameOverText;
+protected:
 	sf::Text playAgainText;
 
-	bool initializeBackground(sf::FloatRect windowBounds);
-
-	bool initializeText();
-	bool initializeGameOverText(std::string textString);
-	bool initializePlayAgainText();
-
-	bool initializeButtons();
-	bool intializePlayAgainButton();
-	bool initializeMainMenuButton();
+	bool initializeBackground() override;
+	bool initializeText() override;
+	bool initializeButtons() override;
 };
 
 #endif // !GAME_OVER_MENU_H

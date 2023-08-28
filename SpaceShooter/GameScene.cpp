@@ -42,6 +42,12 @@ bool GameScene::initialize(sf::FloatRect windowBounds)
 	player = Player(sf::Vector2f(gameBounds.left + (gameBounds.width / 2), gameBounds.top + (gameBounds.height / 2)), gameBounds);
 	pauseMenu = PauseMenu();
 	gameOverMenu = GameOverMenu();
+
+	if (!gameOverMenu.initialize(gameBounds))
+	{
+		return false;
+	}
+
 	playerHUD = PlayerHUD(gameBounds);
 
 	confirmationMenu = ConfirmationMenu();
@@ -73,11 +79,6 @@ bool GameScene::initialize(sf::FloatRect windowBounds)
 	}
 
 	if (!pauseMenu.initialize(windowBounds))
-	{
-		return false;
-	}
-
-	if (!gameOverMenu.initialize(windowBounds))
 	{
 		return false;
 	}
@@ -373,7 +374,7 @@ void GameScene::draw(sf::RenderWindow* window)
 	}
 	else
 	{
-		gameOverMenu.draw(window, playerWon);
+		gameOverMenu.draw(window);
 	}
 }
 

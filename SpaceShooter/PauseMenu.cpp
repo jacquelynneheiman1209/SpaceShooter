@@ -1,59 +1,33 @@
 #include "PauseMenu.h"
-#include <iostream>
+#include "Debug.h"
 
-PauseMenu::PauseMenu() : continueGameButton(sf::Vector2f(0, 0), "Continue"), restartLevelButton(sf::Vector2f(0, 0), "Resume"), optionsButton(sf::Vector2f(0, 0), "Options"), menuButton(sf::Vector2f(0, 0), "Main Menu")
+PauseMenu::PauseMenu() : Menu(), continueGameButton(sf::Vector2f(0, 0), "Continue"), restartLevelButton(sf::Vector2f(0, 0), "Resume"), optionsButton(sf::Vector2f(0, 0), "Options"), menuButton(sf::Vector2f(0, 0), "Main Menu")
 {
 
 }
 
 bool PauseMenu::initialize(sf::FloatRect windowBounds)
 {
-	if (!menuBackgroundTexture.loadFromFile("Assets/Graphics/UI/PauseMenu_Blue.png"))
-	{
-		std::cout << "PauseMenu.cpp : Could not load 'menuBackgroundTexture'" << std::endl;
-		return false;
-	}
-
-	menuBackgroundSprite.setTexture(menuBackgroundTexture);
-	menuBackgroundSprite.setScale(1.5, 1.5);
-	setupSprite(&menuBackgroundSprite, sf::Vector2f(windowBounds.left + (windowBounds.width / 2), windowBounds.top + (windowBounds.height / 2)));
-
-	sf::Vector2f buttonPosition;
-	buttonPosition.x = menuBackgroundSprite.getGlobalBounds().width / 2;
-
-	continueGameButton = BlueButton(sf::Vector2f(buttonPosition.x, 100), "Continue");
-	restartLevelButton = BlueButton(sf::Vector2f(buttonPosition.x, 180), "Restart");
-	optionsButton = BlueButton(sf::Vector2f(buttonPosition.x, 260), "Options");
-	menuButton = RedButton(sf::Vector2f(buttonPosition.x, 340), "Main Menu");
-
-	if (!font.loadFromFile("Assets/Fonts/nulshock.otf"))
-	{
-		std::cout << "PauseMenu.cpp : Could not load 'font'" << std::endl;
-		return false;
-	}
-
-	menuTitleText.setFont(font);
-	menuTitleText.setString("Paused");
-	menuTitleText.setCharacterSize(35);
-	menuTitleText.setOrigin(menuTitleText.getLocalBounds().left + (menuTitleText.getLocalBounds().width / 2), menuTitleText.getLocalBounds().top + (menuTitleText.getLocalBounds().height / 2));
-	menuTitleText.setPosition(menuBackgroundSprite.getGlobalBounds().left + (menuBackgroundSprite.getGlobalBounds().width / 2), menuBackgroundSprite.getGlobalBounds().top + (menuTitleText.getLocalBounds().height / 2) + 15);
-
-	if (!continueGameButton.initialize(menuBackgroundSprite.getGlobalBounds()))
+	// initializes the font and saves windowBounds
+	if (!Menu::initialize(windowBounds))
 	{
 		return false;
 	}
 
-	if (!restartLevelButton.initialize(menuBackgroundSprite.getGlobalBounds()))
+	// setup the menu background
+	if (!initializeBackground())
 	{
 		return false;
 	}
 
-	if (!optionsButton.initialize(menuBackgroundSprite.getGlobalBounds()))
+	// setup the text on the menu
+	if (!initializeText())
 	{
 		return false;
 	}
-
-	if (!menuButton.initialize(menuBackgroundSprite.getGlobalBounds()))
+	
+	// setup the buttons on the menu
+	if (!initializeButtons())
 	{
 		return false;
 	}
@@ -69,28 +43,70 @@ void PauseMenu::handleInput(sf::RenderWindow* window, sf::Event* event)
 	menuButton.handleInput(window, event);
 }
 
-void PauseMenu::update(float deltaTime)
-{
-}
-
 void PauseMenu::draw(sf::RenderWindow* window)
 {
-	window->draw(menuBackgroundSprite);
-	window->draw(menuTitleText);
+	// draw the background sprite & title text
+	Menu::draw(window);
+	
+	// draw the buttons
 	continueGameButton.draw(window);
 	restartLevelButton.draw(window);
 	optionsButton.draw(window);
 	menuButton.draw(window);
 }
 
-void PauseMenu::setupSprite(sf::Sprite* sprite, sf::Vector2f position)
+bool PauseMenu::initializeBackground()
 {
-	sf::FloatRect spriteBounds = sprite->getLocalBounds();
+	if (!backgroundTexture.loadFromFile("Assets/Graphics/UI/PauseMenu_Blue.png"))
+	{
+		return false;
+	}
 
-	sprite->setOrigin(spriteBounds.left + (spriteBounds.width / 2), spriteBounds.top + (spriteBounds.height / 2));
-	sprite->setPosition(position);
+	sf::Vector2f backgroundPosition = getCenter(gameBounds);
+	setupSprite(&backgroundSprite, &backgroundTexture, sf::Vector2f(1.5, 1.5), backgroundPosition);
+
+	return true;
 }
 
-void PauseMenu::setupText(sf::Text* text, sf::Vector2f position, std::string textString)
+bool PauseMenu::initializeText()
 {
+	sf::Vector2f textPosition;
+	textPosition.x = getCenter(backgroundSprite.getGlobalBounds()).x;
+	textPosition.y = backgroundSprite.getGlobalBounds().top + (titleText.getLocalBounds().height / 2) + 25;
+
+	setupText(&titleText, "Paused", 35, textPosition);
+
+	return true;
+}
+
+bool PauseMenu::initializeButtons()
+{
+	float buttonX = backgroundSprite.getGlobalBounds().width / 2;
+
+	continueGameButton = BlueButton(sf::Vector2f(buttonX, 100), "Continue");
+	restartLevelButton = BlueButton(sf::Vector2f(buttonX, 180), "Restart");
+	optionsButton = BlueButton(sf::Vector2f(buttonX, 260), "Options");
+	menuButton = RedButton(sf::Vector2f(buttonX, 340), "Main Menu");
+
+	if (!continueGameButton.initialize(backgroundSprite.getGlobalBounds()))
+	{
+		return false;
+	}
+
+	if (!restartLevelButton.initialize(backgroundSprite.getGlobalBounds()))
+	{
+		return false;
+	}
+
+	if (!optionsButton.initialize(backgroundSprite.getGlobalBounds()))
+	{
+		return false;
+	}
+
+	if (!menuButton.initialize(backgroundSprite.getGlobalBounds()))
+	{
+		return false;
+	}
+
+	return false;
 }

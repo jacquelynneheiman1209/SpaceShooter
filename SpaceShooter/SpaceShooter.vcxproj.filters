@@ -13,86 +13,95 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Source Files\Background">
-      <UniqueIdentifier>{5bafcf4b-40a7-43ce-afaf-59edd8d46eea}</UniqueIdentifier>
+    <Filter Include="Source Files\Debug">
+      <UniqueIdentifier>{34d256d6-2d1f-4267-babe-c925bbdf14e4}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Player">
-      <UniqueIdentifier>{654a1844-526b-4b35-a75f-a1e13ac5a63b}</UniqueIdentifier>
+    <Filter Include="Source Files\Game Files">
+      <UniqueIdentifier>{41760852-6473-43e9-9d0c-cd2b37c5a919}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\UI Elements">
-      <UniqueIdentifier>{628cdfa7-3fb1-4cd8-9330-a3cab760e610}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\UI Elements\Buttons">
-      <UniqueIdentifier>{0e4c6c2f-aad7-4a71-9a1e-2cd62800ee40}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\UI Elements\Buttons\Button">
-      <UniqueIdentifier>{f0bbe753-fc7e-4a34-89bb-5e32fcabce17}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\UI Elements\Menus">
-      <UniqueIdentifier>{176df6fa-a72f-449f-a104-18f0485491b3}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\UI Elements\Menus\Pause Menu">
-      <UniqueIdentifier>{59ae4364-de10-4ce1-91bd-0ab0b6723945}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\UI Elements\Menus\Game Over Menu">
-      <UniqueIdentifier>{daa4e603-2667-40da-bf2d-cb57b4aa424c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\UI Elements\Menus\Options Menu">
-      <UniqueIdentifier>{f90a2466-8ef4-4141-8168-f6117ee69d86}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\UI Elements\HUDs">
-      <UniqueIdentifier>{050899db-9772-4331-8b3e-e1ea01991ffe}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Scenes">
-      <UniqueIdentifier>{31d70930-1b5b-48e6-a7c8-4e07ba1e36ec}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Scenes\Scene">
-      <UniqueIdentifier>{cdd907f0-04be-4609-a60f-8c849ab9aaa3}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Scenes\Main Menu Scene">
-      <UniqueIdentifier>{b8c5be99-b810-4c7d-ab86-cb8a0bf40cc3}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Scenes\Game Scene">
-      <UniqueIdentifier>{f1e81286-73a9-4437-a292-6f231e174263}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Game">
-      <UniqueIdentifier>{82d0919a-11c1-4da5-b41a-44acef639eb6}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\SceneManager">
-      <UniqueIdentifier>{13307989-cd05-42d6-9781-360cfa3ad9b3}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\UI Elements\Buttons\Green Button">
-      <UniqueIdentifier>{5b8fd459-02ac-48fd-b4c4-dff5eb798828}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\UI Elements\Buttons\Yellow Button">
-      <UniqueIdentifier>{74ed297b-d06c-444c-9daa-fbe279f17093}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\UI Elements\Buttons\Red Button">
-      <UniqueIdentifier>{fc05761f-d3d2-4720-be11-336906172d65}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\UI Elements\HUDs\Player HUD">
-      <UniqueIdentifier>{2707bf0d-7927-4c3d-adfd-fac43c371e46}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Bullets">
-      <UniqueIdentifier>{9983a02e-6679-4ca1-a774-4fe0b3a6cf8d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Bullets\Bullet">
-      <UniqueIdentifier>{1fd00222-6f6c-407f-b33f-d24e690cccee}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\UI Elements\Buttons\Blue Button">
-      <UniqueIdentifier>{58f66c64-0331-45a5-af43-3e4b278e866e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Asteroid Manager">
+    <Filter Include="Source Files\Game Files\Asteroid Manager">
       <UniqueIdentifier>{679d76a4-b5c2-4082-a5d0-32b391cf27dd}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Enemies">
+    <Filter Include="Source Files\Game Files\Background">
+      <UniqueIdentifier>{5bafcf4b-40a7-43ce-afaf-59edd8d46eea}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Game Files\Bullets">
+      <UniqueIdentifier>{9983a02e-6679-4ca1-a774-4fe0b3a6cf8d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Game Files\Bullets\Bullet">
+      <UniqueIdentifier>{1fd00222-6f6c-407f-b33f-d24e690cccee}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Game Files\Game">
+      <UniqueIdentifier>{82d0919a-11c1-4da5-b41a-44acef639eb6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Game Files\Enemies">
       <UniqueIdentifier>{51382507-453b-4192-b3e1-9674b9d38d68}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Enemies\Asteroids">
+    <Filter Include="Source Files\Game Files\Enemies\Asteroids">
       <UniqueIdentifier>{ea57e16c-602f-46c6-a75f-0dc5df2e3b25}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Enemies\Enemy Ship">
+    <Filter Include="Source Files\Game Files\Enemies\Enemy Ship">
       <UniqueIdentifier>{c52108d9-9fc9-4777-acbe-79b5ab7b7dc9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Game Files\Player">
+      <UniqueIdentifier>{654a1844-526b-4b35-a75f-a1e13ac5a63b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Game Files\SceneManager">
+      <UniqueIdentifier>{13307989-cd05-42d6-9781-360cfa3ad9b3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Game Files\Scenes">
+      <UniqueIdentifier>{31d70930-1b5b-48e6-a7c8-4e07ba1e36ec}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Game Files\Scenes\Scene">
+      <UniqueIdentifier>{cdd907f0-04be-4609-a60f-8c849ab9aaa3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Game Files\Scenes\Main Menu Scene">
+      <UniqueIdentifier>{b8c5be99-b810-4c7d-ab86-cb8a0bf40cc3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Game Files\Scenes\Game Scene">
+      <UniqueIdentifier>{f1e81286-73a9-4437-a292-6f231e174263}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Game Files\UI Elements">
+      <UniqueIdentifier>{628cdfa7-3fb1-4cd8-9330-a3cab760e610}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Game Files\UI Elements\Buttons">
+      <UniqueIdentifier>{0e4c6c2f-aad7-4a71-9a1e-2cd62800ee40}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Game Files\UI Elements\Buttons\Button">
+      <UniqueIdentifier>{f0bbe753-fc7e-4a34-89bb-5e32fcabce17}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Game Files\UI Elements\Buttons\Green Button">
+      <UniqueIdentifier>{5b8fd459-02ac-48fd-b4c4-dff5eb798828}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Game Files\UI Elements\Buttons\Yellow Button">
+      <UniqueIdentifier>{74ed297b-d06c-444c-9daa-fbe279f17093}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Game Files\UI Elements\Buttons\Red Button">
+      <UniqueIdentifier>{fc05761f-d3d2-4720-be11-336906172d65}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Game Files\UI Elements\Buttons\Blue Button">
+      <UniqueIdentifier>{58f66c64-0331-45a5-af43-3e4b278e866e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Game Files\UI Elements\Menus">
+      <UniqueIdentifier>{176df6fa-a72f-449f-a104-18f0485491b3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Game Files\UI Elements\Menus\Pause Menu">
+      <UniqueIdentifier>{59ae4364-de10-4ce1-91bd-0ab0b6723945}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Game Files\UI Elements\Menus\Game Over Menu">
+      <UniqueIdentifier>{daa4e603-2667-40da-bf2d-cb57b4aa424c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Game Files\UI Elements\Menus\Options Menu">
+      <UniqueIdentifier>{f90a2466-8ef4-4141-8168-f6117ee69d86}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Game Files\UI Elements\Menus\Confirmation Menu">
+      <UniqueIdentifier>{5530590b-9008-4d45-9ff7-bb866e4e2d68}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Game Files\UI Elements\HUDs">
+      <UniqueIdentifier>{050899db-9772-4331-8b3e-e1ea01991ffe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Game Files\UI Elements\HUDs\Player HUD">
+      <UniqueIdentifier>{2707bf0d-7927-4c3d-adfd-fac43c371e46}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -100,141 +109,147 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Background.cpp">
-      <Filter>Source Files\Background</Filter>
+      <Filter>Source Files\Game Files\Background</Filter>
     </ClCompile>
     <ClCompile Include="Button.cpp">
-      <Filter>Source Files\UI Elements\Buttons\Button</Filter>
+      <Filter>Source Files\Game Files\UI Elements\Buttons\Button</Filter>
     </ClCompile>
     <ClCompile Include="GameOverMenu.cpp">
-      <Filter>Source Files\UI Elements\Menus\Game Over Menu</Filter>
+      <Filter>Source Files\Game Files\UI Elements\Menus\Game Over Menu</Filter>
     </ClCompile>
     <ClCompile Include="MainMenuScene.cpp">
-      <Filter>Source Files\Scenes\Main Menu Scene</Filter>
+      <Filter>Source Files\Game Files\Scenes\Main Menu Scene</Filter>
     </ClCompile>
     <ClCompile Include="GameScene.cpp">
-      <Filter>Source Files\Scenes\Game Scene</Filter>
+      <Filter>Source Files\Game Files\Scenes\Game Scene</Filter>
     </ClCompile>
     <ClCompile Include="OptionsMenu.cpp">
-      <Filter>Source Files\UI Elements\Menus\Options Menu</Filter>
+      <Filter>Source Files\Game Files\UI Elements\Menus\Options Menu</Filter>
     </ClCompile>
     <ClCompile Include="PauseMenu.cpp">
-      <Filter>Source Files\UI Elements\Menus\Pause Menu</Filter>
+      <Filter>Source Files\Game Files\UI Elements\Menus\Pause Menu</Filter>
     </ClCompile>
     <ClCompile Include="YellowButton.cpp">
-      <Filter>Source Files\UI Elements\Buttons\Yellow Button</Filter>
+      <Filter>Source Files\Game Files\UI Elements\Buttons\Yellow Button</Filter>
     </ClCompile>
     <ClCompile Include="RedButton.cpp">
-      <Filter>Source Files\UI Elements\Buttons\Red Button</Filter>
+      <Filter>Source Files\Game Files\UI Elements\Buttons\Red Button</Filter>
     </ClCompile>
     <ClCompile Include="Player.cpp">
-      <Filter>Source Files\Player</Filter>
+      <Filter>Source Files\Game Files\Player</Filter>
     </ClCompile>
     <ClCompile Include="Scene.cpp">
-      <Filter>Source Files\Scenes\Scene</Filter>
+      <Filter>Source Files\Game Files\Scenes\Scene</Filter>
     </ClCompile>
     <ClCompile Include="SceneManager.cpp">
-      <Filter>Source Files\SceneManager</Filter>
+      <Filter>Source Files\Game Files\SceneManager</Filter>
     </ClCompile>
     <ClCompile Include="Game.cpp">
-      <Filter>Source Files\Game</Filter>
+      <Filter>Source Files\Game Files\Game</Filter>
     </ClCompile>
     <ClCompile Include="GreenButton.cpp">
-      <Filter>Source Files\UI Elements\Buttons\Green Button</Filter>
+      <Filter>Source Files\Game Files\UI Elements\Buttons\Green Button</Filter>
     </ClCompile>
     <ClCompile Include="PlayerHUD.cpp">
-      <Filter>Source Files\UI Elements\HUDs\Player HUD</Filter>
+      <Filter>Source Files\Game Files\UI Elements\HUDs\Player HUD</Filter>
     </ClCompile>
     <ClCompile Include="Bullet.cpp">
-      <Filter>Source Files\Bullets\Bullet</Filter>
+      <Filter>Source Files\Game Files\Bullets\Bullet</Filter>
     </ClCompile>
     <ClCompile Include="BlueButton.cpp">
-      <Filter>Source Files\UI Elements\Buttons\Blue Button</Filter>
+      <Filter>Source Files\Game Files\UI Elements\Buttons\Blue Button</Filter>
     </ClCompile>
     <ClCompile Include="Asteroid.cpp">
-      <Filter>Source Files\Enemies\Asteroids</Filter>
+      <Filter>Source Files\Game Files\Enemies\Asteroids</Filter>
     </ClCompile>
     <ClCompile Include="EnemyShip.cpp">
-      <Filter>Source Files\Enemies\Enemy Ship</Filter>
-    </ClCompile>
-    <ClCompile Include="Debug.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Game Files\Enemies\Enemy Ship</Filter>
     </ClCompile>
     <ClCompile Include="Enemy.cpp">
-      <Filter>Source Files\Enemies</Filter>
+      <Filter>Source Files\Game Files\Enemies</Filter>
     </ClCompile>
     <ClCompile Include="ConfirmationMenu.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Game Files\UI Elements\Menus\Confirmation Menu</Filter>
+    </ClCompile>
+    <ClCompile Include="Menu.cpp">
+      <Filter>Source Files\Game Files\UI Elements\Menus</Filter>
+    </ClCompile>
+    <ClCompile Include="Debug.cpp">
+      <Filter>Source Files\Debug</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Background.h">
-      <Filter>Source Files\Background</Filter>
+      <Filter>Source Files\Game Files\Background</Filter>
     </ClInclude>
     <ClInclude Include="Button.h">
-      <Filter>Source Files\UI Elements\Buttons\Button</Filter>
+      <Filter>Source Files\Game Files\UI Elements\Buttons\Button</Filter>
     </ClInclude>
     <ClInclude Include="Game.h">
-      <Filter>Source Files\Game</Filter>
+      <Filter>Source Files\Game Files\Game</Filter>
     </ClInclude>
     <ClInclude Include="GameScene.h">
-      <Filter>Source Files\Scenes\Game Scene</Filter>
+      <Filter>Source Files\Game Files\Scenes\Game Scene</Filter>
     </ClInclude>
     <ClInclude Include="MainMenuScene.h">
-      <Filter>Source Files\Scenes\Main Menu Scene</Filter>
+      <Filter>Source Files\Game Files\Scenes\Main Menu Scene</Filter>
     </ClInclude>
     <ClInclude Include="OptionsMenu.h">
-      <Filter>Source Files\UI Elements\Menus\Options Menu</Filter>
+      <Filter>Source Files\Game Files\UI Elements\Menus\Options Menu</Filter>
     </ClInclude>
     <ClInclude Include="PauseMenu.h">
-      <Filter>Source Files\UI Elements\Menus\Pause Menu</Filter>
+      <Filter>Source Files\Game Files\UI Elements\Menus\Pause Menu</Filter>
     </ClInclude>
     <ClInclude Include="RedButton.h">
-      <Filter>Source Files\UI Elements\Buttons\Red Button</Filter>
+      <Filter>Source Files\Game Files\UI Elements\Buttons\Red Button</Filter>
     </ClInclude>
     <ClInclude Include="Player.h">
-      <Filter>Source Files\Player</Filter>
+      <Filter>Source Files\Game Files\Player</Filter>
     </ClInclude>
     <ClInclude Include="YellowButton.h">
-      <Filter>Source Files\UI Elements\Buttons\Yellow Button</Filter>
+      <Filter>Source Files\Game Files\UI Elements\Buttons\Yellow Button</Filter>
     </ClInclude>
     <ClInclude Include="SceneManager.h">
-      <Filter>Source Files\SceneManager</Filter>
+      <Filter>Source Files\Game Files\SceneManager</Filter>
     </ClInclude>
     <ClInclude Include="Scene.h">
-      <Filter>Source Files\Scenes\Scene</Filter>
+      <Filter>Source Files\Game Files\Scenes\Scene</Filter>
     </ClInclude>
     <ClInclude Include="GameOverMenu.h">
-      <Filter>Source Files\UI Elements\Menus\Game Over Menu</Filter>
+      <Filter>Source Files\Game Files\UI Elements\Menus\Game Over Menu</Filter>
     </ClInclude>
     <ClInclude Include="SceneLoader.h">
-      <Filter>Source Files\SceneManager</Filter>
+      <Filter>Source Files\Game Files\SceneManager</Filter>
     </ClInclude>
     <ClInclude Include="GreenButton.h">
-      <Filter>Source Files\UI Elements\Buttons\Green Button</Filter>
+      <Filter>Source Files\Game Files\UI Elements\Buttons\Green Button</Filter>
     </ClInclude>
     <ClInclude Include="PlayerHUD.h">
-      <Filter>Source Files\UI Elements\HUDs\Player HUD</Filter>
+      <Filter>Source Files\Game Files\UI Elements\HUDs\Player HUD</Filter>
     </ClInclude>
     <ClInclude Include="Bullet.h">
-      <Filter>Source Files\Bullets\Bullet</Filter>
+      <Filter>Source Files\Game Files\Bullets\Bullet</Filter>
     </ClInclude>
     <ClInclude Include="BlueButton.h">
-      <Filter>Source Files\UI Elements\Buttons\Blue Button</Filter>
+      <Filter>Source Files\Game Files\UI Elements\Buttons\Blue Button</Filter>
     </ClInclude>
     <ClInclude Include="Asteroid.h">
-      <Filter>Source Files\Enemies\Asteroids</Filter>
+      <Filter>Source Files\Game Files\Enemies\Asteroids</Filter>
     </ClInclude>
     <ClInclude Include="EnemyShip.h">
-      <Filter>Source Files\Enemies\Enemy Ship</Filter>
-    </ClInclude>
-    <ClInclude Include="Debug.h">
-      <Filter>Header Files</Filter>
+      <Filter>Source Files\Game Files\Enemies\Enemy Ship</Filter>
     </ClInclude>
     <ClInclude Include="Enemy.h">
-      <Filter>Source Files\Enemies</Filter>
+      <Filter>Source Files\Game Files\Enemies</Filter>
     </ClInclude>
     <ClInclude Include="ConfirmationMenu.h">
-      <Filter>Header Files</Filter>
+      <Filter>Source Files\Game Files\UI Elements\Menus\Confirmation Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="Menu.h">
+      <Filter>Source Files\Game Files\UI Elements\Menus</Filter>
+    </ClInclude>
+    <ClInclude Include="Debug.h">
+      <Filter>Source Files\Debug</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

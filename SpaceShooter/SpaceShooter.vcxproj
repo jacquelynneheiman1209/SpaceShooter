@@ -146,6 +146,7 @@
     <ClCompile Include="GameOverMenu.cpp" />
     <ClCompile Include="GreenButton.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Menu.cpp" />
     <ClCompile Include="PlayerHUD.cpp" />
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="Scene.cpp" />
@@ -167,6 +168,7 @@
     <ClInclude Include="Game.h" />
     <ClInclude Include="Background.h" />
     <ClInclude Include="GreenButton.h" />
+    <ClInclude Include="Menu.h" />
     <ClInclude Include="PlayerHUD.h" />
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="Scene.h" />
