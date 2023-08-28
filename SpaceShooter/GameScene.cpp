@@ -106,10 +106,10 @@ void GameScene::handleInput(sf::RenderWindow* window, sf::Event* event)
 					//pauseMenu.optionsButton.click();
 				}
 
-				if (pauseMenu.quitButton.isClicked(sf::Mouse::getPosition(*window)))
+				if (pauseMenu.menuButton.isClicked(sf::Mouse::getPosition(*window)))
 				{
-					pauseMenu.quitButton.click();
-					window->close();
+					pauseMenu.menuButton.click();
+					sceneLoader->loadScene("Main Menu", gameBounds);
 				}
 			}
 

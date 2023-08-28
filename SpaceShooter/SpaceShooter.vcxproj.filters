@@ -82,14 +82,17 @@
     <Filter Include="Source Files\UI Elements\Buttons\Blue Button">
       <UniqueIdentifier>{58f66c64-0331-45a5-af43-3e4b278e866e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Asteroids">
-      <UniqueIdentifier>{ea57e16c-602f-46c6-a75f-0dc5df2e3b25}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Enemy Ship">
-      <UniqueIdentifier>{c52108d9-9fc9-4777-acbe-79b5ab7b7dc9}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\Asteroid Manager">
       <UniqueIdentifier>{679d76a4-b5c2-4082-a5d0-32b391cf27dd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Enemies">
+      <UniqueIdentifier>{51382507-453b-4192-b3e1-9674b9d38d68}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Enemies\Asteroids">
+      <UniqueIdentifier>{ea57e16c-602f-46c6-a75f-0dc5df2e3b25}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Enemies\Enemy Ship">
+      <UniqueIdentifier>{c52108d9-9fc9-4777-acbe-79b5ab7b7dc9}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -148,13 +151,16 @@
       <Filter>Source Files\UI Elements\Buttons\Blue Button</Filter>
     </ClCompile>
     <ClCompile Include="Asteroid.cpp">
-      <Filter>Source Files\Asteroids</Filter>
+      <Filter>Source Files\Enemies\Asteroids</Filter>
     </ClCompile>
     <ClCompile Include="EnemyShip.cpp">
-      <Filter>Source Files\Enemy Ship</Filter>
+      <Filter>Source Files\Enemies\Enemy Ship</Filter>
     </ClCompile>
     <ClCompile Include="Debug.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Enemy.cpp">
+      <Filter>Source Files\Enemies</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -213,13 +219,16 @@
       <Filter>Source Files\UI Elements\Buttons\Blue Button</Filter>
     </ClInclude>
     <ClInclude Include="Asteroid.h">
-      <Filter>Source Files\Asteroids</Filter>
+      <Filter>Source Files\Enemies\Asteroids</Filter>
     </ClInclude>
     <ClInclude Include="EnemyShip.h">
-      <Filter>Source Files\Enemy Ship</Filter>
+      <Filter>Source Files\Enemies\Enemy Ship</Filter>
     </ClInclude>
     <ClInclude Include="Debug.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy.h">
+      <Filter>Source Files\Enemies</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -136,6 +136,7 @@
     <ClCompile Include="BlueButton.cpp" />
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="Debug.cpp" />
+    <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="EnemyShip.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Background.cpp" />
@@ -159,6 +160,7 @@
     <ClInclude Include="BlueButton.h" />
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="Debug.h" />
+    <ClInclude Include="Enemy.h" />
     <ClInclude Include="EnemyShip.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Background.h" />

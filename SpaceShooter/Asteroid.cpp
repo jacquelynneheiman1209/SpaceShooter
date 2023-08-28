@@ -1,125 +1,33 @@
 #include "Asteroid.h"
 #include "Debug.h"
 
-Asteroid::Asteroid()
+Asteroid::Asteroid() : Enemy()
 {
-}
+	textures = std::vector<std::string>{
+		"Assets/Graphics/Meteors/meteorBrown_big1.png",
+		"Assets/Graphics/Meteors/meteorBrown_big2.png",
+		"Assets/Graphics/Meteors/meteorBrown_big3.png",
+		"Assets/Graphics/Meteors/meteorBrown_big4.png",
+		"Assets/Graphics/Meteors/meteorBrown_med1.png",
+		"Assets/Graphics/Meteors/meteorBrown_med2.png",
+	};
 
-bool Asteroid::initialize()
-{
-	int randAsteroidIndex = rand() % textures.size();
+	minMoveSpeed = 25;
+	maxMoveSpeed = 50;
 
-	if (!asteroidTexture.loadFromFile(textures[randAsteroidIndex]))
-	{
-		Debug::Log("Asteroid.cpp : Could not load 'asteroidTexture' from 'Assets/Graphics/Meteors/meteorBrown_big1.png'");
-		return false;
-	}
-
-	asteroidSprite.setTexture(asteroidTexture);
-
-	sf::FloatRect asteroidBounds = asteroidSprite.getLocalBounds();
-
-	sf::Vector2f origin;
-	origin.x = asteroidBounds.left + (asteroidBounds.width / 2);
-	origin.y = asteroidBounds.top + (asteroidBounds.height / 2);
-
-	asteroidSprite.setOrigin(origin);
-	asteroidSprite.setPosition(inactivePosition);
-
-	// randomly select a move speed
-	moveSpeed = (rand() % maxMoveSpeed) + minMoveSpeed;
-
-	// randomly select a rotation
-	asteroidSprite.setRotation(rand() % 360);
-
-	if (!destroySoundBuffer.loadFromFile("Assets/Audio/sfx_twoTone.ogg"))
-	{
-		Debug::Log("Asteroid.cpp : Could not load 'destroySoundBuffer' from 'Assets/Audio/sfx_twoTone.ogg'");
-		return false;
-	}
-
-	destroySound.setBuffer(destroySoundBuffer);
-
-	return true;
-}
-
-void Asteroid::update(float deltaTime)
-{
-	if (isActive)
-	{
-		move(deltaTime);
-	}
-	else
-	{
-		if (asteroidSprite.getPosition() != inactivePosition)
-		{
-			move(deltaTime);
-		}
-	}
-
-	if (asteroidSprite.getPosition() == inactivePosition)
-	{
-		isAtInactivePosition = true;
-	}
-	else
-	{
-		isAtInactivePosition = false;
-	}
-}
-
-void Asteroid::draw(sf::RenderWindow* window)
-{
-	if (isActive)
-	{
-		window->draw(asteroidSprite);
-	}
+	moveSpeed = 25;
 }
 
 void Asteroid::spawn(sf::Vector2f targetPosition, sf::FloatRect gameBounds)
 {
-	this->gameBounds = gameBounds;
+	Enemy::spawn(targetPosition, gameBounds);
 
-	ScreenEdge randomScreenEdge = static_cast<ScreenEdge>(rand() % 4);
-
-	sf::Vector2f spawnPosition;
-
-	if (randomScreenEdge == ScreenEdge::LEFT)
-	{
-		spawnPosition.x = gameBounds.left - 200;
-		spawnPosition.y = (rand() % static_cast<int>((gameBounds.top + gameBounds.height) - 200)) + 100;
-	}
-
-	if (randomScreenEdge == ScreenEdge::RIGHT)
-	{
-		spawnPosition.x = (gameBounds.left + gameBounds.width) + 200;
-		spawnPosition.y = (rand() % static_cast<int>((gameBounds.top + gameBounds.height) - 200)) + 100;
-	}
-
-	if (randomScreenEdge == ScreenEdge::TOP)
-	{
-		spawnPosition.x = (rand() % static_cast<int>((gameBounds.left + gameBounds.width))) + 100;
-		spawnPosition.y = gameBounds.top - 200;
-	}
-
-	if (randomScreenEdge == ScreenEdge::BOTTOM)
-	{
-		spawnPosition.x = (rand() % static_cast<int>((gameBounds.left + gameBounds.width))) + 100;
-		spawnPosition.y = (gameBounds.top + gameBounds.height) + 200;
-	}
-
-	asteroidSprite.setPosition(spawnPosition);
-	moveDirection = targetPosition - asteroidSprite.getPosition();
+	// get the direction to the player
+	moveDirection = targetPosition - sprite.getPosition();
 
 	// Normalizing the moveDirection vector
 	float magnitude = sqrt((moveDirection.x * moveDirection.x) + (moveDirection.y * moveDirection.y));
 	moveDirection /= magnitude;
-}
-
-void Asteroid::destroy()
-{
-	destroySound.play();
-	isActive = false;
-	asteroidSprite.setPosition(inactivePosition);
 }
 
 void Asteroid::increaseSpeed(float amount)
@@ -127,45 +35,15 @@ void Asteroid::increaseSpeed(float amount)
 	moveSpeed += amount;
 }
 
-void Asteroid::reposition(sf::FloatRect newGameBounds)
+void Asteroid::move(float deltaTime, sf::Vector2f playerPosition)
 {
-	if (isActive || (!isActive && !isAtInactivePosition))
-	{
-		float percentX = asteroidSprite.getPosition().x / (gameBounds.left + gameBounds.width);
-		float percentY = asteroidSprite.getPosition().y / (gameBounds.top + gameBounds.height);
-
-		float newX = percentX * (newGameBounds.left + newGameBounds.width);
-		float newY = percentY * (newGameBounds.top + newGameBounds.height);
-
-		asteroidSprite.setPosition(newX, newY);
-	}
-
-	gameBounds = newGameBounds;
-}
-
-sf::FloatRect Asteroid::getCollider()
-{
-	return asteroidSprite.getGlobalBounds();
-}
-
-void Asteroid::move(float deltaTime)
-{
-	sf::Vector2f currentPosition = asteroidSprite.getPosition();
+	sf::Vector2f currentPosition = sprite.getPosition();
 	currentPosition.x += moveDirection.x * moveSpeed * deltaTime;
 	currentPosition.y += moveDirection.y * moveSpeed * deltaTime;
 
-	bool isInBoundsX = (currentPosition.x > gameBounds.left && currentPosition.x < (gameBounds.left + gameBounds.width));
-	bool isInBoundsY = (currentPosition.y > gameBounds.top && currentPosition.y < (gameBounds.top + gameBounds.height));
+	isInGameBounds = isInBounds();
 
-	isInGameBounds = isInBoundsX && isInBoundsY;
+	sprite.setPosition(currentPosition);
 
-	asteroidSprite.setPosition(currentPosition);
-
-	if (!isActive)
-	{
-		if ((asteroidSprite.getPosition() != inactivePosition) && (isInBoundsX && isInBoundsY))
-		{
-			isActive = true;
-		}
-	}
+	setActive();
 }
