@@ -1,7 +1,7 @@
 #include "GameScene.h"
 #include "Debug.h"
 
-GameScene::GameScene(SceneLoader* sceneLoader, sf::FloatRect gameBounds) : player(sf::Vector2f(640, 360), gameBounds), pauseMenu(), gameOverMenu(), playerHUD(gameBounds)
+GameScene::GameScene(SceneLoader* sceneLoader, sf::FloatRect gameBounds) : player(sf::Vector2f(640, 360), gameBounds), pauseMenu(), gameOverMenu(), playerHUD(gameBounds), confirmationMenu()
 {
 	this->sceneLoader = sceneLoader;
 	this->gameBounds = gameBounds;
@@ -10,6 +10,11 @@ GameScene::GameScene(SceneLoader* sceneLoader, sf::FloatRect gameBounds) : playe
 bool GameScene::initialize(sf::FloatRect windowBounds)
 {
 	gameBounds = windowBounds;
+
+	showPauseMenu = false;
+	showConfirmationMenu = false;
+
+	confirmationReason = "";
 
 	// reset game over & pause settings
 	isGameOver = false;
@@ -38,6 +43,13 @@ bool GameScene::initialize(sf::FloatRect windowBounds)
 	pauseMenu = PauseMenu();
 	gameOverMenu = GameOverMenu();
 	playerHUD = PlayerHUD(gameBounds);
+
+	confirmationMenu = ConfirmationMenu();
+
+	if (!confirmationMenu.initialize(gameBounds))
+	{
+		return false;
+	}
 
 	// initialize game objects
 	if (!playerHUD.initialize(gameBounds))
@@ -81,39 +93,83 @@ void GameScene::handleInput(sf::RenderWindow* window, sf::Event* event)
 		{
 			if (event->key.code == sf::Keyboard::Escape)
 			{
-				isPaused = !isPaused;
+				if (isPaused)
+				{
+					unpauseGame();
+				}
+				else
+				{
+					pauseGame();
+				}
 			}
 		}
 
 		if (isPaused)
 		{
-			if (event->type == event->MouseButtonPressed)
+			if (showPauseMenu)
 			{
-				if (pauseMenu.continueGameButton.isClicked(sf::Mouse::getPosition(*window)))
+				if (event->type == event->MouseButtonPressed)
 				{
-					isPaused = false;
-					pauseMenu.continueGameButton.click();
+					if (pauseMenu.continueGameButton.isClicked(sf::Mouse::getPosition(*window)))
+					{
+						isPaused = false;
+						showPauseMenu = false;
+						showConfirmationMenu = false;
+						pauseMenu.continueGameButton.click();
+					}
+
+					if (pauseMenu.restartLevelButton.isClicked(sf::Mouse::getPosition(*window)))
+					{
+						pauseMenu.restartLevelButton.click();
+						showPauseMenu = false;
+						showConfirmationMenu = true;
+						confirmationReason = "Restart";
+					}
+
+					if (pauseMenu.optionsButton.isClicked(sf::Mouse::getPosition(*window)))
+					{
+						//pauseMenu.optionsButton.click();
+					}
+
+					if (pauseMenu.menuButton.isClicked(sf::Mouse::getPosition(*window)))
+					{
+						pauseMenu.menuButton.click();
+						showPauseMenu = false;
+						showConfirmationMenu = true;
+						confirmationReason = "Main Menu";
+					}
 				}
 
-				if (pauseMenu.restartLevelButton.isClicked(sf::Mouse::getPosition(*window)))
-				{
-					pauseMenu.restartLevelButton.click();
-					initialize(gameBounds);
-				}
-
-				if (pauseMenu.optionsButton.isClicked(sf::Mouse::getPosition(*window)))
-				{
-					//pauseMenu.optionsButton.click();
-				}
-
-				if (pauseMenu.menuButton.isClicked(sf::Mouse::getPosition(*window)))
-				{
-					pauseMenu.menuButton.click();
-					sceneLoader->loadScene("Main Menu", gameBounds);
-				}
+				pauseMenu.handleInput(window, event);
 			}
 
-			pauseMenu.handleInput(window, event);
+			if (showConfirmationMenu)
+			{
+				if (event->type == event->MouseButtonPressed)
+				{
+					if (confirmationMenu.yesButton.isClicked(sf::Mouse::getPosition(*window)))
+					{
+						if (confirmationReason == "Restart")
+						{
+							confirmationMenu.yesButton.click();
+							initialize(gameBounds);
+						}
+						else if (confirmationReason == "Main Menu")
+						{
+							confirmationMenu.yesButton.click();
+							sceneLoader->loadScene("Main Menu", gameBounds);
+						}
+					}
+
+					if (confirmationMenu.noButton.isClicked(sf::Mouse::getPosition(*window)))
+					{
+						showPauseMenu = true;
+						showConfirmationMenu = false;
+					}
+				}
+
+				confirmationMenu.handleInput(window, event);
+			}
 		}
 		else
 		{
@@ -304,7 +360,15 @@ void GameScene::draw(sf::RenderWindow* window)
 
 		if (isPaused)
 		{
-			pauseMenu.draw(window);
+			if (showPauseMenu)
+			{
+				pauseMenu.draw(window);
+			}
+
+			if (showConfirmationMenu)
+			{
+				confirmationMenu.draw(window);
+			}
 		}
 	}
 	else
@@ -498,4 +562,18 @@ void GameScene::spawnEnemy()
 	// reset the spawn timer & select a random spawn delay
 	enemySpawnTimer = 0;
 	enemySpawnDelay = (rand() % static_cast<int>(maxEnemyShipSpawnDelay)) + minEnemyShipSpawnDelay;
+}
+
+void GameScene::pauseGame()
+{
+	isPaused = true;
+	showPauseMenu = true;
+	showConfirmationMenu = false;
+}
+
+void GameScene::unpauseGame()
+{
+	isPaused = false;
+	showPauseMenu = false;
+	showConfirmationMenu = false;
 }

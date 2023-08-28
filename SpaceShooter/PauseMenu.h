@@ -23,12 +23,9 @@ public:
 
 private:
 	sf::Texture menuBackgroundTexture;
-	sf::Texture buttonTexture;
-
 	sf::Sprite menuBackgroundSprite;
 
 	sf::Font font;
-
 	sf::Text menuTitleText;
 
 	void setupSprite(sf::Sprite* sprite, sf::Vector2f position);

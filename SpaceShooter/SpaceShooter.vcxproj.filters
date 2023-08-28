@@ -162,6 +162,9 @@
     <ClCompile Include="Enemy.cpp">
       <Filter>Source Files\Enemies</Filter>
     </ClCompile>
+    <ClCompile Include="ConfirmationMenu.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Background.h">
@@ -229,6 +232,9 @@
     </ClInclude>
     <ClInclude Include="Enemy.h">
       <Filter>Source Files\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="ConfirmationMenu.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -1,7 +1,7 @@
 #include "PauseMenu.h"
 #include <iostream>
 
-PauseMenu::PauseMenu() : continueGameButton(sf::Vector2f(0, 0), "Continue"), restartLevelButton(sf::Vector2f(0, 0), "Resume"), optionsButton(sf::Vector2f(0, 0), "Options"), menuButton(sf::Vector2f(30, 300), "Main Menu")
+PauseMenu::PauseMenu() : continueGameButton(sf::Vector2f(0, 0), "Continue"), restartLevelButton(sf::Vector2f(0, 0), "Resume"), optionsButton(sf::Vector2f(0, 0), "Options"), menuButton(sf::Vector2f(0, 0), "Main Menu")
 {
 
 }
