@@ -1,7 +1,7 @@
 #include "GameScene.h"
 #include "Debug.h"
 
-GameScene::GameScene(SceneLoader* sceneLoader, sf::FloatRect gameBounds) : player(sf::Vector2f(640, 360), gameBounds), pauseMenu(), gameOverMenu(), playerHUD(gameBounds), confirmationMenu()
+GameScene::GameScene(SceneLoader* sceneLoader, sf::FloatRect gameBounds) : player(sf::Vector2f(640, 360), gameBounds), pauseMenu(), gameOverMenu(), playerHUD(gameBounds), confirmationMenu(), optionsMenu()
 {
 	this->sceneLoader = sceneLoader;
 	this->gameBounds = gameBounds;
@@ -13,6 +13,7 @@ bool GameScene::initialize(sf::FloatRect windowBounds)
 
 	showPauseMenu = false;
 	showConfirmationMenu = false;
+	showOptionsMenu = false;
 
 	confirmationReason = "";
 
@@ -55,6 +56,13 @@ bool GameScene::initialize(sf::FloatRect windowBounds)
 	if (!confirmationMenu.initialize(gameBounds))
 	{
 		return false;
+	}
+
+	optionsMenu = OptionsMenu();
+
+	if (!optionsMenu.initialize(gameBounds))
+	{
+
 	}
 
 	// initialize game objects
@@ -129,7 +137,9 @@ void GameScene::handleInput(sf::RenderWindow* window, sf::Event* event)
 
 					if (pauseMenu.optionsButton.isClicked(sf::Mouse::getPosition(*window)))
 					{
-						//pauseMenu.optionsButton.click();
+						pauseMenu.optionsButton.click();
+						showPauseMenu = false;
+						showOptionsMenu = true;
 					}
 
 					if (pauseMenu.menuButton.isClicked(sf::Mouse::getPosition(*window)))
@@ -170,6 +180,11 @@ void GameScene::handleInput(sf::RenderWindow* window, sf::Event* event)
 				}
 
 				confirmationMenu.handleInput(window, event);
+			}
+
+			if (showOptionsMenu)
+			{
+				optionsMenu.handleInput(window, event);
 			}
 		}
 		else
@@ -369,6 +384,11 @@ void GameScene::draw(sf::RenderWindow* window)
 			if (showConfirmationMenu)
 			{
 				confirmationMenu.draw(window);
+			}
+
+			if (showOptionsMenu)
+			{
+				optionsMenu.draw(window);
 			}
 		}
 	}
@@ -570,6 +590,7 @@ void GameScene::pauseGame()
 	isPaused = true;
 	showPauseMenu = true;
 	showConfirmationMenu = false;
+	showOptionsMenu = false;
 }
 
 void GameScene::unpauseGame()
@@ -577,4 +598,5 @@ void GameScene::unpauseGame()
 	isPaused = false;
 	showPauseMenu = false;
 	showConfirmationMenu = false;
+	showOptionsMenu = false;
 }

@@ -1,29 +1,30 @@
 #pragma once
 #include <SFML/Graphics.hpp>
+#include "Menu.h"
+#include "Switch.h"
+#include "GreenButton.h"
+#include "RedButton.h"
 
 #ifndef OPTIONS_MENU_H
 #define OPTIONS_MENU_H
 
-class OptionsMenu
+class OptionsMenu : public Menu
 {
 public:
 	OptionsMenu();
 
-	bool initialize();
-	void handleInput(sf::RenderWindow* window, sf::Event* event);
-	void update(float deltaTime);
-	void draw(sf::RenderWindow* window);
+	bool initialize(sf::FloatRect windowBounds) override;
+	void handleInput(sf::RenderWindow* window, sf::Event* event) override;
+	void draw(sf::RenderWindow* window) override;
 
-private:
-	sf::Texture menuBackgroundTexture;
-	sf::Sprite menuBackgroundSprite;
+protected:
+	Switch fullscreenSwitch;
+	GreenButton saveButton;
+	RedButton resetButton;
 
-	sf::Font font;
-
-	sf::Text menuTitleText;
-
-	void setupSprite(sf::Sprite* sprite, sf::Vector2f position);
-	void setupText(sf::Text* text, sf::Vector2f position, std::string textString);
+	bool initializeBackground() override;
+	bool initializeText() override;
+	bool initializeButtons() override;
 };
 
 #endif // !PAUSE_MENU_H

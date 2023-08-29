@@ -10,6 +10,7 @@
 #include "Asteroid.h"
 #include "EnemyShip.h"
 #include "ConfirmationMenu.h"
+#include "OptionsMenu.h"
 
 #ifndef GAME_SCENE_H
 #define GAME_SCENE_H
@@ -38,6 +39,7 @@ private:
 	PlayerHUD playerHUD;
 
 	ConfirmationMenu confirmationMenu;
+	OptionsMenu optionsMenu;
 
 	std::vector<std::unique_ptr<EnemyShip>> enemyShips;
 	std::vector<std::unique_ptr<Asteroid>> asteroids;
@@ -46,6 +48,7 @@ private:
 
 	bool showPauseMenu = false;
 	bool showConfirmationMenu = false;
+	bool showOptionsMenu = true;
 
 	bool isPaused = false;
 	bool isGameOver = false;

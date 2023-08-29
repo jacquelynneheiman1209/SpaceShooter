@@ -153,6 +153,7 @@
     <ClCompile Include="MainMenuScene.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="PauseMenu.cpp" />
+    <ClCompile Include="Switch.cpp" />
     <ClCompile Include="YellowButton.cpp" />
     <ClCompile Include="RedButton.cpp" />
     <ClCompile Include="OptionsMenu.cpp" />
@@ -178,6 +179,7 @@
     <ClInclude Include="GameScene.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="PauseMenu.h" />
+    <ClInclude Include="Switch.h" />
     <ClInclude Include="YellowButton.h" />
     <ClInclude Include="RedButton.h" />
     <ClInclude Include="OptionsMenu.h" />

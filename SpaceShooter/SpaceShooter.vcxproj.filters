@@ -103,6 +103,9 @@
     <Filter Include="Source Files\Game Files\UI Elements\HUDs\Player HUD">
       <UniqueIdentifier>{2707bf0d-7927-4c3d-adfd-fac43c371e46}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Game Files\UI Elements\Switches">
+      <UniqueIdentifier>{adba5c2a-1547-416b-95d0-167866253902}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -177,6 +180,9 @@
     <ClCompile Include="Debug.cpp">
       <Filter>Source Files\Debug</Filter>
     </ClCompile>
+    <ClCompile Include="Switch.cpp">
+      <Filter>Source Files\Game Files\UI Elements\Switches</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Background.h">
@@ -250,6 +256,9 @@
     </ClInclude>
     <ClInclude Include="Debug.h">
       <Filter>Source Files\Debug</Filter>
+    </ClInclude>
+    <ClInclude Include="Switch.h">
+      <Filter>Source Files\Game Files\UI Elements\Switches</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
