@@ -53,7 +53,7 @@ void Button::draw(sf::RenderWindow* window)
 
 void Button::handleInput(sf::RenderWindow* window, sf::Event* event)
 {
-	if (isClicked(sf::Mouse::getPosition(*window)))
+	if (isMouseOver(sf::Mouse::getPosition(*window)))
 	{
 		buttonBackground.setFillColor(buttonHoverColor);
 	}
@@ -63,7 +63,7 @@ void Button::handleInput(sf::RenderWindow* window, sf::Event* event)
 	}
 }
 
-bool Button::isClicked(sf::Vector2i mousePosition)
+bool Button::isMouseOver(sf::Vector2i mousePosition)
 {
 	float buttonMinX = buttonBackground.getGlobalBounds().left;
 	float buttonMinY = buttonBackground.getGlobalBounds().top;

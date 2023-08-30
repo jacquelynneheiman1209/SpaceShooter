@@ -106,6 +106,15 @@
     <Filter Include="Source Files\Game Files\UI Elements\Switches">
       <UniqueIdentifier>{adba5c2a-1547-416b-95d0-167866253902}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Game Files\UI Elements\Sliders">
+      <UniqueIdentifier>{66dcd5b4-4831-4591-b985-473d5a1c703d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Game Files\UI Elements\Buttons\Plus Button">
+      <UniqueIdentifier>{a922f65a-a0bb-47ac-9edd-76bd95901d9a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Game Files\UI Elements\Buttons\Minus Button">
+      <UniqueIdentifier>{784935f8-535d-4c61-a01d-3c0d67f1c61e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -183,6 +192,15 @@
     <ClCompile Include="Switch.cpp">
       <Filter>Source Files\Game Files\UI Elements\Switches</Filter>
     </ClCompile>
+    <ClCompile Include="Slider.cpp">
+      <Filter>Source Files\Game Files\UI Elements\Sliders</Filter>
+    </ClCompile>
+    <ClCompile Include="PlusButton.cpp">
+      <Filter>Source Files\Game Files\UI Elements\Buttons\Plus Button</Filter>
+    </ClCompile>
+    <ClCompile Include="MinusButton.cpp">
+      <Filter>Source Files\Game Files\UI Elements\Buttons\Minus Button</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Background.h">
@@ -259,6 +277,15 @@
     </ClInclude>
     <ClInclude Include="Switch.h">
       <Filter>Source Files\Game Files\UI Elements\Switches</Filter>
+    </ClInclude>
+    <ClInclude Include="Slider.h">
+      <Filter>Source Files\Game Files\UI Elements\Sliders</Filter>
+    </ClInclude>
+    <ClInclude Include="PlusButton.h">
+      <Filter>Source Files\Game Files\UI Elements\Buttons\Plus Button</Filter>
+    </ClInclude>
+    <ClInclude Include="MinusButton.h">
+      <Filter>Source Files\Game Files\UI Elements\Buttons\Minus Button</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

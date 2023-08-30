@@ -18,7 +18,7 @@ public:
 
 	void handleInput(sf::RenderWindow* window, sf::Event* event);
 
-	bool isClicked(sf::Vector2i mousePosition);
+	bool isMouseOver(sf::Vector2i mousePosition);
 
 	virtual void setScale(float scaleX, float scaleY);
 	virtual void setScale(sf::Vector2f scale);

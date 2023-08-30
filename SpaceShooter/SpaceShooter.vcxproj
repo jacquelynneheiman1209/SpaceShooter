@@ -147,12 +147,15 @@
     <ClCompile Include="GreenButton.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Menu.cpp" />
+    <ClCompile Include="MinusButton.cpp" />
     <ClCompile Include="PlayerHUD.cpp" />
+    <ClCompile Include="PlusButton.cpp" />
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="MainMenuScene.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="PauseMenu.cpp" />
+    <ClCompile Include="Slider.cpp" />
     <ClCompile Include="Switch.cpp" />
     <ClCompile Include="YellowButton.cpp" />
     <ClCompile Include="RedButton.cpp" />
@@ -170,7 +173,9 @@
     <ClInclude Include="Background.h" />
     <ClInclude Include="GreenButton.h" />
     <ClInclude Include="Menu.h" />
+    <ClInclude Include="MinusButton.h" />
     <ClInclude Include="PlayerHUD.h" />
+    <ClInclude Include="PlusButton.h" />
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="MainMenuScene.h" />
@@ -179,6 +184,7 @@
     <ClInclude Include="GameScene.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="PauseMenu.h" />
+    <ClInclude Include="Slider.h" />
     <ClInclude Include="Switch.h" />
     <ClInclude Include="YellowButton.h" />
     <ClInclude Include="RedButton.h" />

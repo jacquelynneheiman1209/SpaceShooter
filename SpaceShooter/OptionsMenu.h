@@ -4,6 +4,7 @@
 #include "Switch.h"
 #include "GreenButton.h"
 #include "RedButton.h"
+#include "Slider.h"
 
 #ifndef OPTIONS_MENU_H
 #define OPTIONS_MENU_H
@@ -18,6 +19,8 @@ public:
 	void draw(sf::RenderWindow* window) override;
 
 protected:
+	Slider sfxVolumeSlider;
+	Slider musicVolumeSlider;
 	Switch fullscreenSwitch;
 	GreenButton saveButton;
 	RedButton resetButton;

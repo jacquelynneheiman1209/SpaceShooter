@@ -1,7 +1,7 @@
 #include "OptionsMenu.h"
 #include "Debug.h"
 
-OptionsMenu::OptionsMenu() : Menu(), fullscreenSwitch(sf::Vector2f(0, 0), "", backgroundSprite.getGlobalBounds()), saveButton(sf::Vector2f(0, 0), "Save"), resetButton(sf::Vector2f(0, 0), "Reset")
+OptionsMenu::OptionsMenu() : Menu(), fullscreenSwitch(sf::Vector2f(0, 0), "", backgroundSprite.getGlobalBounds()), saveButton(sf::Vector2f(0, 0), "Save"), resetButton(sf::Vector2f(0, 0), "Reset"), sfxVolumeSlider(gameBounds, sf::Vector2f(0, 0)), musicVolumeSlider(gameBounds, sf::Vector2f(0, 0))
 {
 }
 
@@ -54,7 +54,7 @@ bool OptionsMenu::initialize(sf::FloatRect windowBounds)
 
 	saveButton.setScale(.8f, .8f);
 
-	resetButton = RedButton(sf::Vector2f((backgroundSprite.getGlobalBounds().width / 2) + 75, 325), "Reset");
+	resetButton = RedButton(sf::Vector2f((backgroundSprite.getGlobalBounds().width / 2) + 75, 325), "Close");
 
 	if (!resetButton.initialize(backgroundSprite.getGlobalBounds()))
 	{
@@ -63,11 +63,31 @@ bool OptionsMenu::initialize(sf::FloatRect windowBounds)
 
 	resetButton.setScale(.8f, .8f);
 
+	sfxVolumeSlider = Slider(backgroundSprite.getGlobalBounds(), sf::Vector2f(50, 100));
+
+	if (!sfxVolumeSlider.initialize(backgroundSprite.getGlobalBounds()))
+	{
+		return false;
+	}
+
+	musicVolumeSlider = Slider(backgroundSprite.getGlobalBounds(), sf::Vector2f(50, 200));
+
+	if (!musicVolumeSlider.initialize(backgroundSprite.getGlobalBounds()))
+	{
+		return false;
+	}
+
+	sfxVolumeSlider.setPosition(backgroundSprite.getGlobalBounds().left + (backgroundSprite.getGlobalBounds().height /2), backgroundSprite.getGlobalBounds().top + 200);
+	musicVolumeSlider.setPosition(backgroundSprite.getGlobalBounds().left + (backgroundSprite.getGlobalBounds().height / 2), backgroundSprite.getGlobalBounds().top + 250);
+
 	return true;
 }
 
 void OptionsMenu::handleInput(sf::RenderWindow* window, sf::Event* event)
 {
+	sfxVolumeSlider.handleInput(window, event);
+	musicVolumeSlider.handleInput(window, event);
+
 	fullscreenSwitch.handleInput(window, event);
 	saveButton.handleInput(window, event);
 	resetButton.handleInput(window, event);
@@ -77,6 +97,9 @@ void OptionsMenu::draw(sf::RenderWindow* window)
 {
 	// draw background sprite & title text
 	Menu::draw(window);
+
+	sfxVolumeSlider.draw(window);
+	musicVolumeSlider.draw(window);
 
 	fullscreenSwitch.draw(window);
 	saveButton.draw(window);
