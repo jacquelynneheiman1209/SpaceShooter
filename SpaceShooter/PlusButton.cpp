@@ -7,8 +7,6 @@ PlusButton::PlusButton(sf::Vector2f position, std::string buttonText) : Button(p
 
 bool PlusButton::initialize(sf::FloatRect windowSize)
 {
-	Debug::Log("Initializing PlusButton");
-
 	if (!buttonTexture.loadFromFile("Assets/Graphics/UI/PlusButton_Regular.png"))
 	{
 		return false;
@@ -44,8 +42,6 @@ bool PlusButton::initialize(sf::FloatRect windowSize)
 
 void PlusButton::handleInput(sf::RenderWindow* window, sf::Event* event)
 {
-	Debug::Log("Plus Button Handle Input");
-
 	if (isMouseOver(sf::Mouse::getPosition(*window)))
 	{
 		buttonSprite.setTexture(buttonHoverTexture);
@@ -70,8 +66,6 @@ void PlusButton::draw(sf::RenderWindow* window)
 
 bool PlusButton::isMouseOver(sf::Vector2i mousePosition)
 {
-	Debug::Log("isMouseOver on the plus button");
-
 	float buttonMinX = buttonSprite.getGlobalBounds().left;
 	float buttonMinY = buttonSprite.getGlobalBounds().top;
 

@@ -1,10 +1,11 @@
 #include "Slider.h"
 #include "Debug.h"
 
-Slider::Slider(sf::FloatRect parentBounds, sf::Vector2f position) : plusButton(sf::Vector2f(0, 0), ""), minusButton(sf::Vector2f(0, 0), "")
+Slider::Slider(sf::FloatRect parentBounds, sf::Vector2f position, std::string labelText) : plusButton(sf::Vector2f(0, 0), ""), minusButton(sf::Vector2f(0, 0), "")
 {
 	this->parentBounds = parentBounds;
 	this->position = position;
+	this->labelText = labelText;
 }
 
 bool Slider::initialize(sf::FloatRect parentBounds)
@@ -47,6 +48,17 @@ bool Slider::initialize(sf::FloatRect parentBounds)
 		showFillSprites.push_back(true);
 	}
 
+	if (!font.loadFromFile("Assets/Fonts/nulshock.otf"))
+	{
+		return false;
+	}
+
+	label.setFont(font);
+	label.setCharacterSize(25);
+	label.setString(labelText);
+	label.setPosition(minusButton.getPosition().x - (minusButton.getSize().x / 2), minusButton.getPosition().y - (minusButton.getSize().y / 2) - (label.getLocalBounds().height / 2) - 25);
+	label.setFillColor(sf::Color(161, 166, 174));
+
 	return true;
 }
 
@@ -72,12 +84,16 @@ void Slider::handleInput(sf::RenderWindow* window, sf::Event* event)
 void Slider::draw(sf::RenderWindow* window)
 {
 	window->draw(backgroundSprite);
+	window->draw(label);
 
-	for (int i = 0; i < maxValue; i++)
+	if (value > 0)
 	{
-		if (showFillSprites[i])
+		for (int i = 0; i < maxValue; i++)
 		{
-			window->draw(*fillSprites[i].get());
+			if (showFillSprites[i])
+			{
+				window->draw(*fillSprites[i].get());
+			}
 		}
 	}
 
@@ -147,6 +163,7 @@ void Slider::setPosition(float x, float y)
 	sf::Vector2f currentPosition = getCenter(getGlobalBounds());
 
 	minusButton.setPosition(x + (minusButton.getPosition() - currentPosition).x, y + (minusButton.getPosition() - currentPosition).y);
+	label.setPosition(x + (label.getPosition() - currentPosition).x, y + (label.getPosition() - currentPosition).y);
 	backgroundSprite.setPosition(x + (backgroundSprite.getPosition() - currentPosition).x, y + (backgroundSprite.getPosition() - currentPosition).y);
 	plusButton.setPosition(x + (plusButton.getPosition() - currentPosition).x, y + (plusButton.getPosition() - currentPosition).y);
 
@@ -154,6 +171,11 @@ void Slider::setPosition(float x, float y)
 	{
 		fillSprites[i].get()->setPosition(x + (fillSprites[i].get()->getPosition() - currentPosition).x, y + (fillSprites[i].get()->getPosition() - currentPosition).y);
 	}
+}
+
+int Slider::getValue()
+{
+	return value;
 }
 
 void Slider::setupSprite(sf::Sprite* sprite, sf::Texture* texture, sf::Vector2f position, sf::Vector2f scale)

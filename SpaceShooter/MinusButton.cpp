@@ -7,8 +7,6 @@ MinusButton::MinusButton(sf::Vector2f position, std::string buttonText) : Button
 
 bool MinusButton::initialize(sf::FloatRect windowSize)
 {
-	Debug::Log("Initializing MinusButton");
-
 	if (!buttonTexture.loadFromFile("Assets/Graphics/UI/MinusButton_Regular.png"))
 	{
 		return false;
@@ -44,8 +42,6 @@ bool MinusButton::initialize(sf::FloatRect windowSize)
 
 void MinusButton::handleInput(sf::RenderWindow* window, sf::Event* event)
 {
-	Debug::Log("Minus Button Handle Input");
-
 	if (isMouseOver(sf::Mouse::getPosition(*window)))
 	{
 		buttonSprite.setTexture(buttonHoverTexture);
@@ -70,8 +66,6 @@ void MinusButton::draw(sf::RenderWindow* window)
 
 bool MinusButton::isMouseOver(sf::Vector2i mousePosition)
 {
-	Debug::Log("isMouseOver on the minus button");
-
 	float buttonMinX = buttonSprite.getGlobalBounds().left;
 	float buttonMinY = buttonSprite.getGlobalBounds().top;
 

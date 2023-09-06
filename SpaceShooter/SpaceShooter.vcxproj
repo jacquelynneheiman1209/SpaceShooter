@@ -133,6 +133,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Asteroid.cpp" />
+    <ClCompile Include="AudioManager.cpp" />
     <ClCompile Include="BlueButton.cpp" />
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="ConfirmationMenu.cpp" />
@@ -163,6 +164,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Asteroid.h" />
+    <ClInclude Include="AudioManager.h" />
     <ClInclude Include="BlueButton.h" />
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="ConfirmationMenu.h" />

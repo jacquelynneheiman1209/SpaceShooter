@@ -1,14 +1,12 @@
 #include "OptionsMenu.h"
 #include "Debug.h"
 
-OptionsMenu::OptionsMenu() : Menu(), fullscreenSwitch(sf::Vector2f(0, 0), "", backgroundSprite.getGlobalBounds()), saveButton(sf::Vector2f(0, 0), "Save"), resetButton(sf::Vector2f(0, 0), "Reset"), sfxVolumeSlider(gameBounds, sf::Vector2f(0, 0)), musicVolumeSlider(gameBounds, sf::Vector2f(0, 0))
+OptionsMenu::OptionsMenu() : Menu(), fullscreenSwitch(sf::Vector2f(0, 0), "", backgroundSprite.getGlobalBounds()), saveButton(sf::Vector2f(0, 0), "Save"), resetButton(sf::Vector2f(0, 0), "Reset"), sfxVolumeSlider(gameBounds, sf::Vector2f(0, 0), "SFX"), musicVolumeSlider(gameBounds, sf::Vector2f(0, 0), "Music")
 {
 }
 
 bool OptionsMenu::initialize(sf::FloatRect windowBounds)
 {
-	Debug::Log("Initializing Options Menu...");
-
 	// initializes the font and saves windowBounds
 	if (!Menu::initialize(windowBounds))
 	{
@@ -23,7 +21,9 @@ bool OptionsMenu::initialize(sf::FloatRect windowBounds)
 		return false;
 	}
 
-	fullscreenSwitch = Switch(sf::Vector2f(backgroundSprite.getGlobalBounds().left + 50, backgroundSprite.getGlobalBounds().top + 100), "Full Screen", backgroundSprite.getGlobalBounds());
+	sf::FloatRect backgroundBounds = backgroundSprite.getGlobalBounds();
+
+	fullscreenSwitch = Switch(sf::Vector2f(backgroundSprite.getGlobalBounds().left + 50, backgroundSprite.getGlobalBounds().top + 230), "Full Screen", backgroundSprite.getGlobalBounds());
 
 	if (!fullscreenSwitch.initialize(backgroundSprite.getGlobalBounds()))
 	{
@@ -63,22 +63,29 @@ bool OptionsMenu::initialize(sf::FloatRect windowBounds)
 
 	resetButton.setScale(.8f, .8f);
 
-	sfxVolumeSlider = Slider(backgroundSprite.getGlobalBounds(), sf::Vector2f(50, 100));
+	sf::Vector2f sliderPosition;
+	sliderPosition.x = backgroundBounds.left + (backgroundBounds.width / 2);
+	sliderPosition.y = backgroundBounds.top + 110;
+
+	sfxVolumeSlider = Slider(backgroundSprite.getGlobalBounds(), sliderPosition, "SFX");
 
 	if (!sfxVolumeSlider.initialize(backgroundSprite.getGlobalBounds()))
 	{
 		return false;
 	}
 
-	musicVolumeSlider = Slider(backgroundSprite.getGlobalBounds(), sf::Vector2f(50, 200));
+	sfxVolumeSlider.setPosition(sliderPosition.x, sliderPosition.y);
+
+	sliderPosition.y = backgroundBounds.top + 180;
+
+	musicVolumeSlider = Slider(backgroundSprite.getGlobalBounds(), sliderPosition, "Music");
 
 	if (!musicVolumeSlider.initialize(backgroundSprite.getGlobalBounds()))
 	{
 		return false;
 	}
 
-	sfxVolumeSlider.setPosition(backgroundSprite.getGlobalBounds().left + (backgroundSprite.getGlobalBounds().height /2), backgroundSprite.getGlobalBounds().top + 200);
-	musicVolumeSlider.setPosition(backgroundSprite.getGlobalBounds().left + (backgroundSprite.getGlobalBounds().height / 2), backgroundSprite.getGlobalBounds().top + 250);
+	musicVolumeSlider.setPosition(sliderPosition.x, sliderPosition.y);
 
 	return true;
 }

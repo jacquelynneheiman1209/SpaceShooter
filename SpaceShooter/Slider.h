@@ -9,7 +9,7 @@
 class Slider
 {
 public:
-	Slider(sf::FloatRect parentBounds, sf::Vector2f position);
+	Slider(sf::FloatRect parentBounds, sf::Vector2f position, std::string labelText);
 
 	bool initialize(sf::FloatRect parentBounds);
 	void handleInput(sf::RenderWindow* window, sf::Event* event);
@@ -19,6 +19,7 @@ public:
 	sf::FloatRect getGlobalBounds();
 
 	void setPosition(float x, float y);
+	int getValue();
 
 private:
 	PlusButton plusButton;
@@ -36,7 +37,7 @@ private:
 	sf::Font font;
 	sf::Text label;
 
-	// TODO: Add a label to the slider
+	std::string labelText;
 
 	void setupSprite(sf::Sprite* sprite, sf::Texture* texture, sf::Vector2f position, sf::Vector2f scale = sf::Vector2f(0, 0));
 	
@@ -47,7 +48,7 @@ private:
 
 	float buttonSpacing = 10;
 
-	int minValue = 1;
+	int minValue = 0;
 	int maxValue = 10;
 
 	int value = 10;

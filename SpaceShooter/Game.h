@@ -2,6 +2,7 @@
 #include <SFML/Graphics.hpp>
 #include "Background.h"
 #include "SceneManager.h"
+#include "AudioManager.h"
 
 #ifndef GAME_H
 #define GAME_H
@@ -25,6 +26,7 @@ private:
 
 	Background background;
 	SceneManager sceneManager;
+	AudioManager audioManager;
 
 	void update(float deltaTime);
 	void draw(sf::RenderWindow* window);

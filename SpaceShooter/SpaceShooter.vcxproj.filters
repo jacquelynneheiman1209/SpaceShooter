@@ -115,6 +115,9 @@
     <Filter Include="Source Files\Game Files\UI Elements\Buttons\Minus Button">
       <UniqueIdentifier>{784935f8-535d-4c61-a01d-3c0d67f1c61e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Game Files\Audio Manager">
+      <UniqueIdentifier>{e7ef7ae5-9218-4442-a602-bd324aeb7e34}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -201,6 +204,9 @@
     <ClCompile Include="MinusButton.cpp">
       <Filter>Source Files\Game Files\UI Elements\Buttons\Minus Button</Filter>
     </ClCompile>
+    <ClCompile Include="AudioManager.cpp">
+      <Filter>Source Files\Game Files\Audio Manager</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Background.h">
@@ -286,6 +292,9 @@
     </ClInclude>
     <ClInclude Include="MinusButton.h">
       <Filter>Source Files\Game Files\UI Elements\Buttons\Minus Button</Filter>
+    </ClInclude>
+    <ClInclude Include="AudioManager.h">
+      <Filter>Source Files\Game Files\Audio Manager</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

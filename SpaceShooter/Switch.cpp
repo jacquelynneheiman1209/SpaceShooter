@@ -40,10 +40,9 @@ bool Switch::initialize(sf::FloatRect parentBounds)
 	text.setFont(font);
 	text.setString(textString);
 	text.setCharacterSize(22);
+	text.setFillColor(sf::Color(161, 166, 174));
 	text.setOrigin(text.getLocalBounds().left + (text.getLocalBounds().width / 2), text.getLocalBounds().top + (text.getLocalBounds().height / 2));
 	text.setPosition(switchSprite.getPosition().x + (switchSprite.getGlobalBounds().width / 2) + (text.getLocalBounds().width / 2) + textSpacing, switchSprite.getPosition().y);
-
-	setPosition(parentBounds.left + (parentBounds.width / 2), parentBounds.top + 100);
 
 	return true;
 }
