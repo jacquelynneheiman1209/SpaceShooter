@@ -21,22 +21,6 @@ bool MinusButton::initialize(sf::FloatRect windowSize)
 	buttonSprite.setOrigin(getCenter(buttonSprite.getLocalBounds()));
 	buttonSprite.setPosition(windowSize.left + buttonPosition.x, windowSize.top + buttonPosition.y);
 
-	// setup hover sound for button
-	if (!hoverSoundBuffer.loadFromFile("Assets/Audio/ButtonClick_2.mp3"))
-	{
-		return false;
-	}
-
-	hoverSound.setBuffer(hoverSoundBuffer);
-
-	// setup click sound for button
-	if (!clickedSoundBuffer.loadFromFile("Assets/Audio/ButtonClick_1.mp3"))
-	{
-		return false;
-	}
-
-	clickedSound.setBuffer(clickedSoundBuffer);
-
 	return true;
 }
 
@@ -48,7 +32,7 @@ void MinusButton::handleInput(sf::RenderWindow* window, sf::Event* event)
 
 		if (!isMouseOverButton)
 		{
-			hoverSound.play();
+			AudioManager::Play(AudioManager::SoundType::ButtonHover);
 			isMouseOverButton = true;
 		}
 	}
@@ -80,7 +64,7 @@ bool MinusButton::isMouseOver(sf::Vector2i mousePosition)
 
 void MinusButton::click()
 {
-	clickedSound.play();
+	AudioManager::Play(AudioManager::SoundType::ButtonClicked);
 }
 
 sf::Vector2f MinusButton::getSize()

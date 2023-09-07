@@ -92,6 +92,16 @@ bool OptionsMenu::initialize(sf::FloatRect windowBounds)
 
 void OptionsMenu::handleInput(sf::RenderWindow* window, sf::Event* event)
 {
+	if (AudioManager::getSFXVolume() != sfxVolumeSlider.getValue())
+	{
+		AudioManager::setSFXVolume(sfxVolumeSlider.getValue() * 10);
+	}
+
+	if (AudioManager::getMusicVolume() != musicVolumeSlider.getValue())
+	{
+		AudioManager::setMusicVolume(musicVolumeSlider.getValue() * 10);
+	}
+
 	sfxVolumeSlider.handleInput(window, event);
 	musicVolumeSlider.handleInput(window, event);
 

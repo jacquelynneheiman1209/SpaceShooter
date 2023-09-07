@@ -3,6 +3,7 @@
 #include <SFML/Audio.hpp>
 #include <vector>
 #include "Bullet.h"
+#include "AudioManager.h"
 
 #ifndef PLAYER_H
 #define PLAYER_H
@@ -34,12 +35,6 @@ private:
 	sf::Vector2f playerScale = sf::Vector2f(0.5f, 0.5f);
 
 	sf::FloatRect levelBounds;
-
-	sf::SoundBuffer shootSoundBuffer;
-	sf::Sound shootSound;
-
-	sf::SoundBuffer deathSoundBuffer;
-	sf::Sound deathSound;
 
 	int lives = 3;
 	int totalNumberOfBullets = 20;

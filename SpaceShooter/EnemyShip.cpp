@@ -39,7 +39,7 @@ void EnemyShip::move(float deltaTime, sf::Vector2f targetPosition)
 	float dx = sprite.getPosition().x - targetPosition.x;
 	float dy = sprite.getPosition().y - targetPosition.y;
 
-	float rotation = ((atan2(dy, dx)) * 180 / 3.14159265) + 90;
+	float rotation = static_cast<float>(((atan2(dy, dx)) * 180 / 3.14159265) + 90);
 
 	sf::Vector2f currentPosition = sprite.getPosition();
 	currentPosition.x += static_cast<float>(cos((rotation + 90) * (3.14159265 / 180)) * moveSpeed * deltaTime);

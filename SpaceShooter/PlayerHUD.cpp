@@ -94,7 +94,7 @@ std::string PlayerHUD::getScoreString(int score)
 	std::string scoreAsString = std::to_string(score);
 	size_t scoreLength = 6;
 
-	int numZerosToAdd = scoreLength - std::min(scoreLength, scoreAsString.size());
+	int numZerosToAdd = static_cast<int>(scoreLength - std::min(scoreLength, scoreAsString.size()));
 	
 	return std::string(numZerosToAdd, '0').append(scoreAsString);
 }

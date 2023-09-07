@@ -30,7 +30,7 @@ void Asteroid::spawn(sf::Vector2f targetPosition, sf::FloatRect gameBounds)
 	moveDirection /= magnitude;
 }
 
-void Asteroid::increaseSpeed(float amount)
+void Asteroid::increaseSpeed(int amount)
 {
 	moveSpeed += amount;
 }

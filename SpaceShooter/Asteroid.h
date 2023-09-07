@@ -12,7 +12,7 @@ public:
 	Asteroid();
 
 	void spawn(sf::Vector2f targetPosition, sf::FloatRect gameBounds) override;
-	void increaseSpeed(float amount);
+	void increaseSpeed(int amount);
 
 protected:
 	sf::Vector2f moveDirection;

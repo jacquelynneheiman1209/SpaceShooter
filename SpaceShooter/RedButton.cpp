@@ -30,22 +30,6 @@ bool RedButton::initialize(sf::FloatRect windowBounds)
 		return false;
 	}
 
-	// setup hover sound for button
-	if (!hoverSoundBuffer.loadFromFile("Assets/Audio/ButtonClick_2.mp3"))
-	{
-		return false;
-	}
-
-	hoverSound.setBuffer(hoverSoundBuffer);
-
-	// setup click sound for button
-	if (!clickedSoundBuffer.loadFromFile("Assets/Audio/ButtonClick_1.mp3"))
-	{
-		return false;
-	}
-
-	clickedSound.setBuffer(clickedSoundBuffer);
-
 	// setup button text
 	if (!font.loadFromFile("Assets/Fonts/nulshock.otf"))
 	{
@@ -70,7 +54,7 @@ void RedButton::handleInput(sf::RenderWindow* window, sf::Event* event)
 
 		if (!isMouseOverButton)
 		{
-			hoverSound.play();
+			AudioManager::Play(AudioManager::SoundType::ButtonHover);
 			isMouseOverButton = true;
 		}
 	}
@@ -113,7 +97,7 @@ void RedButton::setScale(sf::Vector2f scale)
 
 void RedButton::click()
 {
-	clickedSound.play();
+	AudioManager::Play(AudioManager::SoundType::ButtonClicked);
 }
 
 sf::Vector2f RedButton::getScale()

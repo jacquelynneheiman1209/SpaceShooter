@@ -29,19 +29,11 @@ bool Enemy::initialize()
 		sprite.setScale(scale);
 		sprite.setOrigin(getSpriteOrigin());
 		sprite.setPosition(inactivePosition);
-		sprite.setRotation(rand() % 360);
+		sprite.setRotation(static_cast<float>(rand() % 360));
 	}
 
 	// randomly select a move speed
 	moveSpeed = (rand() % maxMoveSpeed) + minMoveSpeed;
-
-	// setup audio
-	if (!destroySoundBuffer.loadFromFile("Assets/Audio/sfx_twoTone.ogg"))
-	{
-		return false;
-	}
-
-	destroySound.setBuffer(destroySoundBuffer);
 
 	return true;
 }
@@ -89,24 +81,24 @@ void Enemy::spawn(sf::Vector2f playerPosition, sf::FloatRect gameBounds)
 	if (randomScreenEdge == ScreenEdge::LEFT)
 	{
 		spawnPosition.x = gameBounds.left - 200;
-		spawnPosition.y = (rand() % static_cast<int>((gameBounds.top + gameBounds.height) - 200)) + 100;
+		spawnPosition.y = static_cast<float>((rand() % static_cast<int>((gameBounds.top + gameBounds.height) - 200)) + 100);
 	}
 
 	if (randomScreenEdge == ScreenEdge::RIGHT)
 	{
 		spawnPosition.x = (gameBounds.left + gameBounds.width) + 200;
-		spawnPosition.y = (rand() % static_cast<int>((gameBounds.top + gameBounds.height) - 200)) + 100;
+		spawnPosition.y = static_cast<float>((rand() % static_cast<int>((gameBounds.top + gameBounds.height) - 200)) + 100);
 	}
 
 	if (randomScreenEdge == ScreenEdge::TOP)
 	{
-		spawnPosition.x = (rand() % static_cast<int>((gameBounds.left + gameBounds.width))) + 100;
+		spawnPosition.x = static_cast<float>((rand() % static_cast<int>((gameBounds.left + gameBounds.width))) + 100);
 		spawnPosition.y = gameBounds.top - 200;
 	}
 
 	if (randomScreenEdge == ScreenEdge::BOTTOM)
 	{
-		spawnPosition.x = (rand() % static_cast<int>((gameBounds.left + gameBounds.width))) + 100;
+		spawnPosition.x = static_cast<float>((rand() % static_cast<int>((gameBounds.left + gameBounds.width))) + 100);
 		spawnPosition.y = (gameBounds.top + gameBounds.height) + 200;
 	}
 
@@ -115,7 +107,7 @@ void Enemy::spawn(sf::Vector2f playerPosition, sf::FloatRect gameBounds)
 
 void Enemy::destroy()
 {
-	destroySound.play();
+	AudioManager::Play(AudioManager::SoundType::Destroy);
 	isActive = false;
 	sprite.setPosition(inactivePosition);
 }

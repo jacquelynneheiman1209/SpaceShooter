@@ -34,20 +34,6 @@ bool Player::initialize()
 		}
 	}
 
-	if (!shootSoundBuffer.loadFromFile("Assets/Audio/sfx_laser1.ogg"))
-	{
-		return false;
-	}
-
-	shootSound.setBuffer(shootSoundBuffer);
-
-	if (!deathSoundBuffer.loadFromFile("Assets/Audio/sfx_lose.ogg"))
-	{
-		return false;
-	}
-
-	deathSound.setBuffer(deathSoundBuffer);
-
 	return true;
 }
 
@@ -216,7 +202,7 @@ void Player::shoot()
 
 			if (nextBullet >= 0)
 			{
-				shootSound.play();
+				AudioManager::Play(AudioManager::SoundType::Shoot);
 				bullets[nextBullet].get()->spawn(playerSprite.getPosition(), playerSprite.getRotation());
 				canShoot = false;
 			}
@@ -229,7 +215,7 @@ void Player::shoot()
 void Player::loseLife()
 {
 	lives--;
-	deathSound.play();
+	AudioManager::Play(AudioManager::SoundType::PlayerDeath);
 
 	if (lives <= 0)
 	{

@@ -1,6 +1,7 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
+#include "AudioManager.h"
 
 #ifndef BUTTON_H
 #define BUTTON_H
@@ -28,12 +29,6 @@ protected:
 	sf::Sprite buttonSprite;		// for children that want to use sprites
 
 	sf::RectangleShape buttonBackground;	// default button background
-
-	sf::SoundBuffer hoverSoundBuffer;
-	sf::SoundBuffer clickedSoundBuffer;
-
-	sf::Sound hoverSound;
-	sf::Sound clickedSound;
 
 	sf::Font font;
 	sf::Text text;

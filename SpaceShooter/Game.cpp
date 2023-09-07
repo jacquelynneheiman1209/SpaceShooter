@@ -19,6 +19,11 @@ bool Game::initialize()
 		return false;
 	}
 
+	if (!audioManager.initialize())
+	{
+		return false;
+	}
+
 	return true;
 }
 
@@ -29,8 +34,8 @@ void Game::run()
 
 	sf::RenderWindow window(sf::VideoMode(windowWidth, windowHeight), "Space Shooter");
 
-	gameView.setCenter(windowWidth / 2, windowHeight / 2);
-	gameView.setSize(windowWidth, windowHeight);
+	gameView.setCenter(static_cast<float>(windowWidth / 2), static_cast<float>(windowHeight / 2));
+	gameView.setSize(static_cast<float>(windowWidth), static_cast<float>(windowHeight));
 
 	window.setView(gameView);
 
@@ -49,7 +54,7 @@ void Game::run()
 
 			if (event.type == sf::Event::Resized)
 			{
-				sf::FloatRect visibleArea = sf::FloatRect(0, 0, event.size.width, event.size.height);
+				sf::FloatRect visibleArea = sf::FloatRect(0, 0, static_cast<float>(event.size.width), static_cast<float>(event.size.height));
 				gameView = sf::View(visibleArea);
 				window.setView(gameView);
 

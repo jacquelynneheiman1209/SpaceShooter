@@ -1,6 +1,7 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
+#include "AudioManager.h"
 
 #ifndef ENEMY_H
 
@@ -33,9 +34,6 @@ protected:
 	sf::Sprite sprite;
 
 	sf::Vector2f scale;
-
-	sf::SoundBuffer destroySoundBuffer;
-	sf::Sound destroySound;
 
 	sf::FloatRect gameBounds;
 
