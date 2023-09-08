@@ -1,11 +1,12 @@
 #include "Slider.h"
 #include "Debug.h"
 
-Slider::Slider(sf::FloatRect parentBounds, sf::Vector2f position, std::string labelText) : plusButton(sf::Vector2f(0, 0), ""), minusButton(sf::Vector2f(0, 0), "")
+Slider::Slider(sf::FloatRect parentBounds, sf::Vector2f position, std::string labelText, int value) : plusButton(sf::Vector2f(0, 0), ""), minusButton(sf::Vector2f(0, 0), "")
 {
 	this->parentBounds = parentBounds;
 	this->position = position;
 	this->labelText = labelText;
+	this->value = value;
 }
 
 bool Slider::initialize(sf::FloatRect parentBounds)
@@ -68,11 +69,13 @@ void Slider::handleInput(sf::RenderWindow* window, sf::Event* event)
 	{
 		if (minusButton.isMouseOver(sf::Mouse::getPosition(*window)))
 		{
+			minusButton.click();
 			decreaseValue();
 		}
 
 		if (plusButton.isMouseOver(sf::Mouse::getPosition(*window)))
 		{
+			plusButton.click();
 			increaseValue();
 		}
 	}
@@ -213,6 +216,25 @@ void Slider::decreaseValue()
 	}
 
 	showFillSprites[value] = false;
+}
+
+void Slider::setValue(int value)
+{
+	this->value = value;
+
+	Debug::Log("Slider Value: " + std::to_string(this->value));
+
+	for (int i = 0; i < showFillSprites.size(); i++)
+	{
+		if (i < value)
+		{
+			showFillSprites[i] = true;
+		}
+		else
+		{
+			showFillSprites[i] = false;
+		}
+	}
 }
 
 sf::Vector2f Slider::getCenter(sf::FloatRect bounds)

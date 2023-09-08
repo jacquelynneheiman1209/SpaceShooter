@@ -1,4 +1,5 @@
 #include "SaveManager.h"
+#include "Debug.h"
 #include <assert.h>
 #include <iostream>
 #include <fstream>
@@ -33,5 +34,25 @@ void SaveManager::Save()
 
 void SaveManager::Load()
 {
+	std::ifstream saveFile("save.txt");
+	std::vector<std::string> values;
 
+	while (!saveFile.eof())
+	{
+		std::string line;
+		saveFile >> line;
+		values.push_back(line);
+	}
+
+	if (values.size() > 3)
+	{
+		AudioManager::setSFXVolume(std::stoi(values[0]));
+		AudioManager::setMusicVolume(std::stoi(values[1]));
+		ScoreManager::setScore(std::stoi(values[2]));
+		ScoreManager::setHiScore(std::stoi(values[3]));
+	}
+	else
+	{
+		Debug::Log("Could not load values...");
+	}
 }

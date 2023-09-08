@@ -5,6 +5,7 @@
 #include "RedButton.h"
 #include "SceneLoader.h"
 #include "BlueButton.h"
+#include "SaveManager.h"
 
 
 #ifndef MAIN_MENU_SCENE_H

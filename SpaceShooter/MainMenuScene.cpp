@@ -73,6 +73,7 @@ void MainMenuScene::handleInput(sf::RenderWindow* window, sf::Event* event)
 		if (quitGameButton.isClicked(sf::Mouse::getPosition(*window)))
 		{
 			quitGameButton.click();
+			SaveManager::Save();
 			window->close();
 		}
 	}

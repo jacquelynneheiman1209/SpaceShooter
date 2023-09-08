@@ -1,6 +1,8 @@
 #pragma once
 #include "AudioManager.h"
 #include "ScoreManager.h"
+#include <string>
+#include <vector>
 
 #ifndef SAVE_MANAGER_H
 #define SAVE_MANAGER_H

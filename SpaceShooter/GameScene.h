@@ -57,9 +57,6 @@ private:
 	int asteroidPoints = 50;
 	int enemyPoints = 200;
 
-	int score = 0;
-	int highScore = 0;
-
 	int numAsteroidsSpawned = 0;
 	int numAsteroidsAllowedInScene = 3;
 	int numAsteroidsInPool = 10;

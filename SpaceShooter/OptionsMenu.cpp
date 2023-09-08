@@ -1,7 +1,7 @@
 #include "OptionsMenu.h"
 #include "Debug.h"
 
-OptionsMenu::OptionsMenu() : Menu(), fullscreenSwitch(sf::Vector2f(0, 0), "", backgroundSprite.getGlobalBounds()), saveButton(sf::Vector2f(0, 0), "Save"), closeButton(sf::Vector2f(0, 0), "Reset"), sfxVolumeSlider(gameBounds, sf::Vector2f(0, 0), "SFX"), musicVolumeSlider(gameBounds, sf::Vector2f(0, 0), "Music")
+OptionsMenu::OptionsMenu() : Menu(), fullscreenSwitch(sf::Vector2f(0, 0), "", backgroundSprite.getGlobalBounds()), saveButton(sf::Vector2f(0, 0), "Save"), closeButton(sf::Vector2f(0, 0), "Reset"), sfxVolumeSlider(gameBounds, sf::Vector2f(0, 0), "SFX", 0), musicVolumeSlider(gameBounds, sf::Vector2f(0, 0), "Music", 0)
 {
 }
 
@@ -67,7 +67,7 @@ bool OptionsMenu::initialize(sf::FloatRect windowBounds)
 	sliderPosition.x = backgroundBounds.left + (backgroundBounds.width / 2);
 	sliderPosition.y = backgroundBounds.top + 110;
 
-	sfxVolumeSlider = Slider(backgroundSprite.getGlobalBounds(), sliderPosition, "SFX");
+	sfxVolumeSlider = Slider(backgroundSprite.getGlobalBounds(), sliderPosition, "SFX", AudioManager::getSFXVolume());
 
 	if (!sfxVolumeSlider.initialize(backgroundSprite.getGlobalBounds()))
 	{
@@ -76,9 +76,13 @@ bool OptionsMenu::initialize(sf::FloatRect windowBounds)
 
 	sfxVolumeSlider.setPosition(sliderPosition.x, sliderPosition.y);
 
+	Debug::Log("SFX Volume: " + std::to_string(AudioManager::getSFXVolume()));
+
+	sfxVolumeSlider.setValue(AudioManager::getSFXVolume() / 10);
+
 	sliderPosition.y = backgroundBounds.top + 180;
 
-	musicVolumeSlider = Slider(backgroundSprite.getGlobalBounds(), sliderPosition, "Music");
+	musicVolumeSlider = Slider(backgroundSprite.getGlobalBounds(), sliderPosition, "Music", AudioManager::getMusicVolume());
 
 	if (!musicVolumeSlider.initialize(backgroundSprite.getGlobalBounds()))
 	{
@@ -86,6 +90,7 @@ bool OptionsMenu::initialize(sf::FloatRect windowBounds)
 	}
 
 	musicVolumeSlider.setPosition(sliderPosition.x, sliderPosition.y);
+	musicVolumeSlider.setValue(AudioManager::getMusicVolume() / 10);
 
 	return true;
 }

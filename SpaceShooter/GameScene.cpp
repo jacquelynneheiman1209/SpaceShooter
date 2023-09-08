@@ -31,8 +31,7 @@ bool GameScene::initialize(sf::FloatRect windowBounds)
 	numEnemiesAllowedInScene = 1;
 	numEnemiesShipsSpawned = 0;
 
-	// reset score
-	score = 0;
+	ScoreManager::setScore(0);
 
 	// reset difficulty modifiers
 	difficultyScoreThreshold = 500;
@@ -240,7 +239,7 @@ void GameScene::update(float deltaTime)
 		if (!isPaused)
 		{
 			player.update(deltaTime);
-			playerHUD.update(deltaTime, player.getLives(), score);
+			playerHUD.update(deltaTime, player.getLives(), ScoreManager::getScore());
 
 			for (int i = 0; i < enemyShips.size(); i++)
 			{
@@ -556,20 +555,19 @@ void GameScene::increaseDifficulty()
 
 void GameScene::addScore(int amountToAdd)
 {
-	int newScore = score + amountToAdd;
+	int newScore = ScoreManager::getScore() + amountToAdd;
 
-	if (score < difficultyScoreThreshold && newScore >= difficultyScoreThreshold)
+	if (ScoreManager::getScore() < difficultyScoreThreshold && newScore >= difficultyScoreThreshold)
 	{
 		increaseDifficulty();
 	}
 
-	score = newScore;
+	ScoreManager::setScore(newScore);
 
-	if (score > highScore)
+	if (newScore > ScoreManager::getHiScore())
 	{
-		highScore = score;
+		ScoreManager::setHiScore(newScore);
 	}
-
 }
 
 void GameScene::spawnAsteroid()
@@ -580,7 +578,6 @@ void GameScene::spawnAsteroid()
 	{
 		asteroids[nextAsteroid].get()->spawn(player.getPosition(), gameBounds);
 		numAsteroidsSpawned++;
-
 	}
 
 	canSpawnAsteroid = false;

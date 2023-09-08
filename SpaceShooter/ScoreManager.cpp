@@ -26,7 +26,6 @@ void ScoreManager::setScore(int score)
 void ScoreManager::setHiScore(int hiScore)
 {
 	instance->hiScore = hiScore;
-	std::cout << "High Score: " << instance->hiScore << std::endl;
 }
 
 int ScoreManager::getScore()
@@ -38,4 +37,5 @@ int ScoreManager::getHiScore()
 {
 	return instance->hiScore;
 }
+
 

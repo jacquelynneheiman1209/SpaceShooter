@@ -9,7 +9,7 @@
 class Slider
 {
 public:
-	Slider(sf::FloatRect parentBounds, sf::Vector2f position, std::string labelText);
+	Slider(sf::FloatRect parentBounds, sf::Vector2f position, std::string labelText, int value);
 
 	bool initialize(sf::FloatRect parentBounds);
 	void handleInput(sf::RenderWindow* window, sf::Event* event);
@@ -20,6 +20,7 @@ public:
 
 	void setPosition(float x, float y);
 	int getValue();
+	void setValue(int value);
 
 private:
 	PlusButton plusButton;

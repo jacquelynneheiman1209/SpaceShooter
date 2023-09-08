@@ -1,5 +1,6 @@
-SFX Volume: 90
-Music Volume: 20
-Score: 0
-High Score: 0
+40
+100
+0
+0
+
 
