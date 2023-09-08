@@ -147,6 +147,7 @@ void GameScene::handleInput(sf::RenderWindow* window, sf::Event* event)
 						showPauseMenu = false;
 						showConfirmationMenu = true;
 						confirmationReason = "Main Menu";
+						SaveManager::Save();
 					}
 				}
 

@@ -23,7 +23,6 @@ void SaveManager::Save()
 	std::string saveData = "";
 	saveData += std::to_string(sfxVolume) + "\n";
 	saveData += std::to_string(musicVolume) + "\n";
-	saveData += std::to_string(score) + "\n";
 	saveData += std::to_string(hiScore) + "\n";
 
 	std::fstream saveFile;
@@ -48,8 +47,7 @@ void SaveManager::Load()
 	{
 		AudioManager::setSFXVolume(std::stoi(values[0]));
 		AudioManager::setMusicVolume(std::stoi(values[1]));
-		ScoreManager::setScore(std::stoi(values[2]));
-		ScoreManager::setHiScore(std::stoi(values[3]));
+		ScoreManager::setHiScore(std::stoi(values[2]));
 	}
 	else
 	{
