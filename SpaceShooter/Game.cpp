@@ -24,6 +24,8 @@ bool Game::initialize()
 		return false;
 	}
 
+	SaveManager::Load();
+
 	return true;
 }
 

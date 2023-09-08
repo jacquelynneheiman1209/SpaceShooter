@@ -174,6 +174,7 @@ void GameScene::handleInput(sf::RenderWindow* window, sf::Event* event)
 
 					if (confirmationMenu.noButton.isClicked(sf::Mouse::getPosition(*window)))
 					{
+						confirmationMenu.noButton.click();
 						showPauseMenu = true;
 						showConfirmationMenu = false;
 					}
@@ -184,6 +185,24 @@ void GameScene::handleInput(sf::RenderWindow* window, sf::Event* event)
 
 			if (showOptionsMenu)
 			{
+				if (event->type == sf::Event::MouseButtonPressed)
+				{
+					if (optionsMenu.closeButton.isClicked(sf::Mouse::getPosition(*window)))
+					{
+						optionsMenu.closeButton.click();
+						showPauseMenu = true;
+						showOptionsMenu = false;
+					}
+
+					if (optionsMenu.saveButton.isClicked(sf::Mouse::getPosition(*window)))
+					{
+						SaveManager::Save();
+						optionsMenu.saveButton.click();
+						showPauseMenu = true;
+						showOptionsMenu = false;
+					}
+				}
+
 				optionsMenu.handleInput(window, event);
 			}
 		}

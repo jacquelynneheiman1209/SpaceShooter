@@ -1,7 +1,7 @@
 #include "OptionsMenu.h"
 #include "Debug.h"
 
-OptionsMenu::OptionsMenu() : Menu(), fullscreenSwitch(sf::Vector2f(0, 0), "", backgroundSprite.getGlobalBounds()), saveButton(sf::Vector2f(0, 0), "Save"), resetButton(sf::Vector2f(0, 0), "Reset"), sfxVolumeSlider(gameBounds, sf::Vector2f(0, 0), "SFX"), musicVolumeSlider(gameBounds, sf::Vector2f(0, 0), "Music")
+OptionsMenu::OptionsMenu() : Menu(), fullscreenSwitch(sf::Vector2f(0, 0), "", backgroundSprite.getGlobalBounds()), saveButton(sf::Vector2f(0, 0), "Save"), closeButton(sf::Vector2f(0, 0), "Reset"), sfxVolumeSlider(gameBounds, sf::Vector2f(0, 0), "SFX"), musicVolumeSlider(gameBounds, sf::Vector2f(0, 0), "Music")
 {
 }
 
@@ -54,14 +54,14 @@ bool OptionsMenu::initialize(sf::FloatRect windowBounds)
 
 	saveButton.setScale(.8f, .8f);
 
-	resetButton = RedButton(sf::Vector2f((backgroundSprite.getGlobalBounds().width / 2) + 75, 325), "Close");
+	closeButton = RedButton(sf::Vector2f((backgroundSprite.getGlobalBounds().width / 2) + 75, 325), "Close");
 
-	if (!resetButton.initialize(backgroundSprite.getGlobalBounds()))
+	if (!closeButton.initialize(backgroundSprite.getGlobalBounds()))
 	{
 		return false;
 	}
 
-	resetButton.setScale(.8f, .8f);
+	closeButton.setScale(.8f, .8f);
 
 	sf::Vector2f sliderPosition;
 	sliderPosition.x = backgroundBounds.left + (backgroundBounds.width / 2);
@@ -107,7 +107,7 @@ void OptionsMenu::handleInput(sf::RenderWindow* window, sf::Event* event)
 
 	fullscreenSwitch.handleInput(window, event);
 	saveButton.handleInput(window, event);
-	resetButton.handleInput(window, event);
+	closeButton.handleInput(window, event);
 }
 
 void OptionsMenu::draw(sf::RenderWindow* window)
@@ -120,7 +120,7 @@ void OptionsMenu::draw(sf::RenderWindow* window)
 
 	fullscreenSwitch.draw(window);
 	saveButton.draw(window);
-	resetButton.draw(window);
+	closeButton.draw(window);
 }
 
 bool OptionsMenu::initializeBackground()

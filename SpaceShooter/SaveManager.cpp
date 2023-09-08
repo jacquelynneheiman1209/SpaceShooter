@@ -1,5 +1,7 @@
 #include "SaveManager.h"
 #include <assert.h>
+#include <iostream>
+#include <fstream>
 
 SaveManager* SaveManager::instance = nullptr;
 
@@ -9,12 +11,27 @@ SaveManager::SaveManager()
 	instance = this;
 }
 
-void SaveManager::SaveAll()
+void SaveManager::Save()
 {
+	int sfxVolume = AudioManager::getSFXVolume();
+	int musicVolume = AudioManager::getMusicVolume();
 
+	int score = ScoreManager::getScore();
+	int hiScore = ScoreManager::getHiScore();
+
+	std::string saveData = "";
+	saveData += std::to_string(sfxVolume) + "\n";
+	saveData += std::to_string(musicVolume) + "\n";
+	saveData += std::to_string(score) + "\n";
+	saveData += std::to_string(hiScore) + "\n";
+
+	std::fstream saveFile;
+	saveFile.open("save.txt", std::fstream::in | std::fstream::out);
+	saveFile << saveData << "\n";
+	saveFile.close();
 }
 
-void SaveManager::SaveOptions()
+void SaveManager::Load()
 {
 
 }

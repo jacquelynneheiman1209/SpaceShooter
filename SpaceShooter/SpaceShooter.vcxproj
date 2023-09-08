@@ -151,11 +151,13 @@
     <ClCompile Include="MinusButton.cpp" />
     <ClCompile Include="PlayerHUD.cpp" />
     <ClCompile Include="PlusButton.cpp" />
+    <ClCompile Include="SaveManager.cpp" />
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="MainMenuScene.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="PauseMenu.cpp" />
+    <ClCompile Include="ScoreManager.cpp" />
     <ClCompile Include="Slider.cpp" />
     <ClCompile Include="Switch.cpp" />
     <ClCompile Include="YellowButton.cpp" />
@@ -178,6 +180,7 @@
     <ClInclude Include="MinusButton.h" />
     <ClInclude Include="PlayerHUD.h" />
     <ClInclude Include="PlusButton.h" />
+    <ClInclude Include="SaveManager.h" />
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="MainMenuScene.h" />
@@ -186,6 +189,7 @@
     <ClInclude Include="GameScene.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="PauseMenu.h" />
+    <ClInclude Include="ScoreManager.h" />
     <ClInclude Include="Slider.h" />
     <ClInclude Include="Switch.h" />
     <ClInclude Include="YellowButton.h" />

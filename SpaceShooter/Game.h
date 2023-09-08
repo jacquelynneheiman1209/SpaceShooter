@@ -27,6 +27,7 @@ private:
 	Background background;
 	SceneManager sceneManager;
 	AudioManager audioManager;
+	ScoreManager scoreManager;
 
 	void update(float deltaTime);
 	void draw(sf::RenderWindow* window);

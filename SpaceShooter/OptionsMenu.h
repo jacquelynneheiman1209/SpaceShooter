@@ -5,6 +5,7 @@
 #include "GreenButton.h"
 #include "RedButton.h"
 #include "Slider.h"
+#include "SaveManager.h"
 
 #ifndef OPTIONS_MENU_H
 #define OPTIONS_MENU_H
@@ -18,12 +19,13 @@ public:
 	void handleInput(sf::RenderWindow* window, sf::Event* event) override;
 	void draw(sf::RenderWindow* window) override;
 
+	RedButton closeButton;
+	GreenButton saveButton;
+
 protected:
 	Slider sfxVolumeSlider;
 	Slider musicVolumeSlider;
 	Switch fullscreenSwitch;
-	GreenButton saveButton;
-	RedButton resetButton;
 
 	bool initializeBackground() override;
 	bool initializeText() override;
