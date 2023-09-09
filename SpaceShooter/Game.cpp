@@ -14,17 +14,17 @@ bool Game::initialize()
 		return false;
 	}
 
-	if (!sceneManager.initialize(sf::FloatRect(0, 0, static_cast<float>(windowWidth), static_cast<float>(windowHeight))))
-	{
-		return false;
-	}
-
 	if (!audioManager.initialize())
 	{
 		return false;
 	}
 
 	SaveManager::Load();
+
+	if (!sceneManager.initialize(sf::FloatRect(0, 0, static_cast<float>(windowWidth), static_cast<float>(windowHeight))))
+	{
+		return false;
+	}
 
 	return true;
 }

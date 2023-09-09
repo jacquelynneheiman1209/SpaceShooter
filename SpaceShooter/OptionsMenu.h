@@ -24,8 +24,6 @@ public:
 
 protected:
 	Slider sfxVolumeSlider;
-	Slider musicVolumeSlider;
-	Switch fullscreenSwitch;
 
 	bool initializeBackground() override;
 	bool initializeText() override;

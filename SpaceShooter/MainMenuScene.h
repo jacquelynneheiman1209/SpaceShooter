@@ -6,6 +6,8 @@
 #include "SceneLoader.h"
 #include "BlueButton.h"
 #include "SaveManager.h"
+#include "Textbox.h"
+#include "OptionsMenu.h"
 
 
 #ifndef MAIN_MENU_SCENE_H
@@ -29,11 +31,16 @@ private:
 
 	sf::FloatRect windowSize;
 
+	bool showOptionsMenu = false;
+
 	SceneLoader* sceneLoader;
 
 	GreenButton startGameButton;
 	BlueButton optionsButton;
 	RedButton quitGameButton;
+	Textbox highScoreTextbox;
+
+	OptionsMenu optionsMenu;
 
 	void setupText(sf::Text* text, sf::Vector2f position, std::string textValue, int characterSize, sf::Color textFillColor, sf::Color textOutlineColor);
 };

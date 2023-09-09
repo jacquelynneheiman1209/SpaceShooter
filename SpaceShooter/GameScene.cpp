@@ -61,7 +61,7 @@ bool GameScene::initialize(sf::FloatRect windowBounds)
 
 	if (!optionsMenu.initialize(gameBounds))
 	{
-
+		return false;
 	}
 
 	// initialize game objects
@@ -169,6 +169,7 @@ void GameScene::handleInput(sf::RenderWindow* window, sf::Event* event)
 						{
 							confirmationMenu.yesButton.click();
 							sceneLoader->loadScene("Main Menu", gameBounds);
+							SaveManager::Save();
 						}
 					}
 
@@ -222,13 +223,17 @@ void GameScene::handleInput(sf::RenderWindow* window, sf::Event* event)
 			{
 				gameOverMenu.playAgainButton.click();
 				initialize(gameBounds);
+				SaveManager::Save();
 			}
 
 			if (gameOverMenu.mainMenuButton.isClicked(sf::Mouse::getPosition(*window)))
 			{
 				gameOverMenu.mainMenuButton.click();
 				sceneLoader->loadScene("Main Menu", gameBounds);
+				SaveManager::Save();
 			}
+
+
 		}
 	}
 }
@@ -427,6 +432,8 @@ void GameScene::handleWindowResize(sf::FloatRect newWindowSize)
 	playerHUD = PlayerHUD(newWindowSize);
 	pauseMenu = PauseMenu();
 	gameOverMenu = GameOverMenu();
+	confirmationMenu = ConfirmationMenu();
+	optionsMenu = OptionsMenu();
 
 	player = Player(sf::Vector2f(newWindowSize.left + (newWindowSize.width / 2), newWindowSize.top + (newWindowSize.height / 2)), newWindowSize);  
 
@@ -434,6 +441,8 @@ void GameScene::handleWindowResize(sf::FloatRect newWindowSize)
 	playerHUD.initialize(newWindowSize);
 	pauseMenu.initialize(newWindowSize);
 	gameOverMenu.initialize(newWindowSize);
+	confirmationMenu.initialize(newWindowSize);
+	optionsMenu.initialize(newWindowSize);
 
 	for (int i = 0; i < asteroids.size(); i++)
 	{
@@ -446,6 +455,13 @@ void GameScene::handleWindowResize(sf::FloatRect newWindowSize)
 	}
 
 	gameBounds = newWindowSize;
+
+	showPauseMenu = true;
+	showOptionsMenu = false;
+	showConfirmationMenu = false;
+
+	confirmationReason = "";
+
 }
 
 bool GameScene::initializeAsteroids()

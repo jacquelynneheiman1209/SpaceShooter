@@ -1,7 +1,7 @@
 #include "MainMenuScene.h"
 #include <iostream>
 
-MainMenuScene::MainMenuScene(SceneLoader* sceneLoader, sf::FloatRect windowSize) : startGameButton(sf::Vector2f(0, 0), "Play"), quitGameButton(sf::Vector2f(0, 0), "Quit"), optionsButton(sf::Vector2f(0, 0), "Options")
+MainMenuScene::MainMenuScene(SceneLoader* sceneLoader, sf::FloatRect windowSize) : startGameButton(sf::Vector2f(0, 0), "Play"), quitGameButton(sf::Vector2f(0, 0), "Quit"), optionsButton(sf::Vector2f(0, 0), "Options"), highScoreTextbox("High Score 000000", 35, sf::Vector2f(0, 0))
 {
 	this->sceneLoader = sceneLoader;
 	this->windowSize = windowSize;
@@ -45,6 +45,20 @@ bool MainMenuScene::initialize(sf::FloatRect windowBounds)
 		return false;
 	}
 
+	highScoreTextbox = Textbox("High Score " + std::to_string(ScoreManager::getHiScore()), 25, sf::Vector2f(position.x, position.y + 180));
+
+	if (!highScoreTextbox.initialize())
+	{
+		return false;
+	}
+
+	optionsMenu = OptionsMenu();
+
+	if (!optionsMenu.initialize(windowSize))
+	{
+		return false;
+	}
+
 	return true;
 }
 
@@ -56,25 +70,48 @@ void MainMenuScene::handleInput(sf::RenderWindow* window, sf::Event* event)
 	quitGameButton.handleInput(window, event);
 
 	// Handle mouse clicks on the buttons
-	if (event->type == sf::Event::MouseButtonPressed)
+	if (showOptionsMenu)
 	{
-		if (startGameButton.isClicked(sf::Mouse::getPosition(*window)))
+		if (event->type == sf::Event::MouseButtonPressed)
 		{
-			startGameButton.click();
-			sceneLoader->loadScene("Game", windowSize);
+			if (optionsMenu.saveButton.isClicked(sf::Mouse::getPosition(*window)))
+			{
+				SaveManager::Save();
+				optionsMenu.saveButton.click();
+				showOptionsMenu = false;
+			}
+
+			if (optionsMenu.closeButton.isClicked(sf::Mouse::getPosition(*window)))
+			{
+				optionsMenu.closeButton.click();
+				showOptionsMenu = false;
+			}
 		}
 
-		if (optionsButton.isClicked(sf::Mouse::getPosition(*window)))
+		optionsMenu.handleInput(window, event);
+	}
+	else
+	{
+		if (event->type == sf::Event::MouseButtonPressed)
 		{
-			optionsButton.click();
-			// open options menu
-		}
+			if (startGameButton.isClicked(sf::Mouse::getPosition(*window)))
+			{
+				startGameButton.click();
+				sceneLoader->loadScene("Game", windowSize);
+			}
 
-		if (quitGameButton.isClicked(sf::Mouse::getPosition(*window)))
-		{
-			quitGameButton.click();
-			SaveManager::Save();
-			window->close();
+			if (optionsButton.isClicked(sf::Mouse::getPosition(*window)))
+			{
+				optionsButton.click();
+				showOptionsMenu = true;
+			}
+
+			if (quitGameButton.isClicked(sf::Mouse::getPosition(*window)))
+			{
+				quitGameButton.click();
+				SaveManager::Save();
+				window->close();
+			}
 		}
 	}
 }
@@ -85,6 +122,12 @@ void MainMenuScene::draw(sf::RenderWindow* window)
 	startGameButton.draw(window);
 	optionsButton.draw(window);
 	quitGameButton.draw(window);
+	highScoreTextbox.draw(window);
+
+	if (showOptionsMenu)
+	{
+		optionsMenu.draw(window);
+	}
 }
 
 void MainMenuScene::handleWindowResize(sf::FloatRect newWindowSize)

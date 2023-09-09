@@ -48,7 +48,7 @@ private:
 
 	bool showPauseMenu = false;
 	bool showConfirmationMenu = false;
-	bool showOptionsMenu = true;
+	bool showOptionsMenu = false;
 
 	bool isPaused = false;
 	bool isGameOver = false;

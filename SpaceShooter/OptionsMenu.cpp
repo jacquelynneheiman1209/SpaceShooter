@@ -1,7 +1,7 @@
 #include "OptionsMenu.h"
 #include "Debug.h"
 
-OptionsMenu::OptionsMenu() : Menu(), fullscreenSwitch(sf::Vector2f(0, 0), "", backgroundSprite.getGlobalBounds()), saveButton(sf::Vector2f(0, 0), "Save"), closeButton(sf::Vector2f(0, 0), "Reset"), sfxVolumeSlider(gameBounds, sf::Vector2f(0, 0), "SFX", 0), musicVolumeSlider(gameBounds, sf::Vector2f(0, 0), "Music", 0)
+OptionsMenu::OptionsMenu() : Menu(), saveButton(sf::Vector2f(0, 0), "Save"), closeButton(sf::Vector2f(0, 0), "Reset"), sfxVolumeSlider(gameBounds, sf::Vector2f(0, 0), "SFX", 0)
 {
 }
 
@@ -23,14 +23,6 @@ bool OptionsMenu::initialize(sf::FloatRect windowBounds)
 
 	sf::FloatRect backgroundBounds = backgroundSprite.getGlobalBounds();
 
-	fullscreenSwitch = Switch(sf::Vector2f(backgroundSprite.getGlobalBounds().left + 50, backgroundSprite.getGlobalBounds().top + 230), "Full Screen", backgroundSprite.getGlobalBounds());
-
-	if (!fullscreenSwitch.initialize(backgroundSprite.getGlobalBounds()))
-	{
-		Debug::Log("Failed to initialize options menu switch...");
-		return false;
-	}
-
 	// setup the text on the menu
 	if (!initializeText())
 	{
@@ -45,7 +37,11 @@ bool OptionsMenu::initialize(sf::FloatRect windowBounds)
 		return false;
 	}
 
-	saveButton = GreenButton(sf::Vector2f((backgroundSprite.getGlobalBounds().width / 2) - 75, 325), "Save");
+	sf::Vector2f buttonPosition;
+	buttonPosition.x = (backgroundSprite.getGlobalBounds().width / 2) - 75;
+	buttonPosition.y = 170;
+
+	saveButton = GreenButton(buttonPosition, "Save");
 
 	if (!saveButton.initialize(backgroundSprite.getGlobalBounds()))
 	{
@@ -54,7 +50,9 @@ bool OptionsMenu::initialize(sf::FloatRect windowBounds)
 
 	saveButton.setScale(.8f, .8f);
 
-	closeButton = RedButton(sf::Vector2f((backgroundSprite.getGlobalBounds().width / 2) + 75, 325), "Close");
+	buttonPosition.x = (backgroundSprite.getGlobalBounds().width / 2) + 75;
+
+	closeButton = RedButton(buttonPosition, "Close");
 
 	if (!closeButton.initialize(backgroundSprite.getGlobalBounds()))
 	{
@@ -82,16 +80,6 @@ bool OptionsMenu::initialize(sf::FloatRect windowBounds)
 
 	sliderPosition.y = backgroundBounds.top + 180;
 
-	musicVolumeSlider = Slider(backgroundSprite.getGlobalBounds(), sliderPosition, "Music", AudioManager::getMusicVolume());
-
-	if (!musicVolumeSlider.initialize(backgroundSprite.getGlobalBounds()))
-	{
-		return false;
-	}
-
-	musicVolumeSlider.setPosition(sliderPosition.x, sliderPosition.y);
-	musicVolumeSlider.setValue(AudioManager::getMusicVolume() / 10);
-
 	return true;
 }
 
@@ -102,15 +90,7 @@ void OptionsMenu::handleInput(sf::RenderWindow* window, sf::Event* event)
 		AudioManager::setSFXVolume(sfxVolumeSlider.getValue() * 10);
 	}
 
-	if (AudioManager::getMusicVolume() != musicVolumeSlider.getValue())
-	{
-		AudioManager::setMusicVolume(musicVolumeSlider.getValue() * 10);
-	}
-
 	sfxVolumeSlider.handleInput(window, event);
-	musicVolumeSlider.handleInput(window, event);
-
-	fullscreenSwitch.handleInput(window, event);
 	saveButton.handleInput(window, event);
 	closeButton.handleInput(window, event);
 }
@@ -121,9 +101,6 @@ void OptionsMenu::draw(sf::RenderWindow* window)
 	Menu::draw(window);
 
 	sfxVolumeSlider.draw(window);
-	musicVolumeSlider.draw(window);
-
-	fullscreenSwitch.draw(window);
 	saveButton.draw(window);
 	closeButton.draw(window);
 }
@@ -135,7 +112,10 @@ bool OptionsMenu::initializeBackground()
 		return false;
 	}
 
-	setupSprite(&backgroundSprite, &backgroundTexture, sf::Vector2f(1, 1), getCenter(gameBounds));
+	sf::Vector2f position = getCenter(gameBounds);
+	position.y -= 50;
+
+	setupSprite(&backgroundSprite, &backgroundTexture, sf::Vector2f(1, 1), position);
 
 	return true;
 }
